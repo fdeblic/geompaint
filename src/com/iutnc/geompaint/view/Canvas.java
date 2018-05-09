@@ -22,10 +22,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 * @param movingPoint the point to move a figure
 	 */
-	public Canvas(Figure selectedFigure, Point movingPoint) {
+	public Canvas() {
 		super();
-		this.selectedFigure = selectedFigure;
-		this.movingPoint = movingPoint;
 	}
 
 	/**
