@@ -18,9 +18,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private Point movingPoint;
 		
 	/**
-	 * 
-	 * @param selectedFigure
-	 * @param movingPoint
+	 * Canvas Constructor
+	 * @param selectedFigure the selected figure, you want to modify
+	 * @param movingPoint the point to move a figure
 	 */
 	public Canvas(Figure selectedFigure, Point movingPoint) {
 		super();
@@ -30,7 +30,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	/**
 	 * Figure selected to set
-	 * @param selectedFigure
+	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	public void setSelectedFigure(Figure selectedFigure) {
 		this.selectedFigure = selectedFigure;
@@ -38,34 +38,36 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	
 	/**
 	 * Draw a figure in the JPanel
-	 * @param f
+	 * @param f the figure to draw
 	 */
 	public void drawFigure(Figure f) {}
 	
 	/**
 	 * Draw a polygon in the JPanel
-	 * @param p
+	 * @param p the polygon to draw
 	 */
 	public void drawPolygon(Polygon p) {}
 	
 	/**
 	 * Draw a circle in the JPanel
-	 * @param c
+	 * @param c the circle to draw
 	 */
 	public void drawCircle(Circle c) {}
 	
 	/**
 	 * Draw a point in the JPanel
-	 * @param p
+	 * @param p the point to draw
 	 */
 	public void drawPoint(Point p) {}
 	
 	/**
 	 * The figure is hover
-	 * @param f
+	 * @param f the figure you want to check
 	 * @return True if the figure is hover
 	 */
-	public boolean isHover(Figure f) {}
+	public boolean isHover(Figure f) {
+		return false; 
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {}
