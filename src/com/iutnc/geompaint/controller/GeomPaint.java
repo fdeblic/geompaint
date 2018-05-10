@@ -39,56 +39,55 @@ public class GeomPaint {
 	/**
 	 * Handler for the circle button
 	 */
-	public void clickCircle() {
-		
+	public void createCircle() {
 	}
 	
 	/**
 	 * Handler for the polygon button
 	 */
-	public void clickPolygon() {
+	public void createPolygon() {
 		
 	}
 	
 	/**
 	 * Handler for the rectangle button
 	 */
-	public void clickRectangle() {
+	public void createRectangle() {
 		
 	}
 	
 	/**
 	 * Handler for the triangle button
 	 */
-	public void clickTriangle() {
+	public void createTriangle() {
 		
 	}
 	
 	/**
 	 * Handler for the fill_figure button
 	 */
-	public void clickFillFigure() {
+	public void fillFigure() {
 		
 	}
 	
 	/**
 	 * Handler for the color button
 	 */
-	public void clickColor() {
+	public void changeFigureColor() {
 		
 	}
 	
 	/**
 	 * Handler for the clone button
 	 */
-	public void clickClone() {
+	public void cloneFigure() {
 		
 	}
 	
 	/**
 	 * Handler for the delete button
 	 */
-	public void clickDelete() {
+	public void deleteFigure() {
 		
 	}
 	
