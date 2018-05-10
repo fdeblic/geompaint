@@ -8,5 +8,11 @@ package com.iutnc.geompaint.model;
 
 public class Rectangle extends Polygon{
 
+	@Override
+	public Figure getCopie() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
     
 }

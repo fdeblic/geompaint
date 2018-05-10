@@ -12,4 +12,10 @@ public class Circle extends Figure{
 
     private int radius;
 
+	@Override
+	public Figure getCopie() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

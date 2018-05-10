@@ -40,7 +40,7 @@ public abstract class Figure extends Observable{
      * Add a grip point to a figure
      * @return boolean 
      */
-    public boolean addGripPoint(GripPoint g) {
+    public boolean addGripPoint( Point g) {
 		return false;
     	
     }
@@ -92,7 +92,7 @@ public abstract class Figure extends Observable{
      * @param g the grip point to erase
      * @return boolean
      */
-    public boolean removeGripPoint( GripPoint g) {
+    public boolean removeGripPoint( Point g) {
     	return false;
     }
 
@@ -101,16 +101,15 @@ public abstract class Figure extends Observable{
      * @param c the choosen color
      */
     public void setColor(Color c) {
-    	
+    	this.color=c;
     }
     
     /**
      * Fill a figure
      * @return boolean
      */
-    public boolean setFilled() {
-		return false;
-    	
+    public void setFilled(boolean b) {
+		
     }
     
     /**
@@ -118,6 +117,8 @@ public abstract class Figure extends Observable{
      * @return boolean
      */
     public boolean isFilled() {
+    	if(filled==true) 
+    		return true;
     	return false;
     }
     
