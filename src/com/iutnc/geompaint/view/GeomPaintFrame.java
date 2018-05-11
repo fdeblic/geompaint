@@ -38,15 +38,19 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	}
 
 	@Override
+	/**
+	 * Enable Menu Edition
+	 */
 	public void enableEdition(boolean b) {
-		// TODO Auto-generated method stub
-		
+		menuEdit.setEnabled(b);		
 	}
 
 	@Override
+	/**
+	 * Enable Menu Adding
+	 */
 	public void enableAdding(boolean b) {
-		// TODO Auto-generated method stub
-		
+		menuAdd.setEnabled(b);
 	}
 
 }
