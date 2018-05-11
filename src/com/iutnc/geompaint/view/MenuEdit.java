@@ -81,5 +81,9 @@ public class MenuEdit extends JPanel {
 		add(btnDelete, gbc_btnTriangle);
 	}
 	
+	/**
+	 * Enable the menu 
+	 * @param b choice selected
+	 */
 	public void setEnabled(boolean b) {}
 }
