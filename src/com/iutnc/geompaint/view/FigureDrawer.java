@@ -1,5 +1,6 @@
 package com.iutnc.geompaint.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -32,18 +33,35 @@ public class FigureDrawer extends JPanel {
 	 * Draw a polygon in the JPanel
 	 * @param p the polygon to draw
 	 */
-	private void drawPolygon(Polygon p, Graphics g) {}
+	private void drawPolygon(Polygon p, Graphics g) {
+		g.setColor(p.getColor());
+		Point[] points = p.getPoints();
+		int[] pointX = {};
+		int[] pointY = {};
+		for (int i = 0; i < points.length; i++){
+			pointX[i] = points[i].x;
+			pointY[i] = points[i].y;
+		}
+		g.drawPolygon(pointX, pointY, points.length);
+	}
 	
 	/**
 	 * Draw a circle in the JPanel
 	 * @param c the circle to draw
 	 */
-	private void drawCircle(Circle c, Graphics g) {}
+	private void drawCircle(Circle c, Graphics g) {
+		Point centre = c.getCentre();
+		g.setColor(c.getColor());
+		g.drawOval(centre.x, centre.y, c.getRadius(), c.getRadius());
+	}
 	
 	/**
 	 * Draw a point in the JPanel
 	 * @param p the point to draw
 	 */
-	private void drawPoint(Point p, Graphics g) {}
+	private void drawPoint(Point p, Graphics g) {
+		g.setColor(Color.black);
+		g.drawRect(p.x-1, p.y-1, 2, 2);
+	}
 	
 }
