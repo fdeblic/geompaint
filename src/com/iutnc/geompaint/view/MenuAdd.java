@@ -91,10 +91,10 @@ public class MenuAdd extends JPanel {
 	 * @param b choice selected
 	 */
 	public void setEnabled(boolean b){
-		btnTriangle.setEnabled(false);
-		btnRectangle.setEnabled(false);
-		btnCercle.setEnabled(false);
-		btnPolygone.setEnabled(false);
+		btnTriangle.setEnabled(b);
+		btnRectangle.setEnabled(b);
+		btnCercle.setEnabled(b);
+		btnPolygone.setEnabled(b);
 	}
 
 }

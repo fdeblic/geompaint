@@ -86,9 +86,9 @@ public class MenuEdit extends JPanel {
 	 * @param b choice selected
 	 */
 	public void setEnabled(boolean b) {
-		btnClone.setEnabled(false);
-		btnDelete.setEnabled(false);
-		btnColor.setEnabled(false);
-		btnFill.setEnabled(false);
+		btnClone.setEnabled(b);
+		btnDelete.setEnabled(b);
+		btnColor.setEnabled(b);
+		btnFill.setEnabled(b);
 	}
 }
