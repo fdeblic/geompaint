@@ -15,6 +15,11 @@ import com.iutnc.geompaint.view.*;
  */
 public class Principale extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7979198717497973220L;
+
 	public static void main(String[] args) {
 		JFrame fenetre=new JFrame("GeomPoint");
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
