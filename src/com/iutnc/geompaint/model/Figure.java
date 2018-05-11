@@ -30,6 +30,12 @@ public abstract class Figure extends Observable{
     
     protected Figure() {
     	
+    	this.gripPoints = new ArrayList();
+    	this.filled = false;
+    	this.color = color.black;
+    	this.maxGripPoints=0;
+    	
+    	
     }
     
     
@@ -49,7 +55,7 @@ public abstract class Figure extends Observable{
      * Return the points of the figure
      * @return table of Point 
      */
-    public Point getGripPoints() {
+    public Point[] getGripPoints() {
 		return null;
     	
     }
