@@ -27,7 +27,11 @@ public class FigureDrawer extends JPanel {
 	 * Draw a figure in the JPanel
 	 * @param f the figure to draw
 	 */
-	public void drawFigure(Figure f, Graphics g) {}
+	public void drawFigure(Figure f, Graphics g) {
+		if (f == null){return;}
+		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
+		if (f instanceof Circle) this.drawCircle((Circle)f, g);
+	}
 	
 	/**
 	 * Draw a polygon in the JPanel
