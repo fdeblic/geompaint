@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.iutnc.geompaint.controller.GeomPaint;
+
 /**
  * 
  * @author Elise
@@ -16,8 +18,13 @@ import javax.swing.JPanel;
  */
 public class MenuEdit extends JPanel {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8937470125516171462L;
+	/**
 	 * Attributs
 	 */
+	private GeomPaint controller;
 	private JButton btnFill;
 	private JButton btnColor;
 	private JButton btnClone;
@@ -73,4 +80,6 @@ public class MenuEdit extends JPanel {
 		gbc_btnTriangle.gridy = 5;
 		add(btnDelete, gbc_btnTriangle);
 	}
+	
+	public void setEnabled(boolean b) {}
 }
