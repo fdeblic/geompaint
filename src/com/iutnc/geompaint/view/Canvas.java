@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import com.iutnc.geompaint.controller.FigureAnalyzer;
 import com.iutnc.geompaint.controller.GeomPaint;
 import com.iutnc.geompaint.model.*;
 
