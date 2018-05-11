@@ -2,8 +2,8 @@ package com.iutnc.geompaint.model;
 
 import java.awt.Color;
 import java.awt.Point;
-import java.util.*;
-import com.iutnc.geompaint.*;
+import java.util.ArrayList;
+import java.util.Observable;
 
 /**
 *
@@ -11,7 +11,7 @@ import com.iutnc.geompaint.*;
 *
 **/
 
-public abstract class Figure extends Observable{
+public abstract class Figure extends Observable {
 
     // ATTRIBUTES
 
