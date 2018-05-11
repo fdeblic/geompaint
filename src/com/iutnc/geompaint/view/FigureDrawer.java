@@ -43,6 +43,9 @@ public class FigureDrawer {
 			pointY[i] = points[i].y;
 		}
 		g.drawPolygon(pointX, pointY, points.length);
+		if (context.isSelected(p)){
+			drawPoints(p.getGripPoints(), g);
+		}
 	}
 	
 	/**
@@ -56,8 +59,7 @@ public class FigureDrawer {
 		g.setColor(c.getColor());
 		g.drawOval(centre.x, centre.y, c.getRadius(), c.getRadius());
 		if (context.isSelected(c)){
-			Point[] pts = {new Point(centre.x+radius, centre.y), centre};
-			drawPoints(pts,g);
+			drawPoints(c.getGripPoints(), g);
 		}
 	}
 	
