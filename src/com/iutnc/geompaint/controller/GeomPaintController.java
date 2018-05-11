@@ -16,7 +16,7 @@ import com.iutnc.geompaint.view.MenuEdit;
  * @author francois
  *
  */
-public class GeomPaint {
+public class GeomPaintController {
 	
 	// ATTRIBUTES
 
@@ -28,7 +28,7 @@ public class GeomPaint {
 	/**
 	 * Constructor
 	 */
-	public GeomPaint(IGeomPaintView view) {
+	public GeomPaintController(IGeomPaintView view) {
 		if (view != null) {
 			this.view = view;
 		} else {

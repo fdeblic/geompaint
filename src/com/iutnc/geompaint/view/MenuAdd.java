@@ -10,7 +10,7 @@ import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
 
-import com.iutnc.geompaint.controller.GeomPaint;
+import com.iutnc.geompaint.controller.GeomPaintController;
 
 import java.awt.Insets;
 /**
@@ -28,7 +28,7 @@ public class MenuAdd extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private GeomPaint controller;
+	private GeomPaintController controller;
 	private JButton btnCercle;
 	private JButton btnPolygone;
 	private JButton btnRectangle;

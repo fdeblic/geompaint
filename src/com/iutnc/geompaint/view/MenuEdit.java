@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.iutnc.geompaint.controller.GeomPaint;
+import com.iutnc.geompaint.controller.GeomPaintController;
 
 /**
  * 
@@ -24,7 +24,7 @@ public class MenuEdit extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private GeomPaint controller;
+	private GeomPaintController controller;
 	private JButton btnFill;
 	private JButton btnColor;
 	private JButton btnClone;
