@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import javax.swing.JPanel;
-
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
 import com.iutnc.geompaint.model.Polygon;
