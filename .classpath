@@ -3,5 +3,19 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="./lib/junit/junit.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.apiguardian_1.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
+	<classpathentry kind="lib" path="./lib/junit/org.opentest4j_1.0.0.v20170910-2246.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
