@@ -85,6 +85,11 @@ public class MenuAdd extends JPanel {
 		add(btnTriangle, gbc_btnTriangle);
 	}
 	
+	
+	/**
+	 * Enable the menu 
+	 * @param b choice selected
+	 */
 	public void setEnabled(boolean b){}
 
 }

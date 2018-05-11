@@ -36,16 +36,30 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 * @param movingPoint the point to move a figure
 	 */
-	public Canvas() {
+	public Canvas(GeomPaint controller) {
 		super();
 	}
+	
+	/**
+	 * Add figure to figures's list
+	 * @param f the figure to add
+	 */
+	public void addFigure(Figure f){}
 
 	/**
 	 * Figure selected to set
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
-	private void setSelectedFigure(Figure selectedFigure) {
-		this.selectedFigure = selectedFigure;
+	private boolean isSelected(Figure f) {
+		return false;
+	}
+	
+	/**
+	 * Figure selected to set
+	 * @param selectedFigure the selected figure, you want to modify
+	 */
+	private boolean isSelected(Point p) {
+		return false;
 	}
 	
 	
