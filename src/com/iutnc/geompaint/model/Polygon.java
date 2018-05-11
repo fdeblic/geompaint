@@ -4,7 +4,7 @@ import java.awt.Point;
 
 /**
 *
-* @author Loïc Spacher
+* @author Loic Spacher
 *
 **/
 

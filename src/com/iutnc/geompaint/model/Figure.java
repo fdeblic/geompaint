@@ -7,7 +7,7 @@ import com.iutnc.geompaint.*;
 
 /**
 *
-* @author Loïc Spacher
+* @author Loic Spacher
 *
 **/
 
