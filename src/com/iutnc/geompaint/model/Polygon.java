@@ -1,5 +1,7 @@
 package com.iutnc.geompaint.model;
 
+import java.awt.Point;
+
 /**
 *
 * @author Loïc Spacher
@@ -8,9 +10,18 @@ package com.iutnc.geompaint.model;
 
 public class Polygon extends Figure{
 
+	
+	public Polygon() {
+		super();
+	}
+	
 	@Override
-	public Figure getCopie() {
+	public Polygon getCopie() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public Point[] getPoints() {
 		return null;
 	}
 

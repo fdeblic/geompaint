@@ -9,7 +9,7 @@ package com.iutnc.geompaint.model;
 public class Triangle extends Polygon {
 	
 	@Override
-	public Figure getCopie() {
+	public Triangle getCopie() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -3,11 +3,13 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import com.iutnc.geompaint.controller.GeomPaint;
 import com.iutnc.geompaint.model.*;
 
 /**
@@ -16,53 +18,50 @@ import com.iutnc.geompaint.model.*;
  * @version 09/05/2018
  */
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener, Observer {
+
 	/**
 	 * Attributs
 	 */
-	
+	private static final long serialVersionUID = 3407451406157270690L;
+	private GeomPaint controller;
+	private FigureDrawer drawer;
+	private FigureAnalyzer analyzer;
+	private ArrayList<Figure> figures;
 	private Figure selectedFigure;
 	private Point movingPoint;
+	
 		
 	/**
 	 * Canvas Constructor
 	 * @param selectedFigure the selected figure, you want to modify
 	 * @param movingPoint the point to move a figure
 	 */
-	public Canvas() {
+	public Canvas(GeomPaint controller) {
 		super();
 	}
+	
+	/**
+	 * Add figure to figures's list
+	 * @param f the figure to add
+	 */
+	public void addFigure(Figure f){}
 
 	/**
 	 * Figure selected to set
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
-	private void setSelectedFigure(Figure selectedFigure) {
-		this.selectedFigure = selectedFigure;
+	private boolean isSelected(Figure f) {
+		return false;
 	}
 	
 	/**
-	 * Draw a figure in the JPanel
-	 * @param f the figure to draw
+	 * Figure selected to set
+	 * @param selectedFigure the selected figure, you want to modify
 	 */
-	private void drawFigure(Figure f) {}
+	private boolean isSelected(Point p) {
+		return false;
+	}
 	
-	/**
-	 * Draw a polygon in the JPanel
-	 * @param p the polygon to draw
-	 */
-	private void drawPolygon(Polygon p) {}
-	
-	/**
-	 * Draw a circle in the JPanel
-	 * @param c the circle to draw
-	 */
-	private void drawCircle(Circle c) {}
-	
-	/**
-	 * Draw a point in the JPanel
-	 * @param p the point to draw
-	 */
-	private void drawPoint(Point p) {}
 	
 	/**
 	 * The figure is hover

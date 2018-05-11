@@ -1,5 +1,7 @@
 package com.iutnc.geompaint.model;
 
+import java.awt.Point;
+
 /**
 *
 * @author Loïc Spacher
@@ -12,8 +14,25 @@ public class Circle extends Figure{
 
     private int radius;
 
+    
+    //CONSTRUCTOR
+    
+    public Circle() {
+    	super();
+    }
+    
+    //METHODS 
+    
+    public Point getCentre() {
+    	return null;
+    }
+    
+    public int getRadius() {
+		return radius;
+	}
+    
 	@Override
-	public Figure getCopie() {
+	public Circle getCopie() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,13 +1,18 @@
 package com.iutnc.geompaint.view;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
+
+import com.iutnc.geompaint.controller.GeomPaint;
+
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 /**
  * 
  * @author moreau96u
@@ -17,8 +22,13 @@ import java.awt.event.ActionEvent;
 
 public class MenuAdd extends JPanel {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5724502981418760926L;
+	/**
 	 * Attributs
 	 */
+	private GeomPaint controller;
 	private JButton btnCercle;
 	private JButton btnPolygone;
 	private JButton btnRectangle;
@@ -34,8 +44,6 @@ public class MenuAdd extends JPanel {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
-		JPanel newPanel = new JPanel(gridBagLayout);
 		
 		JLabel label = new JLabel("- Ajout -");
 		GridBagConstraints gbc_label = new GridBagConstraints();
@@ -76,5 +84,12 @@ public class MenuAdd extends JPanel {
 		gbc_btnTriangle.gridy = 5;
 		add(btnTriangle, gbc_btnTriangle);
 	}
+	
+	
+	/**
+	 * Enable the menu 
+	 * @param b choice selected
+	 */
+	public void setEnabled(boolean b){}
 
 }
