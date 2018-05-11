@@ -50,7 +50,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * Figure selected to set
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
-	private boolean isSelected(Figure f) {
+	public boolean isSelected(Figure f) {
 		return false;
 	}
 	
