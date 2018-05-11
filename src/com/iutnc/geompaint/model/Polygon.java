@@ -21,7 +21,7 @@ public class Polygon extends Figure{
 		return null;
 	}
 	
-	public Point getPoints() {
+	public Point[] getPoints() {
 		return null;
 	}
 
