@@ -32,7 +32,7 @@ public class Circle extends Figure{
 	}
     
 	@Override
-	public Cercle getCopie() {
+	public Circle getCopie() {
 		// TODO Auto-generated method stub
 		return null;
 	}
