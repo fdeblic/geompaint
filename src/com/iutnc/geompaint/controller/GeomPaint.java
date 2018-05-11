@@ -1,10 +1,13 @@
 package com.iutnc.geompaint.controller;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import com.iutnc.geompaint.model.Figure;
 import com.iutnc.geompaint.view.Canvas;
+import com.iutnc.geompaint.view.GeomPaintFrame;
+import com.iutnc.geompaint.view.IGeomPaintView;
 import com.iutnc.geompaint.view.MenuAdd;
 import com.iutnc.geompaint.view.MenuEdit;
 
@@ -17,10 +20,7 @@ public class GeomPaint {
 	
 	// ATTRIBUTES
 
-	private MenuEdit menuEdit;
-	private MenuAdd menuAdd;
-	private Canvas canvas;
-	private ArrayList<Figure> figures;
+	private IGeomPaintView view;
 	private State state;
 	
 	// CONSTRUCTOR
@@ -28,9 +28,12 @@ public class GeomPaint {
 	/**
 	 * Constructor
 	 */
-	public GeomPaint() {
-		// TODO Auto-generated constructor stub
-		figures = new ArrayList<>();
+	public GeomPaint(IGeomPaintView view) {
+		if (view != null) {
+			this.view = view;
+		} else {
+			this.view = new GeomPaintFrame();
+		}
 		state = State.NORMAL;
 	}
 	
@@ -91,35 +94,55 @@ public class GeomPaint {
 		
 	}
 	
-	// CANVAS HANDLER
+	// ACTIONS HANDLER
 
-	
 	/**
-	 * Calculates if a figure/point/blank was clicked
-	 * and acts in function (adds a new point, selects a figure)
+	 * Moves a Figure at the given position
+	 * @param f the Figure to move
+	 * @param x the x position to set
+	 * @param y the y position to set
 	 */
-	public void canvasClicked(MouseEvent e) {
-		
+	public void moveFigure(Figure f, int x, int y) {
+		if (f != null) f.translate(x, y);
 	}
 	
 	/**
-	 * Calculates if a figure/point/blank was clicked
-	 * and acts in function (adds a new point, selects a figure)
+	 * Moves a Figure at the given position
+	 * @param p the Point to move
+	 * @param x the x position to set
+	 * @param y the y position to set
 	 */
-	public void canvasDragged(MouseEvent e) {
-		
+	public void movePoint(Point p, int x, int y) {
+		if (p != null) p.translate(x, y);
 	}
 	
 	/**
-	 * Cancels the current action (dragging, drawing new Figure, ...)
+	 * Tries to put a new Point
+	 * @param x the x position to put a new point
+	 * @param y the y position to put a new point
+	 * @return true if the point was added (a Figure was being drawn), false otherwise
 	 */
-	public void cancelAction() {
-		
+	public boolean putNewPoint(Figure f, int x, int y) {
+		// TODO putNewPoint()
+		return false;
+	}
+	
+	public boolean validateDrawing() {
+		// TODO validateDrawing()
+		return false;
+	}
+	
+	public void cancelDrawing() {
+		// TODO cancelDrawing()
 	}
 	
 	// GETTER - SETTER
 	
-	public Figure[] getFigures() {
-		return figures.toArray(new Figure[figures.size()]);
+	
+	// PRIVATE METHODS
+	
+	private void updateButtons() {
+		
 	}
+	
 }
