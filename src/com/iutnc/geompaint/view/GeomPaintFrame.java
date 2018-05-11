@@ -7,6 +7,14 @@ import com.iutnc.geompaint.model.Figure;
 
 public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7316135187489253803L;
+	/**
+	 * 
+	 */
+
 	private MenuEdit menuEdit;
 	private MenuAdd menuAdd;
 	private JPanel canvas;
