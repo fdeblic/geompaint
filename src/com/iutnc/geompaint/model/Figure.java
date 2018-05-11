@@ -64,7 +64,7 @@ public abstract class Figure extends Observable{
     }
     
     /**
-     * Return true if the figure is complete 
+     * Return true if the figure accept the new grip point
      * @return the completion of the figure
      */
     public boolean isComplete() {
