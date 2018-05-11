@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import com.iutnc.geompaint.controller.FigureAnalyzer;
 import com.iutnc.geompaint.controller.GeomPaint;
 import com.iutnc.geompaint.model.*;
 
@@ -50,7 +51,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * Figure selected to set
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
-	private boolean isSelected(Figure f) {
+	public boolean isSelected(Figure f) {
 		return false;
 	}
 	

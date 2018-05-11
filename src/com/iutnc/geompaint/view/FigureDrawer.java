@@ -4,30 +4,30 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import javax.swing.JPanel;
-
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
 import com.iutnc.geompaint.model.Polygon;
 
-public class FigureDrawer extends JPanel {
+public class FigureDrawer {
 	/**
-	 * 
+	 * Attributes
 	 */
-	private static final long serialVersionUID = -8290765604021368933L;
+	private Canvas context;
 	
-	public FigureDrawer(JPanel context) {
+	public FigureDrawer(Canvas context) {
 		super();
 		this.context = context;
 	}
-
-	private JPanel context;
 	
 	/**
 	 * Draw a figure in the JPanel
 	 * @param f the figure to draw
 	 */
-	public void drawFigure(Figure f, Graphics g) {}
+	public void drawFigure(Figure f, Graphics g) {
+		if (f == null){return;}
+		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
+		if (f instanceof Circle) this.drawCircle((Circle)f, g);
+	}
 	
 	/**
 	 * Draw a polygon in the JPanel
@@ -47,12 +47,29 @@ public class FigureDrawer extends JPanel {
 	
 	/**
 	 * Draw a circle in the JPanel
+	 * If selected, draw the grip points
 	 * @param c the circle to draw
 	 */
 	private void drawCircle(Circle c, Graphics g) {
 		Point centre = c.getCentre();
+		int radius = c.getRadius(); 
 		g.setColor(c.getColor());
 		g.drawOval(centre.x, centre.y, c.getRadius(), c.getRadius());
+		if (context.isSelected(c)){
+			Point[] pts = {new Point(centre.x+radius, centre.y), centre};
+			drawPoints(pts,g);
+		}
+	}
+	
+	/**
+	 * Draw multiple points from an array
+	 * @param pts
+	 * @param g
+	 */
+	private void drawPoints(Point[] pts, Graphics g){
+		for (int i = 0; i < pts.length; i++){
+			drawPoint(pts[i], g);
+		}
 	}
 	
 	/**
