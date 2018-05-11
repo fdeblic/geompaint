@@ -49,41 +49,46 @@ public class MenuEdit extends JPanel {
 		add(label, gbc_label);
 		
 		btnFill = new JButton("Remplir");
-		GridBagConstraints gbc_btnCercle = new GridBagConstraints();
-		gbc_btnCercle.fill = GridBagConstraints.BOTH;
-		gbc_btnCercle.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCercle.gridx = 1;
-		gbc_btnCercle.gridy = 2;
-		add(btnFill, gbc_btnCercle);
+		GridBagConstraints gbc_btnFill = new GridBagConstraints();
+		gbc_btnFill.fill = GridBagConstraints.BOTH;
+		gbc_btnFill.insets = new Insets(0, 0, 5, 5);
+		gbc_btnFill.gridx = 1;
+		gbc_btnFill.gridy = 2;
+		add(btnFill, gbc_btnFill);
 		
 		btnColor = new JButton("Couleur");
-		GridBagConstraints gbc_btnPolygone = new GridBagConstraints();
-		gbc_btnPolygone.fill = GridBagConstraints.BOTH;
-		gbc_btnPolygone.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPolygone.gridx = 1;
-		gbc_btnPolygone.gridy = 3;
-		add(btnColor, gbc_btnPolygone);
+		GridBagConstraints gbc_btnColor = new GridBagConstraints();
+		gbc_btnColor.fill = GridBagConstraints.BOTH;
+		gbc_btnColor.insets = new Insets(0, 0, 5, 5);
+		gbc_btnColor.gridx = 1;
+		gbc_btnColor.gridy = 3;
+		add(btnColor, gbc_btnColor);
 		
 		btnClone = new JButton("Dupliquer");
-		GridBagConstraints gbc_btnRectangle = new GridBagConstraints();
-		gbc_btnRectangle.fill = GridBagConstraints.BOTH;
-		gbc_btnRectangle.insets = new Insets(0, 0, 5, 5);
-		gbc_btnRectangle.gridx = 1;
-		gbc_btnRectangle.gridy = 4;
-		add(btnClone, gbc_btnRectangle);
+		GridBagConstraints gbc_btnClone = new GridBagConstraints();
+		gbc_btnClone.fill = GridBagConstraints.BOTH;
+		gbc_btnClone.insets = new Insets(0, 0, 5, 5);
+		gbc_btnClone.gridx = 1;
+		gbc_btnClone.gridy = 4;
+		add(btnClone, gbc_btnClone);
 		
 		btnDelete = new JButton("Supprimer");
-		GridBagConstraints gbc_btnTriangle = new GridBagConstraints();
-		gbc_btnTriangle.fill = GridBagConstraints.BOTH;
-		gbc_btnTriangle.insets = new Insets(0, 0, 5, 5);
-		gbc_btnTriangle.gridx = 1;
-		gbc_btnTriangle.gridy = 5;
-		add(btnDelete, gbc_btnTriangle);
+		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
+		gbc_btnDelete.fill = GridBagConstraints.BOTH;
+		gbc_btnDelete.insets = new Insets(0, 0, 5, 5);
+		gbc_btnDelete.gridx = 1;
+		gbc_btnDelete.gridy = 5;
+		add(btnDelete, gbc_btnDelete);
 	}
 	
 	/**
 	 * Enable the menu 
 	 * @param b choice selected
 	 */
-	public void setEnabled(boolean b) {}
+	public void setEnabled(boolean b) {
+		btnClone.setEnabled(false);
+		btnDelete.setEnabled(false);
+		btnColor.setEnabled(false);
+		btnFill.setEnabled(false);
+	}
 }
