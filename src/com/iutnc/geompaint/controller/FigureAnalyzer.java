@@ -96,14 +96,40 @@ public class FigureAnalyzer {
 	 * @return true if the reference is near the Figure (tolerance included), false otherwise
 	 */
 	public boolean isNearFigure(Figure f) {
-		if (f == null || !f.isComplete()) return false;
+		if (f == null) return false;
 		
 		boolean res = false;
 		if (f instanceof Polygon) {
-			res = isNearPolygon((Polygon) f);
+			res = isOnPolygon((Polygon) f, nearTolerence);
 		}
 		else if (f instanceof Circle) {
-			res = isNearCircle((Circle) f);
+			res = isOnCircle((Circle) f, nearTolerence);
+		}
+		else {
+			try {
+				throw new UnknownFigureException();
+			} catch (UnknownFigureException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	
+	
+	/**
+	 * Checks if the reference coordinates are hover the Figure given in parameter with the tolerance fixed before
+	 * @param f the Figure
+	 * @return true if the reference is hover the Figure (tolerance included), false otherwise
+	 */
+	public boolean isHoverFigure(Figure f) {
+		if (f == null) return false;
+		
+		boolean res = false;
+		if (f instanceof Polygon) {
+			res = isOnPolygon((Polygon) f, hoverTolerence);
+		}
+		else if (f instanceof Circle) {
+			res = isOnCircle((Circle) f, hoverTolerence);
 		}
 		else {
 			try {
@@ -136,9 +162,18 @@ public class FigureAnalyzer {
 	 * @param c the Circle
 	 * @return true if the reference is near the Circle (tolerance included), false otherwise
 	 */
-	private boolean isNearCircle(Circle c) {
+	private boolean isOnCircle(Circle c, int tolerance) {
+		if (c == null)
+			return false;
+
+		int x, y;
+		Point centre = c.getCentre();
+
+		x = refX - centre.x;
+		y = refY - centre.y;
+
 		// Calculates the complex module : |z| = sqrt(a*a + b*b)
-		return c.getRadius() >= Math.sqrt(refX*refX + refY*refY);
+		return c.getRadius() + tolerance >= Math.sqrt(x*x + y*y);
 	}
 	
 	/**
@@ -146,10 +181,16 @@ public class FigureAnalyzer {
 	 * @param p the Polygon
 	 * @return true if the reference is near the Polygon (tolerance included), false otherwise
 	 */
-	private boolean isNearPolygon(Polygon polygon) {
-		java.awt.Polygon p = new java.awt.Polygon();
-		for (Point pt : polygon.getPoints())
-			p.addPoint(pt.x, pt.y);
-		return p.contains(new Point(refX, refY));
+	private boolean isOnPolygon(Polygon p, int tolerance) {
+		java.awt.Polygon polygon = new java.awt.Polygon();
+		for (Point pt : p.getPoints())
+			polygon.addPoint(pt.x, pt.y);
+		for (int x = refX - tolerance ; x < refX + tolerance ; x++) {
+			for (int y = refY - tolerance ; y < refY + tolerance ; y++) {
+				if (polygon.contains(new Point(x, y)))
+					return true;
+			}
+		}
+		return false;
 	}
 }
