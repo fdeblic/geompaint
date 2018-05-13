@@ -1,4 +1,5 @@
 package com.iutnc.geompaint.view;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -38,6 +39,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 */
 	public Canvas(GeomPaintController controller) {
 		super();
+		setBackground(Color.white);
 	}
 	
 	/**
