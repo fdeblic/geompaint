@@ -1,23 +1,14 @@
 package com.iutnc.geompaint.view;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import com.iutnc.geompaint.model.Figure;
 
 public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7316135187489253803L;
-	/**
-	 * 
-	 */
-
 	private MenuEdit menuEdit;
 	private MenuAdd menuAdd;
-	private JPanel canvas;
+	private Canvas canvas;
 
 	@Override
 	public boolean isSelectedFigure(Figure f) {
@@ -27,12 +18,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 
 	@Override
 	public void setSelectedFigure(Figure f) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addFigure(Figure f) {
 		// TODO Auto-generated method stub
 		
 	}
