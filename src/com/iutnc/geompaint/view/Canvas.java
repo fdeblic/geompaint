@@ -27,7 +27,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private GeomPaintController controller;
 	private FigureDrawer drawer;
 	private FigureAnalyzer analyzer;
-	private ArrayList<Figure> figures;
 	private Figure selectedFigure;
 	private Point movingPoint;
 	
