@@ -112,28 +112,22 @@ public class GeomPaintController {
 	 * @param x the x position to set
 	 * @param y the y position to set
 	 */
-	public void movePoint(Point p, int x, int y) {
-		if (p != null) p.translate(x, y);
+	public boolean movePoint(Point p, int x, int y) {
+		if (p != null) {
+			p.translate(x, y);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
+
 	/**
-	 * Tries to put a new Point
-	 * @param x the x position to put a new point
-	 * @param y the y position to put a new point
-	 * @return true if the point was added (a Figure was being drawn), false otherwise
+	 * Launches the program
 	 */
-	public boolean putNewPoint(Figure f, int x, int y) {
-		// TODO putNewPoint()
-		return false;
-	}
-	
-	public boolean validateDrawing() {
-		// TODO validateDrawing()
-		return false;
-	}
-	
-	public void cancelDrawing() {
-		// TODO cancelDrawing()
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	// GETTER - SETTER
