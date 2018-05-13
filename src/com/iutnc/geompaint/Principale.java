@@ -1,5 +1,6 @@
 package com.iutnc.geompaint;
 
+import javax.swing.JPanel;
 import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.view.*;
 
