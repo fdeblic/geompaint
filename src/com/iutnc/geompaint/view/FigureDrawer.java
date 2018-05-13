@@ -25,9 +25,11 @@ public class FigureDrawer {
 	 */
 	public void drawFigure(Figure f, Graphics g) {
 		if (f == null){return;}
-		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
-		if (f instanceof Circle) this.drawCircle((Circle)f, g);
-		context.addFigure(f);
+		else if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
+		else if (f instanceof Circle) this.drawCircle((Circle)f, g);
+		if (context.isSelected(f)){
+			drawPoints(f.getGripPoints(), g);
+		}
 	}
 	
 	/**

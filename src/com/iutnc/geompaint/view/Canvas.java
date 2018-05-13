@@ -1,4 +1,5 @@
 package com.iutnc.geompaint.view;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,7 +28,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private GeomPaintController controller;
 	private FigureDrawer drawer;
 	private FigureAnalyzer analyzer;
-	private ArrayList<Figure> figures;
 	private Figure selectedFigure;
 	private Point movingPoint;
 	
@@ -39,15 +39,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 */
 	public Canvas(GeomPaintController controller) {
 		super();
+		setBackground(Color.white);
 	}
 	
 	/**
 	 * Add figure to figures's list
 	 * @param f the figure to add
 	 */
-	public void addFigure(Figure f){
-		figures.add(f);
-	}
+	public void addFigure(Figure f){}
 
 	/**
 	 * Figure selected to set

@@ -49,7 +49,7 @@ public class FigureAnalyzer {
 	 * @param hoverTolerence the tolerance for being hover a Figure or Point (in pixels, minimum 0)
 	 */
 	public FigureAnalyzer(int refX, int refY, int nearTolerence, int hoverTolerence) {
-		setReferenceCoordinates(refX, refY);
+		setRef(refX, refY);
 		setNearTolerence(nearTolerence);
 		setHoverTolerence(hoverTolerence);
 	}
@@ -64,7 +64,7 @@ public class FigureAnalyzer {
 	 * @param refX X value used as reference for your tests
 	 * @param refY Y value used as reference for your tests
 	 */
-	public void setReferenceCoordinates(int refX, int refY) {
+	public void setRef(int refX, int refY) {
 		this.refX = refX;
 		this.refY = refY;
 	}
@@ -100,10 +100,36 @@ public class FigureAnalyzer {
 		
 		boolean res = false;
 		if (f instanceof Polygon) {
-			res = isNearPolygon((Polygon) f);
+			res = isOnPolygon((Polygon) f, nearTolerence);
 		}
 		else if (f instanceof Circle) {
-			res = isNearCircle((Circle) f);
+			res = isOnCircle((Circle) f, nearTolerence);
+		}
+		else {
+			try {
+				throw new UnknownFigureException();
+			} catch (UnknownFigureException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	
+	
+	/**
+	 * Checks if the reference coordinates are hover the Figure given in parameter with the tolerance fixed before
+	 * @param f the Figure
+	 * @return true if the reference is hover the Figure (tolerance included), false otherwise
+	 */
+	public boolean isHoverFigure(Figure f) {
+		if (f == null) return false;
+		
+		boolean res = false;
+		if (f instanceof Polygon) {
+			res = isOnPolygon((Polygon) f, hoverTolerence);
+		}
+		else if (f instanceof Circle) {
+			res = isOnCircle((Circle) f, hoverTolerence);
 		}
 		else {
 			try {
@@ -136,9 +162,18 @@ public class FigureAnalyzer {
 	 * @param c the Circle
 	 * @return true if the reference is near the Circle (tolerance included), false otherwise
 	 */
-	private boolean isNearCircle(Circle c) {
-		// TODO isNearCircle()
-		return false;
+	private boolean isOnCircle(Circle c, int tolerance) {
+		if (c == null)
+			return false;
+
+		int x, y;
+		Point centre = c.getCentre();
+
+		x = refX - centre.x;
+		y = refY - centre.y;
+
+		// Calculates the complex module : |z| = sqrt(a*a + b*b)
+		return c.getRadius() + tolerance >= Math.sqrt(x*x + y*y);
 	}
 	
 	/**
@@ -146,8 +181,16 @@ public class FigureAnalyzer {
 	 * @param p the Polygon
 	 * @return true if the reference is near the Polygon (tolerance included), false otherwise
 	 */
-	private boolean isNearPolygon(Polygon p) {
-		// TODO isNearPolygon()
+	private boolean isOnPolygon(Polygon p, int tolerance) {
+		java.awt.Polygon polygon = new java.awt.Polygon();
+		for (Point pt : p.getPoints())
+			polygon.addPoint(pt.x, pt.y);
+		for (int x = refX - tolerance ; x < refX + tolerance ; x++) {
+			for (int y = refY - tolerance ; y < refY + tolerance ; y++) {
+				if (polygon.contains(new Point(x, y)))
+					return true;
+			}
+		}
 		return false;
 	}
 }
