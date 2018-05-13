@@ -1,15 +1,9 @@
 package com.iutnc.geompaint.controller;
 
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
+import com.iutnc.geompaint.model.Drawing;
 import com.iutnc.geompaint.model.Figure;
-import com.iutnc.geompaint.view.Canvas;
-import com.iutnc.geompaint.view.GeomPaintFrame;
 import com.iutnc.geompaint.view.IGeomPaintView;
-import com.iutnc.geompaint.view.MenuAdd;
-import com.iutnc.geompaint.view.MenuEdit;
 
 /**
  * Controller of the GeomPaint program
@@ -21,20 +15,15 @@ public class GeomPaintController {
 	// ATTRIBUTES
 
 	private IGeomPaintView view;
-	private State state;
+	private Drawing drawing;
 	
 	// CONSTRUCTOR
 	
 	/**
 	 * Constructor
 	 */
-	public GeomPaintController(IGeomPaintView view) {
-		if (view != null) {
-			this.view = view;
-		} else {
-			this.view = new GeomPaintFrame();
-		}
-		state = State.NORMAL;
+	public GeomPaintController() {
+		drawing = new Drawing();
 	}
 	
 	// BUTTON HANDLERS
@@ -102,8 +91,13 @@ public class GeomPaintController {
 	 * @param x the x position to set
 	 * @param y the y position to set
 	 */
-	public void moveFigure(Figure f, int x, int y) {
-		if (f != null) f.translate(x, y);
+	public boolean moveFigure(Figure f, int x, int y) {
+		if (f != null) {
+			f.translate(x, y);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -121,22 +115,9 @@ public class GeomPaintController {
 		}
 	}
 	
-
-	/**
-	 * Launches the program
-	 */
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	// GETTERS
+	
+	public Figure[] getFigures() {
+		return drawing.getFigures().toArray(new Figure[drawing.getFigures().size()]);
 	}
-	
-	// GETTER - SETTER
-	
-	
-	// PRIVATE METHODS
-	
-	private void updateButtons() {
-		
-	}
-	
 }
