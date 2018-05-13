@@ -27,6 +27,7 @@ public class FigureDrawer {
 		if (f == null){return;}
 		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
 		if (f instanceof Circle) this.drawCircle((Circle)f, g);
+		context.addFigure(f);
 	}
 	
 	/**
