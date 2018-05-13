@@ -1,10 +1,5 @@
 package com.iutnc.geompaint;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.view.*;
 

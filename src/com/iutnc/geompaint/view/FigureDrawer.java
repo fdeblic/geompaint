@@ -46,9 +46,6 @@ public class FigureDrawer {
 			pointY[i] = points[i].y;
 		}
 		g.drawPolygon(pointX, pointY, points.length);
-		if (context.isSelected(p)){
-			drawPoints(p.getGripPoints(), g);
-		}
 	}
 	
 	/**
@@ -58,12 +55,9 @@ public class FigureDrawer {
 	 */
 	private void drawCircle(Circle c, Graphics g) {
 		Point centre = c.getCentre();
-		int radius = c.getRadius(); 
+		int diameter = c.getRadius() * 2; 
 		g.setColor(c.getColor());
-		g.drawOval(centre.x, centre.y, c.getRadius(), c.getRadius());
-		if (context.isSelected(c)){
-			drawPoints(c.getGripPoints(), g);
-		}
+		g.drawOval(centre.x, centre.y, diameter, diameter);
 	}
 	
 	/**
