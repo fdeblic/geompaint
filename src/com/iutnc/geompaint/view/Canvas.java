@@ -45,7 +45,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * Add figure to figures's list
 	 * @param f the figure to add
 	 */
-	public void addFigure(Figure f){}
+	public void addFigure(Figure f){
+		figures.add(f);
+	}
 
 	/**
 	 * Figure selected to set
