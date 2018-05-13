@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.model.Figure;
 
 public class GeomPaintFrame extends JFrame implements IGeomPaintView{
@@ -15,10 +16,10 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	private MenuEdit menuEdit;
 	private MenuAdd menuAdd;
 	private Canvas canvas;
+	private GeomPaintController controller;
 	
-	public GeomPaintFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+	public GeomPaintFrame(GeomPaintController c) {
+		controller = c;
 		JPanel global = new JPanel(new BorderLayout());
 		canvas = new Canvas(null);
 		menuAdd = new MenuAdd();
@@ -30,6 +31,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 		global.add(canvas,BorderLayout.CENTER);
 		global.add(menus,BorderLayout.WEST);
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(500,500));
 		setContentPane(global);
 		pack();
