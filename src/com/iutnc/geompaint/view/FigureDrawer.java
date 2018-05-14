@@ -54,10 +54,11 @@ public class FigureDrawer {
 	 * @param c the circle to draw
 	 */
 	private void drawCircle(Circle c, Graphics g) {
+		if (c == null || !c.isValid()) return;
 		Point centre = c.getCentre();
-		int diameter = c.getRadius() * 2; 
+		int radius = c.getRadius();
 		g.setColor(c.getColor());
-		g.drawOval(centre.x, centre.y, diameter, diameter);
+		g.drawOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
 	}
 	
 	/**
