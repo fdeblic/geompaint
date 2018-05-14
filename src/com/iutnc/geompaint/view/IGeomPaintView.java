@@ -17,12 +17,6 @@ public interface IGeomPaintView {
 	public void setSelectedFigure(Figure f);
 	
 	/**
-	 * Add a figure 
-	 * @param f figure to add
-	 */
-	public void addFigure(Figure f);
-	
-	/**
 	 * Enable the edition mode
 	 * @param b the edition mode is enable or not
 	 */

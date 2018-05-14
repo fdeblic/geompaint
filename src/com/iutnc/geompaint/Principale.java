@@ -1,10 +1,7 @@
 package com.iutnc.geompaint;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+import javax.swing.JPanel;
+import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.view.*;
 
 /**
@@ -13,33 +10,10 @@ import com.iutnc.geompaint.view.*;
  * @version 09/05/2018
  *
  */
-public class Principale extends JPanel{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7979198717497973220L;
-
+public class Principale {
 	public static void main(String[] args) {
-		JFrame fenetre=new JFrame("GeomPoint");
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel canvas = new JPanel();
-		canvas.setBackground(Color.white);
-		JPanel global = new JPanel(new BorderLayout());
-		MenuAdd menuAdd = new MenuAdd();
-		MenuEdit menuEdit = new MenuEdit();
-		
-		JPanel menus = new JPanel(new BorderLayout());
-		menus.add(menuAdd,BorderLayout.NORTH);
-		menus.add(menuEdit,BorderLayout.CENTER);
-		global.add(canvas,BorderLayout.CENTER);
-		global.add(menus,BorderLayout.WEST);
-		
-		fenetre.setPreferredSize(new Dimension(500,500));
-		fenetre.setContentPane(global);
-		fenetre.pack();
-		fenetre.setVisible (true);
-		fenetre.requestFocus();
+		GeomPaintController controller = new GeomPaintController();
+		GeomPaintFrame fenetre = new GeomPaintFrame(controller);
+		fenetre.setVisible(true);
 	}
 }
