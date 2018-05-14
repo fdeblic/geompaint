@@ -154,6 +154,26 @@ public class FigureAnalyzer {
 	}
 	
 	//
+	// GETTERS
+	//
+	
+	public int getNearTolerence() {
+		return nearTolerence;
+	}
+	
+	public int getHoverTolerence() {
+		return hoverTolerence;
+	}
+	
+	public int getRefX() {
+		return refX;
+	}
+	
+	public int getRefY() {
+		return refY;
+	}
+	
+	//
 	// PRIVATE METHODS
 	//
 	
