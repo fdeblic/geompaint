@@ -61,7 +61,7 @@ public class Circle extends Figure{
 	}
 
 	@Override
-	public boolean isValide() {
+	public boolean isValid() {
 		return this.isFull();
 	}
 

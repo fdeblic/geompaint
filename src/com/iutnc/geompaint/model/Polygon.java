@@ -39,7 +39,7 @@ public class Polygon extends Figure{
 	}
 
 	@Override
-	public boolean isValide() {
+	public boolean isValid() {
 		return this.gripPoints.size()>1;		
 	}
 
