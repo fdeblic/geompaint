@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import com.iutnc.geompaint.controller.FigureAnalyzer;
 import com.iutnc.geompaint.controller.GeomPaintController;
+import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.*;
 
 /**
@@ -31,6 +32,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private FigureAnalyzer analyzer;
 	private Figure selectedFigure;
 	private Point movingPoint;
+	private State state;
 	
 		
 	/**
@@ -41,6 +43,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public Canvas(GeomPaintController controller) {
 		super();
 		this.controller= controller; 
+		state = State.NORMAL;
 		setBackground(Color.white);
 	}
 	
@@ -49,7 +52,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	public boolean isSelected(Figure f) {
-		// TODO tester par rapport à l'attribut associé
+		// TODO tester par rapport Ã  l'attribut associÃ©
 		return false;
 	}
 	
@@ -58,7 +61,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	private boolean isSelected(Point p) {
-		// TODO tester par rapport à l'attribut movingPoint
+		// TODO tester par rapport Ã  l'attribut movingPoint
 		return false;
 	}
 	
@@ -69,7 +72,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @return True if the figure is hover
 	 */
 	private boolean isHover(Figure f) {
-		// TODO appel à FigureAnalyzer
+		// TODO appel Ã  FigureAnalyzer
 		return false;
 	}
 	
@@ -77,20 +80,25 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Figure[] figures = controller.getFigures();
+		FigureDrawer fgD =  new FigureDrawer(this);
 		if (figures == null)
 			return;
-		
-		// TODO dessin des figures
+		/*
+		 * Draw every figures in the array
+		 */
+		for (int i = 0; i < figures.length; i++){
+			fgD.drawFigure(figures[i], g);
+		}
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO déplacement du point en cours ou de la figure
+		// TODO dÃ©placement du point en cours ou de la figure
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO changer le style de la figure qui est survolée
+		// TODO changer le style de la figure qui est survolÃ©e
 	}
 
 	@Override
@@ -115,6 +123,26 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		 * 		ajouter un point à la figure sélectionnée
 		 * fin si
 		*/
+		if (this.state == State.NORMAL){
+			Figure[] figures = controller.getFigures();
+			analyzer.setRef(e.getX(), e.getY());
+			for (int i = 0; i < figures.length; i++) {
+				if (analyzer.isHoverFigure(figures[i])) {
+					this.selectedFigure = figures[i];
+				}
+			}
+			repaint();
+		}
+		else if (this.state == State.DRAWING) {
+			if (!this.selectedFigure.isFull()){
+				Point point = new Point();
+				this.selectedFigure.addGripPoint(point);
+				repaint();
+			}
+			else{
+				
+			}
+		}
 	}
 
 	@Override
