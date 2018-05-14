@@ -1,18 +1,17 @@
 package com.iutnc.geompaint.view;
+
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JPanel;
-
 import com.iutnc.geompaint.controller.FigureAnalyzer;
-import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.*;
 
@@ -93,6 +92,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
+		
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
 		Figure[] figures = frame.getFigures();
 		FigureDrawer fgD =  new FigureDrawer(this);
 		if (figures == null)
