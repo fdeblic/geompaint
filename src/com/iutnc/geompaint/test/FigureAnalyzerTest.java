@@ -44,7 +44,10 @@ public class FigureAnalyzerTest {
 	 */
 	@Test
 	public void testSetRef() {
-		fail("Not yet implemented");
+		FigureAnalyzer a = new FigureAnalyzer();
+		a.setRef(5, 10);
+		assertEquals("The coordinates should be (5, 10)", 5, a.getRefX());
+		assertEquals("The coordinates should be (5, 10)", 10, a.getRefY());
 	}
 
 	/**
