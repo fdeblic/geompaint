@@ -27,7 +27,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * Attributs
 	 */
 	private static final long serialVersionUID = 3407451406157270690L;
-	private GeomPaintController controller;
+	private GeomPaintFrame frame;
 	private FigureDrawer drawer;
 	private FigureAnalyzer analyzer;
 	private Figure selectedFigure;
@@ -41,11 +41,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 * @param movingPoint the point to move a figure
 	 */
-	public Canvas(GeomPaintController controller) {
+	public Canvas(GeomPaintFrame frame) {
 		super();
-		this.controller= controller; 
+		this.frame = frame; 
 		state = State.NORMAL;
 		setBackground(Color.white);
+		analyzer = new FigureAnalyzer();
 	}
 	
 	/**
@@ -56,13 +57,17 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		return selectedFigure;
 	}
 	
+	public void setSelectedFigure(Figure f) {
+		this.selectedFigure = f;
+	}
+	
+	
 	/**
 	 * Figure selected to set
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	public boolean isSelected(Figure f) {
-		// TODO tester par rapport Ã  l'attribut associÃ©
-		return false;
+		return f == selectedFigure;
 	}
 	
 	/**
@@ -88,7 +93,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Figure[] figures = controller.getFigures();
+		Figure[] figures = frame.getFigures();
 		FigureDrawer fgD =  new FigureDrawer(this);
 		if (figures == null)
 			return;
@@ -108,11 +113,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO changer le style de la figure qui est survolÃ©e
+		frame.movePoint(movingPoint, e.getX(), e.getY());
+		repaint();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		mouseReleased(e);
 	}
 
 	@Override
@@ -126,14 +132,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		/* Si clic sur une figure
-		 * 		selectionner la figure
-		 * sinon si clic sur du vide et canvas en mode ajout de point
-		 * 		ajouter un point à la figure sélectionnée
-		 * fin si
-		*/
 		if (this.state == State.NORMAL){
-			Figure[] figures = controller.getFigures();
+			Figure[] figures = frame.getFigures();
 			analyzer.setRef(e.getX(), e.getY());
 			for (int i = 0; i < figures.length; i++) {
 				if (analyzer.isHoverFigure(figures[i])) {
@@ -144,19 +144,24 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		}
 		else if (this.state == State.DRAWING) {
 			if (!this.selectedFigure.isFull()){
-				Point point = new Point();
-				this.selectedFigure.addGripPoint(point);
-				repaint();
+				Point p = new Point(e.getX(), e.getY());
+				this.selectedFigure.addGripPoint(p);
 			}
-			else{
-				controller.addFigure(this.selectedFigure);
+			if (selectedFigure.isFull()){
+				frame.saveFigure(this.selectedFigure);
 			}
+			repaint();
 		}
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
+	}
+
+	public void setState(State state) {
+		this.state = state;
+		
 	}
 
 }
