@@ -64,4 +64,44 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 		menuAdd.setEnabled(b);
 	}
 
+	public void changeFigureColor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void fillFigure() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void cloneFigure() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteFigure() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createCircle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createPolygon() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createRectangle() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void createTriangle() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
