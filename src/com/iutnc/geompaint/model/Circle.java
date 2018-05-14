@@ -37,4 +37,10 @@ public class Circle extends Figure{
 		return null;
 	}
 
+	@Override
+	public boolean isComplete() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
