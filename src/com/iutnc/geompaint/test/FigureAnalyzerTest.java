@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.iutnc.geompaint.controller.FigureAnalyzer;
+
 /**
  * @author deblic3u
  *
@@ -18,7 +20,11 @@ public class FigureAnalyzerTest {
 	 */
 	@Test
 	public void testFigureAnalyzer() {
-		fail("Not yet implemented");
+		FigureAnalyzer a = new FigureAnalyzer();
+		assertEquals("Default hover tolerance should be 0", 0, a.getHoverTolerence());
+		assertEquals("Default near tolerance should be 5", 5, a.getNearTolerence());
+		assertEquals("Default coordinates should be (0, 0)", 0, a.getRefX());
+		assertEquals("Default coordinates should be (0, 0)", 0, a.getRefY());
 	}
 
 	/**
