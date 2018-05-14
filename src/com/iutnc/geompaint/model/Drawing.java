@@ -15,10 +15,37 @@ public class Drawing extends Observable {
 	}
 	
 	public boolean addFigure(Figure f) {
-		return figures.add(f);
+		if(f.isValid() && figures.add(f)) {
+			setChanged();
+			notifyObservers();
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean removeFigure(Figure f) {
-		return figures.remove(f);
+		if(f.isValid() && figures.remove(f)) {
+			setChanged();
+			notifyObservers();
+			return true;
+		}
+		return false;
+	}
+	
+	public void moveUp(Figure f) {
+		
+	}
+	
+	public void moveDown(Figure f) {
+		
+	}
+	
+	public void exchange(Figure f1, Figure f2) {
+		
+	}
+	
+	public int getPos(Figure f) {
+		return figures.indexOf(f);
+		
 	}
 }
