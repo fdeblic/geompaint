@@ -5,6 +5,7 @@ import java.awt.Point;
 
 import com.iutnc.geompaint.model.Drawing;
 import com.iutnc.geompaint.model.Figure;
+import com.iutnc.geompaint.view.GeomPaintFrame;
 import com.iutnc.geompaint.view.IGeomPaintView;
 
 /**
@@ -29,8 +30,10 @@ public class GeomPaintController {
 	}
 	
 	public void addFigure(Figure f) {
-		if (f.isValid())
+		if (f.isValid()) {
 			drawing.addFigure(f);
+			f.addObserver(view.getCanvas());
+		}
 	}
 	
 	public void fillFigure(Figure f, boolean filled) {
@@ -89,5 +92,10 @@ public class GeomPaintController {
 	
 	public Figure[] getFigures() {
 		return drawing.getFigures().toArray(new Figure[drawing.getFigures().size()]);
+	}
+
+	public void setView(GeomPaintFrame view) {
+		this.view = view;
+		drawing.addObserver(view.getCanvas());
 	}
 }

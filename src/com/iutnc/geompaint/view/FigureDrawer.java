@@ -58,7 +58,10 @@ public class FigureDrawer {
 		Point centre = c.getCentre();
 		int radius = c.getRadius();
 		g.setColor(c.getColor());
-		g.drawOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
+		if (c.isFilled())
+			g.fillOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
+		else
+			g.drawOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
 	}
 	
 	/**

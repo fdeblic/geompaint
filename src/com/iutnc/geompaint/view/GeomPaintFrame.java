@@ -12,7 +12,7 @@ import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
 
-public class GeomPaintFrame extends JFrame implements IGeomPaintView{
+public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	
 	private static final long serialVersionUID = -7316135187489253803L;
 	private MenuEdit menuEdit;
@@ -76,7 +76,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 
 	public void fillFigure() {
 		controller.fillFigure(canvas.getSelectedFigure(), true);
-		
 	}
 
 	public void cloneFigure() {
@@ -124,6 +123,10 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 
 	public void movePoint(Point p, int x, int y) {
 		controller.movePoint(p, x, y);
+	}
+	
+	public Canvas getCanvas() {
+		return canvas;
 	}
 
 }

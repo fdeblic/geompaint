@@ -54,11 +54,9 @@ public class MenuEdit extends JPanel {
 		
 		btnFill = new JButton("Remplir");
 		btnFill.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.fillFigure();
-				
 			}
 		});
 		GridBagConstraints gbc_btnFill = new GridBagConstraints();
