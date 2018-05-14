@@ -14,11 +14,11 @@ class PolygonTest {
 	void testIsValide() {
 		Polygon p = new Polygon();
 		p.addGripPoint(new Point(2,3));
-		assertEquals(false, p.isValide(),"The polygon has only one point, it can be completed.");
+		assertEquals(false, p.isValid(),"The polygon has only one point, it can be completed.");
 		p.addGripPoint(new Point(4,7));
 		p.addGripPoint(new Point(18,12));
 		p.addGripPoint(new Point(1,2));
-		assertEquals(true, p.isValide(), "The polygon should be valid, it has more than 1 point.");
+		assertEquals(true, p.isValid(), "The polygon should be valid, it has more than 1 point.");
 	}
 
 	@Test

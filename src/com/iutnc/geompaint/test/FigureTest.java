@@ -138,7 +138,7 @@ class FigureTest extends Figure {
 	}
 
 	@Override
-	public boolean isValide() {
+	public boolean isValid() {
 		// TODO Auto-generated method stub
 		return false;
 	}
