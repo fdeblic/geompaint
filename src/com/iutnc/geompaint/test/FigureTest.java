@@ -132,7 +132,13 @@ class FigureTest extends Figure {
 	}
 
 	@Override
-	public boolean isComplete() {
+	public boolean isFull() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isValide() {
 		// TODO Auto-generated method stub
 		return false;
 	}
