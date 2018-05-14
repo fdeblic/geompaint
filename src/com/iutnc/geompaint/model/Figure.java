@@ -49,6 +49,8 @@ public abstract class Figure extends Observable {
      */
     public boolean addGripPoint( Point g) {
 
+    	if(isComplete())
+    		return false;
     	return this.gripPoints.add(g);
     	
     }
