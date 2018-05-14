@@ -55,7 +55,9 @@ public class FigureAnalyzerTest {
 	 */
 	@Test
 	public void testSetNearTolerence() {
-		fail("Not yet implemented");
+		FigureAnalyzer a = new FigureAnalyzer();
+		a.setNearTolerence(42);
+		assertEquals("The near tolerance should be 42", 42, a.getNearTolerence());
 	}
 
 	/**
