@@ -97,15 +97,21 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	public void createPolygon() {
 		canvas.setSelectedFigure(new Polygon());
 		canvas.setState(State.DRAWING);
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
 	}
 
 	public void createRectangle() {
 		canvas.setSelectedFigure(new Rectangle());
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
 		canvas.setState(State.DRAWING);
 	}
 
 	public void createTriangle() {
 		canvas.setSelectedFigure(new Triangle());
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
 		canvas.setState(State.DRAWING);
 	}
 
