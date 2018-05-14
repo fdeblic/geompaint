@@ -1,6 +1,8 @@
 package com.iutnc.geompaint.controller;
 
+import java.awt.Color;
 import java.awt.Point;
+
 import com.iutnc.geompaint.model.Drawing;
 import com.iutnc.geompaint.model.Figure;
 import com.iutnc.geompaint.view.IGeomPaintView;
@@ -26,54 +28,27 @@ public class GeomPaintController {
 		drawing = new Drawing();
 	}
 	
-	// BUTTON HANDLERS
-
-	/**
-	 * Handler for the circle button
-	 */
-	public void createCircle() {
+	public void addFigure(Figure f) {
+		if (f.isValid())
+			drawing.addFigure(f);
 	}
 	
-	/**
-	 * Handler for the polygon button
-	 */
-	public void createPolygon() {
-		
+	public void fillFigure(Figure f, boolean filled) {
+		f.setFilled(filled);
 	}
 	
-	/**
-	 * Handler for the rectangle button
-	 */
-	public void createRectangle() {
-		
-	}
-	
-	/**
-	 * Handler for the triangle button
-	 */
-	public void createTriangle() {
-		
-	}
-	
-	/**
-	 * Handler for the fill_figure button
-	 */
-	public void fillFigure() {
-		
-	}
-	
-	/**
-	 * Handler for the color button
-	 */
-	public void changeFigureColor() {
+	public void changeFigureColor(Figure f, Color newColor) {
 		
 	}
 	
 	/**
 	 * Handler for the clone button
 	 */
-	public void cloneFigure() {
-		
+	public Figure cloneFigure(Figure f) {
+		Figure fig2 = f.getCopie();
+		fig2.translate(15, 15);
+		drawing.addFigure(fig2);
+		return fig2;
 	}
 	
 	/**
@@ -83,8 +58,6 @@ public class GeomPaintController {
 		
 	}
 	
-	// ACTIONS HANDLER
-
 	/**
 	 * Moves a Figure at the given position
 	 * @param f the Figure to move

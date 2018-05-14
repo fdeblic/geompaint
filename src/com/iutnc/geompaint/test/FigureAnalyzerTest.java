@@ -4,10 +4,11 @@
 package com.iutnc.geompaint.test;
 
 import static org.junit.Assert.*;
-
+import java.awt.Point;
 import org.junit.Test;
-
 import com.iutnc.geompaint.controller.FigureAnalyzer;
+import com.iutnc.geompaint.model.Circle;
+import com.iutnc.geompaint.model.Polygon;
 
 /**
  * @author deblic3u
@@ -75,7 +76,90 @@ public class FigureAnalyzerTest {
 	 */
 	@Test
 	public void testIsNearFigure() {
-		fail("Not yet implemented");
+		System.out.println("Not finished");
+		FigureAnalyzer a = new FigureAnalyzer();
+		a.setHoverTolerence(0);
+		a.setNearTolerence(5);
+		
+		// Circle tests
+		
+		Circle c = new Circle(new Point(0, 0), new Point(10, 0));
+		// X axis
+		a.setRef(0, 0);
+		assertEquals("The analysis should return true", true, a.isNearFigure(c));
+		assertEquals("The analysis should return true", true, a.isHoverFigure(c));
+		a.setRef(11, 0);
+		assertEquals("The analysis should return true", true, a.isNearFigure(c));
+		assertEquals("The analysis should return false", false, a.isHoverFigure(c));
+		a.setRef(16, 0);
+		assertEquals("The analysis should return false", false, a.isNearFigure(c));
+		assertEquals("The analysis should return false", false, a.isHoverFigure(c));
+		// Y axis
+		a.setRef(0, 11);
+		assertEquals("The analysis should return true", true, a.isNearFigure(c));
+		assertEquals("The analysis should return false", false, a.isHoverFigure(c));
+		a.setRef(0, 16);
+		assertEquals("The analysis should return false", false, a.isNearFigure(c));
+		assertEquals("The analysis should return false", false, a.isHoverFigure(c));
+		// Diagonal
+		a.setRef(10, 10);
+		System.out.println(c.getCentre().x + " - " + c.getCentre().y + " - " + c.getRadius());
+		assertEquals("The analysis should return false", false, a.isNearFigure(c));
+		assertEquals("The analysis should return false", false, a.isHoverFigure(c));
+		a.setRef(7, 7);
+		assertEquals("The analysis should return true", true, a.isNearFigure(c));
+		assertEquals("The analysis should return true", true, a.isHoverFigure(c));
+
+		// Polygon tests
+		
+		Polygon p = new Polygon();
+		// No points
+		a.setRef(0, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		// A single point
+		p.addGripPoint(new Point(0, 0));
+		a.setRef(0, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		a.setRef(2, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return true", true, a.isNearFigure(p));
+		a.setRef(6, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		// A line
+		p.addGripPoint(new Point(0, 6));
+		a.setRef(2, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return true", true, a.isNearFigure(p));
+		a.setRef(6, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		a.setRef(0, 6);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		a.setRef(2, 6);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return true", true, a.isNearFigure(p));
+		a.setRef(6, 6);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		// A triangle
+		p.addGripPoint(new Point(7, 4));
+		a.setRef(0, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		// A quadrilateral
+		p.addGripPoint(new Point(8, 1));
+		a.setRef(0, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
+		// Polygon not convex
+		p.addGripPoint(new Point(4, 2));
+		a.setRef(0, 0);
+		assertEquals("The analysis should return false", false, a.isHoverFigure(p));
+		assertEquals("The analysis should return false", false, a.isNearFigure(p));
 	}
 
 	/**

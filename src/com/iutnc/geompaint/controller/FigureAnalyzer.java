@@ -122,7 +122,7 @@ public class FigureAnalyzer {
 	 * @return true if the reference is hover the Figure (tolerance included), false otherwise
 	 */
 	public boolean isHoverFigure(Figure f) {
-		if (f == null) return false;
+		if (f == null || !f.isValid()) return false;
 		
 		boolean res = false;
 		if (f instanceof Polygon) {
@@ -147,10 +147,10 @@ public class FigureAnalyzer {
 	 * @return true if the reference is near the Point (tolerance included), false otherwise
 	 */
 	public boolean isNearPoint(Point p) {
-		return refX + nearTolerence > p.x
-			&& refX - nearTolerence < p.x
-			&& refY + nearTolerence > p.y
-			&& refY - nearTolerence < p.y;
+		return refX + nearTolerence >= p.x
+			&& refX - nearTolerence <= p.x
+			&& refY + nearTolerence >= p.y
+			&& refY - nearTolerence <= p.y;
 	}
 	
 	//
@@ -183,9 +183,6 @@ public class FigureAnalyzer {
 	 * @return true if the reference is near the Circle (tolerance included), false otherwise
 	 */
 	private boolean isOnCircle(Circle c, int tolerance) {
-		if (c == null)
-			return false;
-
 		int x, y;
 		Point centre = c.getCentre();
 
@@ -205,8 +202,8 @@ public class FigureAnalyzer {
 		java.awt.Polygon polygon = new java.awt.Polygon();
 		for (Point pt : p.getPoints())
 			polygon.addPoint(pt.x, pt.y);
-		for (int x = refX - tolerance ; x < refX + tolerance ; x++) {
-			for (int y = refY - tolerance ; y < refY + tolerance ; y++) {
+		for (int x = refX - tolerance ; x <= refX + tolerance ; x++) {
+			for (int y = refY - tolerance ; y <= refY + tolerance ; y++) {
 				if (polygon.contains(new Point(x, y)))
 					return true;
 			}
