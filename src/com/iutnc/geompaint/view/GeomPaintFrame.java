@@ -2,11 +2,14 @@ package com.iutnc.geompaint.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.iutnc.geompaint.controller.GeomPaintController;
+import com.iutnc.geompaint.controller.State;
+import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
 
 public class GeomPaintFrame extends JFrame implements IGeomPaintView{
@@ -20,7 +23,9 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	public GeomPaintFrame(GeomPaintController c) {
 		controller = c;
 		JPanel global = new JPanel(new BorderLayout());
-		canvas = new Canvas(c);
+		canvas = new Canvas(this);
+		canvas.addMouseMotionListener(canvas);
+		canvas.addMouseListener(canvas);
 		menuAdd = new MenuAdd(this);
 		menuEdit = new MenuEdit(this);
 		
@@ -85,8 +90,10 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	}
 
 	public void createCircle() {
-		// TODO Auto-generated method stub
-		
+		canvas.setSelectedFigure(new Circle());
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
+		canvas.setState(State.DRAWING);
 	}
 
 	public void createPolygon() {
@@ -102,6 +109,21 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	public void createTriangle() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Figure[] getFigures() {
+		return controller.getFigures();
+	}
+
+	public void saveFigure(Figure f) {
+		controller.addFigure(f);
+		menuAdd.setEnabled(true);
+		menuEdit.setEnabled(true);
+		canvas.setState(State.NORMAL);
+	}
+
+	public void movePoint(Point p, int x, int y) {
+		controller.movePoint(p, x, y);
 	}
 
 }
