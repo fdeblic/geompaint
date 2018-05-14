@@ -21,14 +21,21 @@ public class Polygon extends Figure{
 		return null;
 	}
 	
+	
+	/**
+	 * Return all the points to draw
+	 * @return Points
+	 */
 	public Point[] getPoints() {
-		return null;
+		return getGripPoints();
 	}
+	
+	
 
 	@Override
 	public boolean isComplete() {
-		// TODO Auto-generated method stub
 		return false;
+		
 	}
 
 }
