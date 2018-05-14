@@ -15,11 +15,11 @@ public abstract class Figure extends Observable {
 
     // ATTRIBUTES
 
-    private ArrayList<Point> gripPoints ;
-    private boolean filled;
-    private Color color;
-    private int maxGripPoints;
-    private final int INFINITE = 0;
+    protected ArrayList<Point> gripPoints ;
+    protected boolean filled;
+    protected Color color;
+    protected int maxGripPoints;
+    protected final int INFINITE = 0;
 
     //CONSTRUCTOR
     
