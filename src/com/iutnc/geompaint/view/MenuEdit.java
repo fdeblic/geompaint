@@ -24,16 +24,18 @@ public class MenuEdit extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private GeomPaintController controller;
 	private JButton btnFill;
 	private JButton btnColor;
 	private JButton btnClone;
 	private JButton btnDelete;
+	private GeomPaintFrame frame;
 	
 	/**
 	 * Menu Edit constructor 
+	 * @param view 
 	 */
-	public MenuEdit() {
+	public MenuEdit(GeomPaintFrame view) {
+		frame = view;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};

@@ -28,7 +28,6 @@ public class MenuAdd extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private GeomPaintController controller;
 	private JButton btnCercle;
 	private JButton btnPolygone;
 	private JButton btnRectangle;
@@ -37,7 +36,8 @@ public class MenuAdd extends JPanel {
 	/**
 	 * Menu Add constructor
 	 */
-	public MenuAdd() {
+	public MenuAdd(GeomPaintFrame view) {
+		frame = view;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
