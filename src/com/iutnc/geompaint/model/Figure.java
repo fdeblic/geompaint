@@ -19,6 +19,7 @@ public abstract class Figure extends Observable {
     private boolean filled;
     private Color color;
     private int maxGripPoints;
+    private final int INFINITE = 0;
 
     //CONSTRUCTOR
     
@@ -30,10 +31,10 @@ public abstract class Figure extends Observable {
     
     protected Figure() {
     	
-    	this.gripPoints = new ArrayList();
+    	this.gripPoints = new ArrayList<>();
     	this.filled = false;
-    	this.color = color.black;
-    	this.maxGripPoints=0;
+    	this.color = Color.black;
+    	this.maxGripPoints = INFINITE;
     	
     	
     }
@@ -47,7 +48,8 @@ public abstract class Figure extends Observable {
      * @return boolean 
      */
     public boolean addGripPoint( Point g) {
-		return false;
+
+    	return this.gripPoints.add(g);
     	
     }
     
@@ -56,7 +58,8 @@ public abstract class Figure extends Observable {
      * @return table of Point 
      */
     public Point[] getGripPoints() {
-		return null;
+    	
+		return this.gripPoints.toArray(new Point[this.gripPoints.size()]);
     	
     }
     
@@ -65,7 +68,8 @@ public abstract class Figure extends Observable {
      * @return number of points 
      */
     public int getNbGripPoints() {
-		return 0;
+    	
+		return gripPoints.size();
     	
     }
     
@@ -73,10 +77,7 @@ public abstract class Figure extends Observable {
      * Return true if the figure accept the new grip point
      * @return the completion of the figure
      */
-    public boolean isComplete() {
-		return false;
-    	
-    }
+    public abstract boolean isComplete();
     
     /**
      * Translate the figure
@@ -85,6 +86,9 @@ public abstract class Figure extends Observable {
      */
     public void translate(int x, int y) {
     	
+    	for(int i = 0; i< gripPoints.size(); i++) {
+    		gripPoints.get(i).translate(x, y);
+    	}
     }
     
     /**
@@ -99,12 +103,16 @@ public abstract class Figure extends Observable {
      * @return boolean
      */
     public boolean removeGripPoint( Point g) {
+    	if(this.gripPoints.remove(g)) {
+    		return true;
+    	}
+    	
     	return false;
     }
 
     /**
      * Set or change the color of a figure
-     * @param c the choosen color
+     * @param c the chosen color
      */
     public void setColor(Color c) {
     	this.color=c;
@@ -115,7 +123,9 @@ public abstract class Figure extends Observable {
      * @return boolean
      */
     public void setFilled(boolean b) {
-		
+		if(this.filled=false)
+			this.filled=true;
+		else this.filled=false;
     }
     
     /**
