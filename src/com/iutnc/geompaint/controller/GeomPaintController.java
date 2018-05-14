@@ -47,6 +47,7 @@ public class GeomPaintController {
 	}
 	
 	public Figure cloneFigure(Figure f) {
+		if (f == null || !f.isValid()) return null;
 		Figure fig2 = f.getCopie();
 		fig2.translate(15, 15);
 		drawing.addFigure(fig2);
