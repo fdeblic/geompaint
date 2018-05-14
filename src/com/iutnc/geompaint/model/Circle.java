@@ -21,10 +21,15 @@ public class Circle extends Figure{
     	super();
     	this.radius = 1;
     }
+
+    public Circle(Point centre, Point radius) {
+    	addGripPoint(centre);
+    	addGripPoint(radius);
+	}
     
     //METHODS 
-    
-    public Point getCentre() {
+
+	public Point getCentre() {
     	if(this.gripPoints.size()>0)
     		return this.gripPoints.get(0);
     	else return null;

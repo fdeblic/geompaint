@@ -20,7 +20,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	public GeomPaintFrame(GeomPaintController c) {
 		controller = c;
 		JPanel global = new JPanel(new BorderLayout());
-		canvas = new Canvas(null);
+		canvas = new Canvas(c);
 		menuAdd = new MenuAdd();
 		menuEdit = new MenuEdit();
 		
