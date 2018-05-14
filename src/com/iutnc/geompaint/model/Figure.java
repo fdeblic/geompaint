@@ -75,7 +75,7 @@ public abstract class Figure extends Observable {
     	
     }
     
-    public abstract boolean isValide();
+    public abstract boolean isValid();
     
     /**
      * Return true if the figure accept the new grip point
