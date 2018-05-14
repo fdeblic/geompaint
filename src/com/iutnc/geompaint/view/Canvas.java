@@ -1,5 +1,6 @@
 package com.iutnc.geompaint.view;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -47,6 +48,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	public boolean isSelected(Figure f) {
+		// TODO tester par rapport à l'attribut associé
 		return false;
 	}
 	
@@ -55,6 +57,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	private boolean isSelected(Point p) {
+		// TODO tester par rapport à l'attribut movingPoint
 		return false;
 	}
 	
@@ -65,34 +68,57 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @return True if the figure is hover
 	 */
 	private boolean isHover(Figure f) {
-		return false; 
+		// TODO appel à FigureAnalyzer
+		return false;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Figure[] figures = controller.getFigures();
+		if (figures == null)
+			return;
+		
+		// TODO dessin des figures
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {}
+	public void mouseDragged(MouseEvent e) {
+		// TODO déplacement du point en cours ou de la figure
+	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {}
+	public void mouseMoved(MouseEvent e) {
+		// TODO changer le style de la figure qui est survolée
+	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {}
+	public void mouseClicked(MouseEvent e) {
+		mouseReleased(e);
+	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {}
+	public void mouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {}
+	public void mouseReleased(MouseEvent e) {
+		/* Si clic sur une figure
+		 * 		selectionner la figure
+		 * sinon si clic sur du vide et canvas en mode ajout de point
+		 * 		ajouter un point à la figure sélectionnée
+		 * fin si
+		*/
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+		repaint();
 	}
 
 }
