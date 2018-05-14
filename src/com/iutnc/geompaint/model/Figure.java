@@ -49,7 +49,7 @@ public abstract class Figure extends Observable {
      */
     public boolean addGripPoint( Point g) {
 
-    	if(isComplete())
+    	if(isFull())
     		return false;
     	return this.gripPoints.add(g);
     	
@@ -75,11 +75,13 @@ public abstract class Figure extends Observable {
     	
     }
     
+    public abstract boolean isValide();
+    
     /**
      * Return true if the figure accept the new grip point
      * @return the completion of the figure
      */
-    public abstract boolean isComplete();
+    public abstract boolean isFull();
     
     /**
      * Translate the figure
