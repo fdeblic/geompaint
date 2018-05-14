@@ -51,7 +51,10 @@ public abstract class Figure extends Observable {
 
     	if(isFull())
     		return false;
-    	return this.gripPoints.add(g);
+    	setChanged();
+    	this.gripPoints.add(g);
+    	notifyObservers();
+    	return true;
     	
     }
     
@@ -93,6 +96,8 @@ public abstract class Figure extends Observable {
     	for(int i = 0; i< gripPoints.size(); i++) {
     		gripPoints.get(i).translate(x, y);
     	}
+    	setChanged();
+    	notifyObservers();
     }
     
     /**
@@ -107,7 +112,12 @@ public abstract class Figure extends Observable {
      * @return boolean
      */
     public boolean removeGripPoint( Point g) {
-    	return this.gripPoints.remove(g);
+    	if(this.gripPoints.remove(g)) {
+    		setChanged();
+    		notifyObservers();
+    		return true;
+    	}
+    	return false;
     	
     }
 
@@ -116,7 +126,10 @@ public abstract class Figure extends Observable {
      * @param c the chosen color
      */
     public void setColor(Color c) {
+    	
     	this.color=c;
+    	setChanged();
+    	notifyObservers();
     }
     
     /**
@@ -125,6 +138,8 @@ public abstract class Figure extends Observable {
      */
     public void setFilled(boolean b) {
 		this.filled=b;
+		setChanged();
+		notifyObservers();
     }
     
     /**
