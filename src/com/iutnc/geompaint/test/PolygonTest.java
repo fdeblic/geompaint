@@ -11,14 +11,14 @@ import com.iutnc.geompaint.model.Polygon;
 class PolygonTest {
 
 	@Test
-	void testIsComplete() {
+	void testIsValide() {
 		Polygon p = new Polygon();
 		p.addGripPoint(new Point(2,3));
-		assertEquals(false, p.isComplete(),"The polygon has only one point, it can be completed.");
+		assertEquals(false, p.isValide(),"The polygon has only one point, it can be completed.");
 		p.addGripPoint(new Point(4,7));
 		p.addGripPoint(new Point(18,12));
 		p.addGripPoint(new Point(1,2));
-		assertEquals(true, p.isComplete(), "The polygon should be complete, it has more than 1 point.");
+		assertEquals(true, p.isValide(), "The polygon should be valid, it has more than 1 point.");
 	}
 
 	@Test
@@ -36,6 +36,19 @@ class PolygonTest {
 		assertEquals(12, tab[1].y, "The Y-coordonnate should be 12.");
 		assertEquals(1, tab[2].x, "The X-coordonnate should be 1");
 		assertEquals(2, tab[2].y, "The Y-coordonnate should be 2");
+
+	}
+	
+	@Test
+	void testIsFull() {
+		Polygon p = new Polygon();
+		p.addGripPoint(new Point(2,3));
+		assertEquals(false,p.isFull()," The polygon has only one point, it's not full.");
+		p.addGripPoint(new Point(4,7));
+		p.addGripPoint(new Point(18,12));
+		p.addGripPoint(new Point(1,2));
+		assertEquals(false, p.isFull(), "The polygon should not be full, it can accept unlimited amount of points.");
+
 
 	}
 
