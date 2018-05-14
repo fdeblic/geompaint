@@ -11,15 +11,15 @@ import com.iutnc.geompaint.model.Circle;
 class CircleTest {
 
 	@Test
-	void testIsComplete() {
+	void testIsFull() {
 		Circle c = new Circle();
 		
 		c.addGripPoint(new Point(2,3));
-		assertEquals(false,c.isComplete(),"The circle has only 1 point, it's not complete");
+		assertEquals(false,c.isFull(),"The circle has only 1 point, it's not complete");
 		c.addGripPoint(new Point(6,7));
-		assertEquals(true,c.isComplete(),"The circle should have 2 points.");
+		assertEquals(true,c.isFull(),"The circle should have 2 points.");
 		c.addGripPoint(new Point(5,3));
-		assertEquals(true,c.isComplete(),"The circle should have 2 points.");
+		assertEquals(true,c.isFull(),"The circle should have 2 points.");
 		
 	}
 
