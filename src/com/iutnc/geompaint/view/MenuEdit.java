@@ -57,7 +57,7 @@ public class MenuEdit extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				frame.fillFigure();
 				
 			}
 		});
@@ -73,7 +73,7 @@ public class MenuEdit extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				frame.changeFigureColor();
 				
 			}
 		});
@@ -89,7 +89,7 @@ public class MenuEdit extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				frame.cloneFigure();
 				
 			}
 		});
@@ -105,7 +105,7 @@ public class MenuEdit extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				frame.deleteFigure();
 				
 			}
 		});
