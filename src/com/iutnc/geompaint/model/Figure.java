@@ -15,11 +15,11 @@ public abstract class Figure extends Observable {
 
     // ATTRIBUTES
 
-    private ArrayList<Point> gripPoints ;
-    private boolean filled;
-    private Color color;
-    private int maxGripPoints;
-    private final int INFINITE = 0;
+    protected ArrayList<Point> gripPoints ;
+    protected boolean filled;
+    protected Color color;
+    protected int maxGripPoints;
+    protected final int INFINITE = 0;
 
     //CONSTRUCTOR
     
@@ -103,11 +103,8 @@ public abstract class Figure extends Observable {
      * @return boolean
      */
     public boolean removeGripPoint( Point g) {
-    	if(this.gripPoints.remove(g)) {
-    		return true;
-    	}
+    	return this.gripPoints.remove(g);
     	
-    	return false;
     }
 
     /**
@@ -123,9 +120,7 @@ public abstract class Figure extends Observable {
      * @return boolean
      */
     public void setFilled(boolean b) {
-		if(this.filled=false)
-			this.filled=true;
-		else this.filled=false;
+		this.filled=b;
     }
     
     /**
@@ -133,9 +128,7 @@ public abstract class Figure extends Observable {
      * @return boolean
      */
     public boolean isFilled() {
-    	if(filled==true) 
-    		return true;
-    	return false;
+    	return this.filled;
     }
     
     /**
