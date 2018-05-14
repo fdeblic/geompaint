@@ -32,7 +32,11 @@ public class FigureAnalyzerTest {
 	 */
 	@Test
 	public void testFigureAnalyzerIntIntIntInt() {
-		fail("Not yet implemented");
+		FigureAnalyzer a = new FigureAnalyzer(2, 4, 10, 3);
+		assertEquals("The hover tolerance should be 0", 3, a.getHoverTolerence());
+		assertEquals("The near tolerance should be 5", 10, a.getNearTolerence());
+		assertEquals("The coordinates should be (2, 4)", 2, a.getRefX());
+		assertEquals("The coordinates should be (2, 4)", 4, a.getRefY());
 	}
 
 	/**
