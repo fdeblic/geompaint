@@ -78,7 +78,7 @@ public class GeomPaintController {
 	 */
 	public boolean movePoint(Point p, int x, int y) {
 		if (p != null) {
-			p.translate(x, y);
+			p.setLocation(x, y);
 			return true;
 		} else {
 			return false;
