@@ -33,9 +33,14 @@ public class Polygon extends Figure{
 	
 
 	@Override
-	public boolean isComplete() {
+	public boolean isFull() {
 		return false;
 		
+	}
+
+	@Override
+	public boolean isValide() {
+		return this.gripPoints.size()>1;		
 	}
 
 }
