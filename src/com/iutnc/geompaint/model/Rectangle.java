@@ -18,5 +18,13 @@ public class Rectangle extends Polygon{
 		return null;
 	}
 
-    
+	public boolean isFull() {
+		return this.gripPoints.size()==2;
+		
+	}
+	public boolean isValid() {
+		return this.isFull();
+		
+	}
+
 }
