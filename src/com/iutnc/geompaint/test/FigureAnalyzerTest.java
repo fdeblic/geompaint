@@ -65,7 +65,9 @@ public class FigureAnalyzerTest {
 	 */
 	@Test
 	public void testSetHoverTolerence() {
-		fail("Not yet implemented");
+		FigureAnalyzer a = new FigureAnalyzer();
+		a.setHoverTolerence(42);
+		assertEquals("The hover tolerance should be 42", 42, a.getHoverTolerence());
 	}
 
 	/**
