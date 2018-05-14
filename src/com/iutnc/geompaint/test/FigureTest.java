@@ -42,7 +42,14 @@ class FigureTest extends Figure {
 	@Test
 	void testAddGripPoint() {
 		Figure f = new FigureTest();
+				
 		assertEquals(true,f.addGripPoint(new Point(2, 3))," The figure should have one grip point");
+		
+		Point[] tab = f.getGripPoints();
+		
+		assertEquals(2, tab[0].x, "The X-coordonnate should be 2.");
+		assertEquals(3, tab[0].y, "The Y-coordonnate should be 3.");
+
 		
 
 	}
@@ -81,6 +88,8 @@ class FigureTest extends Figure {
 		
 		f.removeGripPoint(g);
 		
+		assertEquals(0, f.getNbGripPoints(), " The figure should not have any grip points left.");
+		
 	}
 
 
@@ -113,7 +122,7 @@ class FigureTest extends Figure {
 		f.addGripPoint(new Point(3, 4));
 		
 		f.removeGripPoint(g);
-		assertEquals(1, f.getNbGripPoints(), " The figure should have only one point remaining.");
+		assertEquals(1, f.getNbGripPoints(), " The figure should have only one grip point remaining.");
 	}
 
 	@Override
