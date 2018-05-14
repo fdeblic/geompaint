@@ -31,6 +31,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private FigureDrawer drawer;
 	private FigureAnalyzer analyzer;
 	private Figure selectedFigure;
+
 	private Point movingPoint;
 	private State state;
 	
@@ -45,6 +46,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		this.controller= controller; 
 		state = State.NORMAL;
 		setBackground(Color.white);
+	}
+	
+	/**
+	 * Get the figure selected
+	 * @return the figure selected
+	 */
+	public Figure getSelectedFigure() {
+		return selectedFigure;
 	}
 	
 	/**
