@@ -31,7 +31,7 @@ public class Circle extends Figure{
     }
     
     public int getRadius() {
-		if(isComplete()) {
+		if(isFull()) {
 			int xa, xb, ya, yb;
 			xa = getCentre().x;
 			ya = getCentre().y;
@@ -51,8 +51,13 @@ public class Circle extends Figure{
 	}
 
 	@Override
-	public boolean isComplete() {
+	public boolean isFull() {
 		return this.gripPoints.size()==2;
+	}
+
+	@Override
+	public boolean isValide() {
+		return this.isFull();
 	}
 
 }
