@@ -34,16 +34,15 @@ public class GeomPaintController {
 	}
 	
 	public void fillFigure(Figure f, boolean filled) {
-		f.setFilled(filled);
+		if (f != null)
+			f.setFilled(filled);
 	}
 	
 	public void changeFigureColor(Figure f, Color newColor) {
-		
+		if (f != null)
+			f.setColor(newColor);
 	}
 	
-	/**
-	 * Handler for the clone button
-	 */
 	public Figure cloneFigure(Figure f) {
 		Figure fig2 = f.getCopie();
 		fig2.translate(15, 15);
@@ -51,11 +50,9 @@ public class GeomPaintController {
 		return fig2;
 	}
 	
-	/**
-	 * Handler for the delete button
-	 */
-	public void deleteFigure() {
-		
+	public void deleteFigure(Figure f) {
+		if (f != null)
+			drawing.removeFigure(f);
 	}
 	
 	/**
