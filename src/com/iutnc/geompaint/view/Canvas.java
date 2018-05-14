@@ -140,7 +140,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				repaint();
 			}
 			else{
-				
+				controller.addFigure(this.selectedFigure);
 			}
 		}
 	}
