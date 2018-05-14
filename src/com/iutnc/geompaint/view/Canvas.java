@@ -40,6 +40,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 */
 	public Canvas(GeomPaintController controller) {
 		super();
+		this.controller= controller; 
 		setBackground(Color.white);
 	}
 	
