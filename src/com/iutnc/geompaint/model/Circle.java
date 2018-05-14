@@ -19,16 +19,29 @@ public class Circle extends Figure{
     
     public Circle() {
     	super();
+    	this.radius = 1;
     }
     
     //METHODS 
     
     public Point getCentre() {
-    	return null;
+    	if(this.gripPoints.size()>0)
+    		return this.gripPoints.get(0);
+    	else return null;
     }
     
     public int getRadius() {
-		return radius;
+		if(isComplete()) {
+			int xa, xb, ya, yb;
+			xa = getCentre().x;
+			ya = getCentre().y;
+			
+			xb = gripPoints.get(1).x;
+			yb = gripPoints.get(1).y;
+			
+			return (int) Math.sqrt(Math.pow((xb-xa), 2) + Math.pow((yb - ya),2));
+		}
+		return 0;
 	}
     
 	@Override
@@ -39,8 +52,7 @@ public class Circle extends Figure{
 
 	@Override
 	public boolean isComplete() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.gripPoints.size()==2;
 	}
 
 }
