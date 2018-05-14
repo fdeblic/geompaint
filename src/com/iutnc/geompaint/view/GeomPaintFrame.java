@@ -70,17 +70,17 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView{
 	}
 
 	public void fillFigure() {
-		// TODO Auto-generated method stub
+		controller.fillFigure(canvas.getSelectedFigure(), true);
 		
 	}
 
 	public void cloneFigure() {
-		// TODO Auto-generated method stub
+		controller.cloneFigure(canvas.getSelectedFigure());
 		
 	}
 
 	public void deleteFigure() {
-		// TODO Auto-generated method stub
+		controller.deleteFigure(canvas.getSelectedFigure());
 		
 	}
 
