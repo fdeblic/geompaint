@@ -11,6 +11,7 @@ import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
+import com.iutnc.geompaint.model.Triangle;
 
 public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	
@@ -90,8 +91,8 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 
 	public void createCircle() {
 		canvas.setSelectedFigure(new Circle());
-		menuAdd.setEnabled(false);
-		menuEdit.setEnabled(false);
+		enableAdding(false);
+		enableEdition(false);
 		canvas.setState(State.DRAWING);
 	}
 
@@ -106,8 +107,10 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	}
 
 	public void createTriangle() {
-		// TODO Auto-generated method stub
-		
+		canvas.setSelectedFigure(new Triangle());
+		enableAdding(false);
+		enableEdition(false);
+		canvas.setState(State.DRAWING);
 	}
 
 	public Figure[] getFigures() {
