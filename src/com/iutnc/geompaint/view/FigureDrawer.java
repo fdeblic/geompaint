@@ -39,8 +39,8 @@ public class FigureDrawer {
 	private void drawPolygon(Polygon p, Graphics g) {
 		g.setColor(p.getColor());
 		Point[] points = p.getPoints();
-		int[] pointX = {};
-		int[] pointY = {};
+		int[] pointX = new int[points.length];
+		int[] pointY = new int[points.length];
 		for (int i = 0; i < points.length; i++){
 			pointX[i] = points[i].x;
 			pointY[i] = points[i].y;
