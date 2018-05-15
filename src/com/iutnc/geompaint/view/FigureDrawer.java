@@ -24,8 +24,11 @@ public class FigureDrawer {
 	 * @param f the figure to draw
 	 */
 	public void drawFigure(Figure f, Graphics g) {
-		if (f == null){return;}
-		else if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
+		if (f == null) return;
+		if (context.isHovered(f)) 
+			g.setColor(Color.GREEN);
+		else g.setColor(f.getColor());
+		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
 		else if (f instanceof Circle) this.drawCircle((Circle)f, g);
 		if (context.isSelected(f)){
 			drawPoints(f.getGripPoints(), g);
@@ -38,7 +41,6 @@ public class FigureDrawer {
 	 */
 	private void drawPolygon(Polygon p, Graphics g) {
 		if (p == null || !p.isValid()) return;
-		g.setColor(p.getColor());
 		Point[] points = p.getPoints();
 		int[] pointX = new int[points.length];
 		int[] pointY = new int[points.length];
@@ -58,7 +60,6 @@ public class FigureDrawer {
 		if (c == null || !c.isValid()) return;
 		Point centre = c.getCentre();
 		int radius = c.getRadius();
-		g.setColor(c.getColor());
 		if (c.isFilled())
 			g.fillOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
 		else
