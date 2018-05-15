@@ -103,9 +103,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		/*
 		 * Draw every figures in the array
 		 */
-		for (int i = 0; i < figures.length; i++){
-			fgD.drawFigure(figures[i], g);
-		}
+		for (int i = 0; i < figures.length; i++)
+			if (!isSelected(figures[i]))
+				fgD.drawFigure(figures[i], g);
+		fgD.drawFigure(getSelectedFigure(), g);
 	}
 
 	@Override
@@ -143,18 +144,20 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					this.selectedFigure = figures[i];
 				}
 			}
-			repaint();
 		}
 		else if (this.state == State.DRAWING) {
 			if (!this.selectedFigure.isFull()){
-				Point p = new Point(e.getX(), e.getY());
-				this.selectedFigure.addGripPoint(p);
+				if (movingPoint == null)
+					this.selectedFigure.addGripPoint(new Point(e.getX(), e.getY()));
+				movingPoint = new Point(e.getX(), e.getY());
+				this.selectedFigure.addGripPoint(movingPoint);
 			}
-			if (selectedFigure.isFull()){
+			else if (selectedFigure.isFull()){
+				movingPoint = null;
 				frame.saveFigure(this.selectedFigure);
 			}
-			repaint();
 		}
+		repaint();
 	}
 
 	@Override
