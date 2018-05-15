@@ -86,8 +86,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	 * @param selectedFigure the selected figure, you want to modify
 	 */
 	private boolean isSelected(Point p) {
-		// TODO tester par rapport Ã  l'attribut movingPoint
-		return false;
+		return p == movingPoint;
 	}
 	
 	
@@ -131,7 +130,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO dÃ©placement du point en cours ou de la figure
+		if (SwingUtilities.isLeftMouseButton(e)){
+			if (this.state == State.NORMAL){
+				frame.moveFigure(this.selectedFigure,e.getX(),e.getY());
+			}
+		}
 	}
 
 	@Override
