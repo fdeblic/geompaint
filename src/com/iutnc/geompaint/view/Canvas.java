@@ -41,6 +41,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private Point movingPoint;
 	private State state;
 	private String hintMessage = "";
+	private int lastX ;
+	private int lastY;
 		
 	/**
 	 * Canvas Constructor
@@ -132,9 +134,19 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public void mouseDragged(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)){
 			if (this.state == State.NORMAL){
-				frame.moveFigure(this.selectedFigure,e.getX(),e.getY());
+				if (movingPoint == null){
+					int newPointx = e.getX() - lastX;
+					int newPointy = e.getY() - lastY;
+					frame.moveFigure(this.selectedFigure, newPointx, newPointy);
+				}
+				else {
+					frame.movePoint(movingPoint, e.getX(), e.getY());
+					repaint();
+				}
+				lastX = e.getX(); 
+				lastY = e.getY();
 			}
-		}
+		}		
 	}
 
 	@Override
@@ -155,21 +167,38 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public void mouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
+			lastX = e.getX();
+			lastY = e.getY();
 			if (this.state == State.NORMAL){
 				Figure[] figures = frame.getFigures();
+				selectedFigure = null;
 				analyzer.setRef(e.getX(), e.getY());
 				for (int i = 0; i < figures.length; i++) {
 					if (analyzer.isHoverFigure(figures[i])) {
 						this.selectedFigure = figures[i];
 					}
 				}
+				movingPoint = null;
 			}
-			else if (this.state == State.DRAWING) {
+			if (this.selectedFigure != null) {
+				analyzer.setRef(lastX, lastY);
+				Point[] pts = this.selectedFigure.getGripPoints();
+				movingPoint = null;
+				for (int i = 0 ; i < pts.length; i ++){
+					if (analyzer.isNearPoint(pts[i])){
+						movingPoint = pts[i];
+					}					
+				}
+			}
+		} 
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (SwingUtilities.isLeftMouseButton(e)) {			
+			if (this.state == State.DRAWING) {
 				setHintMessage("");
 				if (!this.selectedFigure.isFull()){
 					if (movingPoint == null)
