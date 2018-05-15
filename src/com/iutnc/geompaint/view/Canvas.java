@@ -171,6 +171,17 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			lastX = e.getX();
 			lastY = e.getY();
+			if (this.state == State.NORMAL){
+				Figure[] figures = frame.getFigures();
+				selectedFigure = null;
+				analyzer.setRef(e.getX(), e.getY());
+				for (int i = 0; i < figures.length; i++) {
+					if (analyzer.isHoverFigure(figures[i])) {
+						this.selectedFigure = figures[i];
+					}
+				}
+				movingPoint = null;
+			}
 			if (this.selectedFigure != null) {
 				analyzer.setRef(lastX, lastY);
 				Point[] pts = this.selectedFigure.getGripPoints();
@@ -186,19 +197,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (SwingUtilities.isLeftMouseButton(e)) {
-			if (this.state == State.NORMAL){
-				Figure[] figures = frame.getFigures();
-				selectedFigure = null;
-				analyzer.setRef(e.getX(), e.getY());
-				for (int i = 0; i < figures.length; i++) {
-					if (analyzer.isHoverFigure(figures[i])) {
-						this.selectedFigure = figures[i];
-					}
-				}
-				movingPoint = null;
-			}
-			else if (this.state == State.DRAWING) {
+		if (SwingUtilities.isLeftMouseButton(e)) {			
+			if (this.state == State.DRAWING) {
 				setHintMessage("");
 				if (!this.selectedFigure.isFull()){
 					if (movingPoint == null)
