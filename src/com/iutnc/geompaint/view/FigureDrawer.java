@@ -37,6 +37,7 @@ public class FigureDrawer {
 	 * @param p the polygon to draw
 	 */
 	private void drawPolygon(Polygon p, Graphics g) {
+		if (p == null || !p.isValid()) return;
 		g.setColor(p.getColor());
 		Point[] points = p.getPoints();
 		int[] pointX = new int[points.length];

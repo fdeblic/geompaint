@@ -1,9 +1,11 @@
 package com.iutnc.geompaint.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -71,7 +73,8 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	}
 
 	public void changeFigureColor() {
-		// TODO Auto-generated method stub
+		Color newColor = JColorChooser.showDialog(null, "couleur du fond", Color.WHITE);
+		controller.changeFigureColor(canvas.getSelectedFigure(), newColor);
 		
 	}
 
@@ -86,6 +89,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 
 	public void deleteFigure() {
 		controller.deleteFigure(canvas.getSelectedFigure());
+		canvas.setSelectedFigure(null);
 		
 	}
 
@@ -97,15 +101,21 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	public void createPolygon() {
 		canvas.setSelectedFigure(new Polygon());
 		canvas.setState(State.DRAWING);
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
 	}
 
 	public void createRectangle() {
 		canvas.setSelectedFigure(new Rectangle());
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
 		canvas.setState(State.DRAWING);
 	}
 
 	public void createTriangle() {
 		canvas.setSelectedFigure(new Triangle());
+		menuAdd.setEnabled(false);
+		menuEdit.setEnabled(false);
 		canvas.setState(State.DRAWING);
 	}
 
