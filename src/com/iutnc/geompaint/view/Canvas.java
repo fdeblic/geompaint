@@ -134,13 +134,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public void mouseDragged(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)){
 			if (this.state == State.NORMAL){
-				int newPointx = e.getX() - lastX;
-				int newPointy = e.getY() - lastY;
 				if (movingPoint == null){
+					int newPointx = e.getX() - lastX;
+					int newPointy = e.getY() - lastY;
 					frame.moveFigure(this.selectedFigure, newPointx, newPointy);
 				}
 				else {
-					frame.movePoint(movingPoint, newPointx, newPointy);
+					frame.movePoint(movingPoint, e.getX(), e.getY());
+					repaint();
 				}
 				lastX = e.getX(); 
 				lastY = e.getY();
@@ -173,11 +174,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			if (this.selectedFigure != null) {
 				analyzer.setRef(lastX, lastY);
 				Point[] pts = this.selectedFigure.getGripPoints();
+				movingPoint = null;
 				for (int i = 0 ; i < pts.length; i ++){
 					if (analyzer.isNearPoint(pts[i])){
 						movingPoint = pts[i];
-					}
-					
+					}					
 				}
 			}
 		} 
@@ -188,6 +189,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			if (this.state == State.NORMAL){
 				Figure[] figures = frame.getFigures();
+				selectedFigure = null;
 				analyzer.setRef(e.getX(), e.getY());
 				for (int i = 0; i < figures.length; i++) {
 					if (analyzer.isHoverFigure(figures[i])) {
