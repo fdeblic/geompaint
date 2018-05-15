@@ -188,6 +188,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		if (selectedFigure == null)
 			return;
 		
+		// If the figure is a polygon, we remove the moving point of it
+		if(selectedFigure.getClass().equals(Polygon.class))
+			selectedFigure.removeGripPoint(movingPoint);
+		
 		if (selectedFigure.isValid()) {
 			movingPoint = null;
 			frame.saveFigure(this.selectedFigure);
