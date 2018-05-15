@@ -37,6 +37,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private FigureDrawer drawer;
 	private FigureAnalyzer analyzer;
 	private Figure selectedFigure;
+	private Figure hoveredFigure;
 
 	private Point movingPoint;
 	private State state;
@@ -83,6 +84,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public boolean isSelected(Figure f) {
 		return f == selectedFigure;
 	}
+	
+	public boolean isHovered(Figure f) {
+		return f == hoveredFigure;
+	}
+	
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -132,7 +138,22 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO changer le style de la figure qui est survolÃ©e
+		if(this.state == State.NORMAL) {
+			Figure[] figures = frame.getFigures();
+			hoveredFigure = null;
+			analyzer.setRef(e.getX(), e.getY());
+			for (int i = 0; i < figures.length; i++) {
+				if (analyzer.isNearFigure(figures[i])) {
+					this.hoveredFigure = figures[i];
+				}
+			}
+			if (this.hoveredFigure != null) {
+				
+			}
+
+		}
+			
+		
 		frame.movePoint(movingPoint, e.getX(), e.getY());
 		repaint();
 	}
