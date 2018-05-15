@@ -79,7 +79,12 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	}
 
 	public void fillFigure() {
-		controller.fillFigure(canvas.getSelectedFigure(), true);
+		if (canvas.getSelectedFigure().isFilled()){
+			controller.fillFigure(canvas.getSelectedFigure(), false);
+		}
+		else {
+			controller.fillFigure(canvas.getSelectedFigure(), true);
+		}
 	}
 
 	public void cloneFigure() {
