@@ -158,4 +158,16 @@ public abstract class Figure extends Observable {
     	return this.color ;
     }
     
+    private ArrayList<Point> getCopieGripPoints(){
+		ArrayList<Point> res = new ArrayList<Point>();
+    	for(int i = 0; i< gripPoints.size(); i++) {
+    		Point p = new Point();
+    		p.x = this.gripPoints.get(i).x;
+    		p.y = this.gripPoints.get(i).y;
+    		res.add(p);
+    	}
+    	return res;
+    	
+    }
+    
 }
