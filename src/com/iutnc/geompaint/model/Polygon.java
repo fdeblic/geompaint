@@ -1,6 +1,7 @@
 package com.iutnc.geompaint.model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
 *
@@ -18,9 +19,9 @@ public class Polygon extends Figure{
 	@Override
 	public Polygon getCopie() {
 		Polygon pbis = new Polygon();
-		pbis.gripPoints = this.gripPoints;
+		pbis.gripPoints = (ArrayList<Point>) this.gripPoints.clone();
 		pbis.filled = this.filled;
-		pbis.color = this.color;
+		pbis.color = this.getColor();
 		pbis.maxGripPoints = this.maxGripPoints;
 		return pbis;
 	}
