@@ -39,8 +39,8 @@ public class FigureDrawer {
 	private void drawPolygon(Polygon p, Graphics g) {
 		g.setColor(p.getColor());
 		Point[] points = p.getPoints();
-		int[] pointX = {};
-		int[] pointY = {};
+		int[] pointX = new int[points.length];
+		int[] pointY = new int[points.length];
 		for (int i = 0; i < points.length; i++){
 			pointX[i] = points[i].x;
 			pointY[i] = points[i].y;
@@ -54,10 +54,14 @@ public class FigureDrawer {
 	 * @param c the circle to draw
 	 */
 	private void drawCircle(Circle c, Graphics g) {
+		if (c == null || !c.isValid()) return;
 		Point centre = c.getCentre();
-		int diameter = c.getRadius() * 2; 
+		int radius = c.getRadius();
 		g.setColor(c.getColor());
-		g.drawOval(centre.x, centre.y, diameter, diameter);
+		if (c.isFilled())
+			g.fillOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
+		else
+			g.drawOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
 	}
 	
 	/**
@@ -76,8 +80,11 @@ public class FigureDrawer {
 	 * @param p the point to draw
 	 */
 	private void drawPoint(Point p, Graphics g) {
+		int r = 2; // pixels
+		g.setColor(Color.white);
+		g.fillRect(p.x-r, p.y-r, 2*r, 2*r);
 		g.setColor(Color.black);
-		g.drawRect(p.x-1, p.y-1, 2, 2);
+		g.drawRect(p.x-r, p.y-r, 2*r, 2*r);
 	}
 	
 }

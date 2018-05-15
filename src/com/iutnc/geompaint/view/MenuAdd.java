@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import com.iutnc.geompaint.controller.GeomPaintController;
 
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * 
  * @author moreau96u
@@ -28,16 +30,17 @@ public class MenuAdd extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private GeomPaintController controller;
 	private JButton btnCercle;
 	private JButton btnPolygone;
 	private JButton btnRectangle;
 	private JButton btnTriangle;
+	private GeomPaintFrame frame;
 	
 	/**
 	 * Menu Add constructor
 	 */
-	public MenuAdd() {
+	public MenuAdd(GeomPaintFrame view) {
+		frame = view;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -53,6 +56,13 @@ public class MenuAdd extends JPanel {
 		add(label, gbc_label);
 		
 		btnCercle = new JButton("Cercle");
+		btnCercle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.createCircle();				
+			}
+		});
 		GridBagConstraints gbc_btnCercle = new GridBagConstraints();
 		gbc_btnCercle.fill = GridBagConstraints.BOTH;
 		gbc_btnCercle.insets = new Insets(0, 0, 5, 5);
@@ -61,6 +71,13 @@ public class MenuAdd extends JPanel {
 		add(btnCercle, gbc_btnCercle);
 		
 		btnPolygone = new JButton("Polygone");
+		btnPolygone.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.createPolygon();				
+			}
+		});
 		GridBagConstraints gbc_btnPolygone = new GridBagConstraints();
 		gbc_btnPolygone.fill = GridBagConstraints.BOTH;
 		gbc_btnPolygone.insets = new Insets(0, 0, 5, 5);
@@ -69,6 +86,13 @@ public class MenuAdd extends JPanel {
 		add(btnPolygone, gbc_btnPolygone);
 		
 		btnRectangle = new JButton("Rectangle");
+		btnRectangle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.createRectangle();				
+			}
+		});
 		GridBagConstraints gbc_btnRectangle = new GridBagConstraints();
 		gbc_btnRectangle.fill = GridBagConstraints.BOTH;
 		gbc_btnRectangle.insets = new Insets(0, 0, 5, 5);
@@ -77,6 +101,13 @@ public class MenuAdd extends JPanel {
 		add(btnRectangle, gbc_btnRectangle);
 		
 		btnTriangle = new JButton("Triangle");
+		btnTriangle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.createTriangle();				
+			}
+		});
 		GridBagConstraints gbc_btnTriangle = new GridBagConstraints();
 		gbc_btnTriangle.fill = GridBagConstraints.BOTH;
 		gbc_btnTriangle.insets = new Insets(0, 0, 5, 5);

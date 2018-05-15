@@ -14,6 +14,7 @@ public class Principale {
 	public static void main(String[] args) {
 		GeomPaintController controller = new GeomPaintController();
 		GeomPaintFrame fenetre = new GeomPaintFrame(controller);
+		controller.setView(fenetre);
 		fenetre.setVisible(true);
 	}
 }

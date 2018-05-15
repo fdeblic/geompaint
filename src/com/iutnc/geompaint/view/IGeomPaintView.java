@@ -1,5 +1,7 @@
 package com.iutnc.geompaint.view;
 
+import java.util.Observer;
+
 import com.iutnc.geompaint.model.Figure;
 
 public interface IGeomPaintView {
@@ -27,4 +29,6 @@ public interface IGeomPaintView {
 	 * @param b the adding mode is enable or not
 	 */
 	public void enableAdding(boolean b);
+
+	public Canvas getCanvas();
 }

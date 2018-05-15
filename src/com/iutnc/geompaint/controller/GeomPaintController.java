@@ -5,6 +5,7 @@ import java.awt.Point;
 
 import com.iutnc.geompaint.model.Drawing;
 import com.iutnc.geompaint.model.Figure;
+import com.iutnc.geompaint.view.GeomPaintFrame;
 import com.iutnc.geompaint.view.IGeomPaintView;
 
 /**
@@ -29,33 +30,33 @@ public class GeomPaintController {
 	}
 	
 	public void addFigure(Figure f) {
-		if (f.isValid())
+		if (f.isValid()) {
 			drawing.addFigure(f);
+			f.addObserver(view.getCanvas());
+		}
 	}
 	
 	public void fillFigure(Figure f, boolean filled) {
-		f.setFilled(filled);
+		if (f != null)
+			f.setFilled(filled);
 	}
 	
 	public void changeFigureColor(Figure f, Color newColor) {
-		
+		if (f != null)
+			f.setColor(newColor);
 	}
 	
-	/**
-	 * Handler for the clone button
-	 */
 	public Figure cloneFigure(Figure f) {
+		if (f == null || !f.isValid()) return null;
 		Figure fig2 = f.getCopie();
 		fig2.translate(15, 15);
 		drawing.addFigure(fig2);
 		return fig2;
 	}
 	
-	/**
-	 * Handler for the delete button
-	 */
-	public void deleteFigure() {
-		
+	public void deleteFigure(Figure f) {
+		if (f != null)
+			drawing.removeFigure(f);
 	}
 	
 	/**
@@ -81,7 +82,7 @@ public class GeomPaintController {
 	 */
 	public boolean movePoint(Point p, int x, int y) {
 		if (p != null) {
-			p.translate(x, y);
+			p.setLocation(x, y);
 			return true;
 		} else {
 			return false;
@@ -92,5 +93,10 @@ public class GeomPaintController {
 	
 	public Figure[] getFigures() {
 		return drawing.getFigures().toArray(new Figure[drawing.getFigures().size()]);
+	}
+
+	public void setView(GeomPaintFrame view) {
+		this.view = view;
+		drawing.addObserver(view.getCanvas());
 	}
 }

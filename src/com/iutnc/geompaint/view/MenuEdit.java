@@ -3,6 +3,8 @@ package com.iutnc.geompaint.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,16 +26,18 @@ public class MenuEdit extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private GeomPaintController controller;
 	private JButton btnFill;
 	private JButton btnColor;
 	private JButton btnClone;
 	private JButton btnDelete;
+	private GeomPaintFrame frame;
 	
 	/**
 	 * Menu Edit constructor 
+	 * @param view 
 	 */
-	public MenuEdit() {
+	public MenuEdit(GeomPaintFrame view) {
+		frame = view;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -49,6 +53,12 @@ public class MenuEdit extends JPanel {
 		add(label, gbc_label);
 		
 		btnFill = new JButton("Remplir");
+		btnFill.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.fillFigure();
+			}
+		});
 		GridBagConstraints gbc_btnFill = new GridBagConstraints();
 		gbc_btnFill.fill = GridBagConstraints.BOTH;
 		gbc_btnFill.insets = new Insets(0, 0, 5, 5);
@@ -57,6 +67,14 @@ public class MenuEdit extends JPanel {
 		add(btnFill, gbc_btnFill);
 		
 		btnColor = new JButton("Couleur");
+		btnColor.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.changeFigureColor();
+				
+			}
+		});
 		GridBagConstraints gbc_btnColor = new GridBagConstraints();
 		gbc_btnColor.fill = GridBagConstraints.BOTH;
 		gbc_btnColor.insets = new Insets(0, 0, 5, 5);
@@ -65,6 +83,14 @@ public class MenuEdit extends JPanel {
 		add(btnColor, gbc_btnColor);
 		
 		btnClone = new JButton("Dupliquer");
+		btnClone.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.cloneFigure();
+				
+			}
+		});
 		GridBagConstraints gbc_btnClone = new GridBagConstraints();
 		gbc_btnClone.fill = GridBagConstraints.BOTH;
 		gbc_btnClone.insets = new Insets(0, 0, 5, 5);
@@ -73,6 +99,14 @@ public class MenuEdit extends JPanel {
 		add(btnClone, gbc_btnClone);
 		
 		btnDelete = new JButton("Supprimer");
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.deleteFigure();
+				
+			}
+		});
 		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
 		gbc_btnDelete.fill = GridBagConstraints.BOTH;
 		gbc_btnDelete.insets = new Insets(0, 0, 5, 5);
