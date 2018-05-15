@@ -48,7 +48,12 @@ public class FigureDrawer {
 			pointX[i] = points[i].x;
 			pointY[i] = points[i].y;
 		}
-		g.drawPolygon(pointX, pointY, points.length);
+		if (p.isFilled()){
+			g.fillPolygon(pointX, pointY, points.length);
+		}
+		else{
+			g.drawPolygon(pointX, pointY, points.length);
+		}
 	}
 	
 	/**
