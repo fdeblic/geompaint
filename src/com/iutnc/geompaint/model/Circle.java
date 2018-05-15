@@ -19,6 +19,7 @@ public class Circle extends Figure{
     
     public Circle() {
     	super();
+    	this.maxGripPoints=2;
     	this.radius = 1;
     }
 
@@ -51,13 +52,18 @@ public class Circle extends Figure{
     
 	@Override
 	public Circle getCopie() {
-		// TODO Auto-generated method stub
-		return null;
+		Circle cbis = new Circle();
+		cbis.gripPoints = this.gripPoints;
+		cbis.filled = this.filled;
+		cbis.color = this.color;
+		cbis.maxGripPoints = this.maxGripPoints;
+		cbis.radius = this.radius;
+		return cbis;
 	}
 
 	@Override
 	public boolean isFull() {
-		return this.gripPoints.size()==2;
+		return this.gripPoints.size()==this.maxGripPoints;
 	}
 
 	@Override
