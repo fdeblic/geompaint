@@ -41,6 +41,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private Point movingPoint;
 	private State state;
 	private String hintMessage = "";
+	private int lastX ;
+	private int lastY;
 		
 	/**
 	 * Canvas Constructor
@@ -132,9 +134,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public void mouseDragged(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)){
 			if (this.state == State.NORMAL){
-				frame.moveFigure(this.selectedFigure,e.getX(),e.getY());
+				int newPointx = e.getX() - lastX;
+				int newPointy = e.getY() - lastY;
+				frame.moveFigure(this.selectedFigure,newPointx,newPointy);
+				lastX = e.getX(); 
+				lastY = e.getY();
 			}
 		}
+		
 	}
 
 	@Override
@@ -155,7 +162,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public void mouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			lastX=e.getX();
+			lastY=e.getY();
+		} 
+	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
