@@ -83,7 +83,8 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	}
 
 	public void cloneFigure() {
-		controller.cloneFigure(canvas.getSelectedFigure());
+		Figure newFigure = controller.cloneFigure(canvas.getSelectedFigure());
+		canvas.setSelectedFigure(newFigure);
 		
 	}
 
