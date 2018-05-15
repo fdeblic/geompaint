@@ -53,6 +53,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		state = State.NORMAL;
 		setBackground(Color.white);
 		analyzer = new FigureAnalyzer();
+		addMouseMotionListener(this);
+		addMouseListener(this);
+		addKeyListener(this);
+		setFocusable(true);
+		requestFocus();
 	}
 	
 	/**
@@ -170,8 +175,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					this.selectedFigure.addGripPoint(movingPoint);
 				}
 				else if (selectedFigure.isFull()){
-					movingPoint = null;
-					frame.saveFigure(this.selectedFigure);
+					saveFigure();
 				}
 			}
 		} else if (SwingUtilities.isRightMouseButton(e)) {
@@ -181,8 +185,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	}
 	
 	private void saveFigure() {
-		if (selectedFigure == null) return;
-		selectedFigure.removeGripPoint(movingPoint);
+		if (selectedFigure == null)
+			return;
+		
 		if (selectedFigure.isValid()) {
 			movingPoint = null;
 			frame.saveFigure(this.selectedFigure);
@@ -190,7 +195,15 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			movingPoint = null;
 			selectedFigure = null;
 			setState(State.NORMAL);
+			repaint();
 		}
+	}
+	
+	private void cancelDrawing() {
+		movingPoint = null;
+		selectedFigure = null;
+		setState(State.NORMAL);
+		repaint();
 	}
 
 	@Override
@@ -220,23 +233,21 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
-				
+				cancelDrawing();
+				break;
+			case KeyEvent.VK_ENTER:
+				saveFigure();
 				break;
 		}
-		
 	}
 }

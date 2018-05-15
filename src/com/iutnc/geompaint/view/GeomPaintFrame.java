@@ -27,8 +27,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 		controller = c;
 		JPanel global = new JPanel(new BorderLayout());
 		canvas = new Canvas(this);
-		canvas.addMouseMotionListener(canvas);
-		canvas.addMouseListener(canvas);
 		menuAdd = new MenuAdd(this);
 		menuEdit = new MenuEdit(this);
 		
