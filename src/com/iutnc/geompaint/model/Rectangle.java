@@ -1,6 +1,7 @@
 package com.iutnc.geompaint.model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
 *
@@ -18,10 +19,9 @@ public class Rectangle extends Polygon{
 	@Override
 	public Rectangle getCopie() {
 		Rectangle rbis = new Rectangle();
-		rbis.gripPoints = this.gripPoints;
+		rbis.gripPoints = (ArrayList<Point>) this.gripPoints.clone();
 		rbis.filled = this.filled;
-		rbis.color = this.color;
-		rbis.maxGripPoints = this.maxGripPoints;
+		rbis.color = this.getColor();
 		return rbis;
 	}
 
