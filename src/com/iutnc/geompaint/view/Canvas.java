@@ -10,7 +10,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import com.iutnc.geompaint.controller.FigureAnalyzer;
 import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.*;
@@ -136,25 +139,37 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (this.state == State.NORMAL){
-			Figure[] figures = frame.getFigures();
-			analyzer.setRef(e.getX(), e.getY());
-			for (int i = 0; i < figures.length; i++) {
-				if (analyzer.isHoverFigure(figures[i])) {
-					this.selectedFigure = figures[i];
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			if (this.state == State.NORMAL){
+				Figure[] figures = frame.getFigures();
+				analyzer.setRef(e.getX(), e.getY());
+				for (int i = 0; i < figures.length; i++) {
+					if (analyzer.isHoverFigure(figures[i])) {
+						this.selectedFigure = figures[i];
+					}
 				}
 			}
-		}
-		else if (this.state == State.DRAWING) {
-			if (!this.selectedFigure.isFull()){
-				if (movingPoint == null)
-					this.selectedFigure.addGripPoint(new Point(e.getX(), e.getY()));
-				movingPoint = new Point(e.getX(), e.getY());
-				this.selectedFigure.addGripPoint(movingPoint);
+			else if (this.state == State.DRAWING) {
+				if (!this.selectedFigure.isFull()){
+					if (movingPoint == null)
+						this.selectedFigure.addGripPoint(new Point(e.getX(), e.getY()));
+					movingPoint = new Point(e.getX(), e.getY());
+					this.selectedFigure.addGripPoint(movingPoint);
+				}
+				else if (selectedFigure.isFull()){
+					movingPoint = null;
+					frame.saveFigure(this.selectedFigure);
+				}
 			}
-			else if (selectedFigure.isFull()){
+		} else if (SwingUtilities.isRightMouseButton(e)) {
+			selectedFigure.removeGripPoint(movingPoint);
+			if (selectedFigure.isValid()) {
 				movingPoint = null;
 				frame.saveFigure(this.selectedFigure);
+			} else {
+				movingPoint = null;
+				selectedFigure = null;
+				setState(State.NORMAL);
 			}
 		}
 		repaint();
@@ -167,7 +182,16 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	public void setState(State state) {
 		this.state = state;
-		
+		switch (state) {
+			case DRAWING:
+				frame.enableAdding(false);
+				frame.enableEdition(false);
+				break;
+			default:
+				frame.enableAdding(true);
+				frame.enableEdition(true);
+				break;
+		}
 	}
 
 }
