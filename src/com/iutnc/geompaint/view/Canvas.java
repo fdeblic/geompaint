@@ -1,10 +1,14 @@
 package com.iutnc.geompaint.view;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -23,7 +27,7 @@ import com.iutnc.geompaint.model.*;
  * @author Elise
  * @version 09/05/2018
  */
-public class Canvas extends JPanel implements MouseListener, MouseMotionListener, Observer {
+public class Canvas extends JPanel implements MouseListener, MouseMotionListener, Observer, KeyListener {
 
 	/**
 	 * Attributs
@@ -36,7 +40,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	private Point movingPoint;
 	private State state;
-	
+	private String hintMessage = "";
 		
 	/**
 	 * Canvas Constructor
@@ -110,6 +114,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			if (!isSelected(figures[i]))
 				fgD.drawFigure(figures[i], g);
 		fgD.drawFigure(getSelectedFigure(), g);
+		
+		if (state == State.DRAWING && !hintMessage.equals("")) {
+			g.setFont(new Font("verdana", Font.BOLD, 18));
+			FontMetrics metrics = g.getFontMetrics(g.getFont());
+		    int x = 0 + (getWidth() - metrics.stringWidth(hintMessage)) / 2;
+			g.setColor(Color.LIGHT_GRAY);
+			g.drawString(hintMessage, x, getHeight()-50);
+		}
 	}
 
 	@Override
@@ -150,6 +162,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				}
 			}
 			else if (this.state == State.DRAWING) {
+				setHintMessage("");
 				if (!this.selectedFigure.isFull()){
 					if (movingPoint == null)
 						this.selectedFigure.addGripPoint(new Point(e.getX(), e.getY()));
@@ -162,17 +175,22 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				}
 			}
 		} else if (SwingUtilities.isRightMouseButton(e)) {
-			selectedFigure.removeGripPoint(movingPoint);
-			if (selectedFigure.isValid()) {
-				movingPoint = null;
-				frame.saveFigure(this.selectedFigure);
-			} else {
-				movingPoint = null;
-				selectedFigure = null;
-				setState(State.NORMAL);
-			}
+			saveFigure();
 		}
 		repaint();
+	}
+	
+	private void saveFigure() {
+		if (selectedFigure == null) return;
+		selectedFigure.removeGripPoint(movingPoint);
+		if (selectedFigure.isValid()) {
+			movingPoint = null;
+			frame.saveFigure(this.selectedFigure);
+		} else {
+			movingPoint = null;
+			selectedFigure = null;
+			setState(State.NORMAL);
+		}
 	}
 
 	@Override
@@ -186,6 +204,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			case DRAWING:
 				frame.enableAdding(false);
 				frame.enableEdition(false);
+				setHintMessage("Cliquez pour ajouter des points");
+				repaint();
 				break;
 			default:
 				frame.enableAdding(true);
@@ -193,5 +213,30 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				break;
 		}
 	}
+	
+	public void setHintMessage(String hint) {
+		this.hintMessage = hint;
+	}
 
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE:
+				
+				break;
+		}
+		
+	}
 }
