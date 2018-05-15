@@ -10,16 +10,21 @@ public class Rectangle extends Polygon{
 
 	public Rectangle() {
 		super();
+		this.maxGripPoints=2;
 	}
 	
 	@Override
 	public Rectangle getCopie() {
-		// TODO Auto-generated method stub
-		return null;
+		Rectangle rbis = new Rectangle();
+		rbis.gripPoints = this.gripPoints;
+		rbis.filled = this.filled;
+		rbis.color = this.color;
+		rbis.maxGripPoints = this.maxGripPoints;
+		return rbis;
 	}
 
 	public boolean isFull() {
-		return this.gripPoints.size()==2;
+		return this.gripPoints.size()==this.maxGripPoints;
 		
 	}
 	public boolean isValid() {
