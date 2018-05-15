@@ -17,8 +17,12 @@ public class Polygon extends Figure{
 	
 	@Override
 	public Polygon getCopie() {
-		// TODO Auto-generated method stub
-		return null;
+		Polygon pbis = new Polygon();
+		pbis.gripPoints = this.gripPoints;
+		pbis.filled = this.filled;
+		pbis.color = this.color;
+		pbis.maxGripPoints = this.maxGripPoints;
+		return pbis;
 	}
 	
 	
