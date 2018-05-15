@@ -89,7 +89,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 
 	public void deleteFigure() {
 		controller.deleteFigure(canvas.getSelectedFigure());
-		//canvas.setSelectedFigure(null);
+		canvas.setSelectedFigure(null);
 		
 	}
 
