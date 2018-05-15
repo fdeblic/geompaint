@@ -1,20 +1,14 @@
 package com.iutnc.geompaint.view;
 
 import javax.swing.JPanel;
-
 import java.awt.GridBagLayout;
-
 import javax.swing.JLabel;
-
 import java.awt.GridBagConstraints;
-
 import javax.swing.JButton;
-
-import com.iutnc.geompaint.controller.GeomPaintController;
-
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  * 
  * @author moreau96u

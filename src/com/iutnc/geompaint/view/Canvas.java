@@ -53,6 +53,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		super();
 		this.frame = frame; 
 		state = State.NORMAL;
+		drawer = new FigureDrawer(this);
 		setBackground(Color.white);
 		analyzer = new FigureAnalyzer();
 		addMouseMotionListener(this);
@@ -83,25 +84,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		return f == selectedFigure;
 	}
 	
-	/**
-	 * Figure selected to set
-	 * @param selectedFigure the selected figure, you want to modify
-	 */
-	private boolean isSelected(Point p) {
-		return p == movingPoint;
-	}
-	
-	
-	/**
-	 * The figure is hover
-	 * @param f the figure you want to check
-	 * @return True if the figure is hover
-	 */
-	private boolean isHover(Figure f) {
-		// TODO appel Ã  FigureAnalyzer
-		return false;
-	}
-	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -110,7 +92,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		Figure[] figures = frame.getFigures();
-		FigureDrawer fgD =  new FigureDrawer(this);
 		if (figures == null)
 			return;
 		/*
@@ -118,8 +99,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		 */
 		for (int i = 0; i < figures.length; i++)
 			if (!isSelected(figures[i]))
-				fgD.drawFigure(figures[i], g);
-		fgD.drawFigure(getSelectedFigure(), g);
+				drawer.drawFigure(figures[i], g);
+		drawer.drawFigure(getSelectedFigure(), g);
 		
 		if (state == State.DRAWING && !hintMessage.equals("")) {
 			g.setFont(new Font("verdana", Font.BOLD, 18));
@@ -171,6 +152,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			lastX = e.getX();
 			lastY = e.getY();
+			
 			if (this.state == State.NORMAL){
 				Figure[] figures = frame.getFigures();
 				selectedFigure = null;
@@ -180,19 +162,19 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 						this.selectedFigure = figures[i];
 					}
 				}
-				movingPoint = null;
-			}
-			if (this.selectedFigure != null) {
-				analyzer.setRef(lastX, lastY);
-				Point[] pts = this.selectedFigure.getGripPoints();
-				movingPoint = null;
-				for (int i = 0 ; i < pts.length; i ++){
-					if (analyzer.isNearPoint(pts[i])){
-						movingPoint = pts[i];
-					}					
+				
+				if (this.selectedFigure != null) {
+					analyzer.setRef(lastX, lastY);
+					Point[] pts = this.selectedFigure.getGripPoints();
+					movingPoint = null;
+					for (int i = 0 ; i < pts.length; i ++){
+						if (analyzer.isNearPoint(pts[i])){
+							movingPoint = pts[i];
+						}					
+					}
 				}
 			}
-		} 
+		}
 	}
 
 	@Override
@@ -209,6 +191,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				else if (selectedFigure.isFull()){
 					saveFigure();
 				}
+			} else {
+				movingPoint = null;
 			}
 		} else if (SwingUtilities.isRightMouseButton(e)) {
 			saveFigure();

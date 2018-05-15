@@ -3,14 +3,10 @@
  */
 package com.iutnc.geompaint.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.awt.Color;
 import java.awt.Point;
-
 import org.junit.jupiter.api.Test;
-
 import com.iutnc.geompaint.model.Figure;
 
 /**

@@ -1,32 +1,22 @@
 package com.iutnc.geompaint.test;
 
 import javax.swing.JFrame;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.Point;
-
 import javax.swing.JPanel;
-
-import java.awt.GridBagConstraints;
-
-import javax.swing.JLabel;
-
 import com.iutnc.geompaint.controller.FigureAnalyzer;
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
 import com.iutnc.geompaint.model.Polygon;
-import com.iutnc.geompaint.model.Triangle;
-
-import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class WindowedTestFigureAnalyzer {
 	
+	@SuppressWarnings("serial")
 	private class Figures extends JPanel implements MouseMotionListener {
 		Figure figHover = null;
 		Figure figNear = null;

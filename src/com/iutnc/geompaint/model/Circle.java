@@ -1,7 +1,6 @@
 package com.iutnc.geompaint.model;
 
 import java.awt.Point;
-import java.util.ArrayList;
 
 /**
 *
@@ -54,7 +53,7 @@ public class Circle extends Figure{
 	@Override
 	public Circle getCopie() {
 		Circle cbis = new Circle();
-		cbis.gripPoints = (ArrayList<Point>) this.gripPoints.clone();
+		cbis.gripPoints = getCopieGripPoints();
 		cbis.filled = this.filled;
 		cbis.color = this.getColor();
 		cbis.radius = this.radius;

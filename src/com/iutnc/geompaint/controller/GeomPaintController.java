@@ -50,7 +50,7 @@ public class GeomPaintController {
 		if (f == null || !f.isValid()) return null;
 		Figure fig2 = f.getCopie();
 		fig2.translate(15, 15);
-		drawing.addFigure(fig2);
+		addFigure(fig2);
 		return fig2;
 	}
 	

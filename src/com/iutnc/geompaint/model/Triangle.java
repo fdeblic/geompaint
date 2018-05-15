@@ -1,9 +1,5 @@
 package com.iutnc.geompaint.model;
 
-import java.awt.Color;
-import java.awt.Point;
-import java.util.ArrayList;
-
 /**
 *
 * @author Loic Spacher
@@ -19,7 +15,7 @@ public class Triangle extends Polygon {
 	@Override
 	public Triangle getCopie() {
 		Triangle tbis = new Triangle();
-		tbis.gripPoints = (ArrayList<Point>) this.gripPoints.clone();
+		tbis.gripPoints = getCopieGripPoints();
 		tbis.filled = this.filled;
 		tbis.color = this.getColor();
 		return tbis;
