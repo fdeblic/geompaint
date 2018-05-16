@@ -1,5 +1,6 @@
 package com.iutnc.geompaint.view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -97,6 +98,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		Graphics2D g2d = (Graphics2D) g;
 		
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setStroke(new BasicStroke(2, BasicStroke.JOIN_ROUND, BasicStroke.CAP_ROUND, 0f));
 		
 		Figure[] figures = frame.getFigures();
 		if (figures == null)
