@@ -1,10 +1,12 @@
 package com.iutnc.geompaint.view;
 
+import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -50,6 +52,7 @@ public class MenuEdit extends JPanel {
 		add(label, gbc_label);
 		
 		btnFill = new JButton("Remplir");
+		btnFill.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnFill.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -64,6 +67,7 @@ public class MenuEdit extends JPanel {
 		add(btnFill, gbc_btnFill);
 		
 		btnColor = new JButton("Couleur");
+		btnColor.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnColor.addActionListener(new ActionListener() {
 			
 			@Override
@@ -80,6 +84,7 @@ public class MenuEdit extends JPanel {
 		add(btnColor, gbc_btnColor);
 		
 		btnClone = new JButton("Dupliquer");
+		btnClone.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnClone.addActionListener(new ActionListener() {
 			
 			@Override
@@ -96,6 +101,7 @@ public class MenuEdit extends JPanel {
 		add(btnClone, gbc_btnClone);
 		
 		btnDelete = new JButton("Supprimer");
+		btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDelete.addActionListener(new ActionListener() {
 			
 			@Override

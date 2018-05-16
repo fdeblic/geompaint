@@ -1,10 +1,16 @@
 package com.iutnc.geompaint.view;
 
 import javax.swing.JPanel;
+
+import java.awt.Cursor;
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
+
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,8 +30,8 @@ public class MenuAdd extends JPanel {
 	/**
 	 * Attributs
 	 */
-	private JButton btnCercle;
-	private JButton btnPolygone;
+	private JButton btnCircle;
+	private JButton btnPolygon;
 	private JButton btnRectangle;
 	private JButton btnTriangle;
 	private GeomPaintFrame frame;
@@ -49,8 +55,9 @@ public class MenuAdd extends JPanel {
 		gbc_label.gridy = 0;
 		add(label, gbc_label);
 		
-		btnCercle = new JButton("Cercle");
-		btnCercle.addActionListener(new ActionListener() {
+		btnCircle = new JButton("Cercle");
+		btnCircle.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnCircle.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -62,10 +69,11 @@ public class MenuAdd extends JPanel {
 		gbc_btnCercle.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCercle.gridx = 1;
 		gbc_btnCercle.gridy = 2;
-		add(btnCercle, gbc_btnCercle);
+		add(btnCircle, gbc_btnCercle);
 		
-		btnPolygone = new JButton("Polygone");
-		btnPolygone.addActionListener(new ActionListener() {
+		btnPolygon = new JButton("Polygone");
+		btnPolygon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnPolygon.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -77,9 +85,10 @@ public class MenuAdd extends JPanel {
 		gbc_btnPolygone.insets = new Insets(0, 0, 5, 5);
 		gbc_btnPolygone.gridx = 1;
 		gbc_btnPolygone.gridy = 3;
-		add(btnPolygone, gbc_btnPolygone);
+		add(btnPolygon, gbc_btnPolygone);
 		
 		btnRectangle = new JButton("Rectangle");
+		btnRectangle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnRectangle.addActionListener(new ActionListener() {
 			
 			@Override
@@ -95,6 +104,7 @@ public class MenuAdd extends JPanel {
 		add(btnRectangle, gbc_btnRectangle);
 		
 		btnTriangle = new JButton("Triangle");
+		btnTriangle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnTriangle.addActionListener(new ActionListener() {
 			
 			@Override
@@ -118,8 +128,8 @@ public class MenuAdd extends JPanel {
 	public void setEnabled(boolean b){
 		btnTriangle.setEnabled(b);
 		btnRectangle.setEnabled(b);
-		btnCercle.setEnabled(b);
-		btnPolygone.setEnabled(b);
+		btnCircle.setEnabled(b);
+		btnPolygon.setEnabled(b);
 	}
 
 }
