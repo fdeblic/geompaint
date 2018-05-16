@@ -87,7 +87,7 @@ public class FigureDrawer {
 	 * @param p the point to draw
 	 */
 	private void drawPoint(Point p, Graphics g) {
-		int r = 2; // pixels
+		int r = 4; // pixels
 		g.setColor(Color.white);
 		g.fillRect(p.x-r, p.y-r, 2*r, 2*r);
 		g.setColor(Color.black);
