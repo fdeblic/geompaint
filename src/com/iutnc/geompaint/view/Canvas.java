@@ -146,7 +146,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			hoveredFigure = null;
 			analyzer.setRef(e.getX(), e.getY());
 			for (int i = 0; i < figures.length; i++) {
-				if (analyzer.isNearFigure(figures[i])) {
+				if (analyzer.isHoverFigure(figures[i])) {
 					this.hoveredFigure = figures[i];
 				}
 			}
@@ -154,7 +154,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			if (this.hoveredFigure != null) {
 				Point[] pts = this.hoveredFigure.getGripPoints();
 				for (int i = 0 ; i < pts.length; i ++){
-					if (analyzer.isNearPoint(pts[i])){
+					if (analyzer.isHoverPoint(pts[i])){
 						cursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
 						break;
 					}
@@ -198,7 +198,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					Point[] pts = this.hoveredFigure.getGripPoints();
 					movingPoint = null;
 					for (int i = 0 ; i < pts.length; i ++){
-						if (analyzer.isNearPoint(pts[i])){
+						if (analyzer.isHoverPoint(pts[i])){
 							movingPoint = pts[i];
 						}					
 					}

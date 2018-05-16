@@ -19,7 +19,6 @@ public class WindowedTestFigureAnalyzer {
 	@SuppressWarnings("serial")
 	private class Figures extends JPanel implements MouseMotionListener {
 		Figure figHover = null;
-		Figure figNear = null;
 		FigureAnalyzer analyzer;
 		
 		Circle circle = new Circle(new Point(50, 50), new Point(50, 75));
@@ -27,8 +26,7 @@ public class WindowedTestFigureAnalyzer {
 		
 		public Figures(int hoverTolerance, int nearTolerance) {
 			analyzer = new FigureAnalyzer();
-			analyzer.setHoverTolerence(hoverTolerance);
-			analyzer.setNearTolerence(nearTolerance);
+			analyzer.setTolerance(hoverTolerance);
 			
 			Polygon line = new Polygon();
 			line.addGripPoint(new Point(90, 25));
@@ -56,9 +54,6 @@ public class WindowedTestFigureAnalyzer {
 			if (circle == figHover) {
 				g.setColor(Color.GREEN);
 				g.fillOval(circle.getCentre().x-circle.getRadius(), circle.getCentre().x-circle.getRadius(), circle.getRadius()*2, circle.getRadius()*2);
-			} else if (circle == figNear) {
-				g.setColor(Color.RED);
-				g.drawOval(circle.getCentre().x-circle.getRadius(), circle.getCentre().x-circle.getRadius(), circle.getRadius()*2, circle.getRadius()*2);
 			} else {
 				g.drawOval(circle.getCentre().x-circle.getRadius(), circle.getCentre().x-circle.getRadius(), circle.getRadius()*2, circle.getRadius()*2);
 			}
@@ -80,9 +75,6 @@ public class WindowedTestFigureAnalyzer {
 				if (polygon == figHover) {
 					g.setColor(Color.GREEN);
 					g.fillPolygon(x, y, pts.length);
-				} else if (polygon == figNear) {
-					g.setColor(Color.RED);
-					g.drawPolygon(x, y, pts.length);
 				} else {
 					g.drawPolygon(x, y, pts.length);
 				}
@@ -98,20 +90,15 @@ public class WindowedTestFigureAnalyzer {
 			analyzer.setRef(e.getX(), e.getY());
 			
 			figHover = null;
-			figNear = null;
 			
 			if (analyzer.isHoverFigure(circle)) {
 				figHover = circle;
-			} else if (analyzer.isNearFigure(circle)) {
-				figNear = circle;
 			}
 			
 			
 			for (int i = 0 ; i < polygons.size() ; i++) {
 				if (analyzer.isHoverFigure(polygons.get(i))) {
 					figHover = polygons.get(i);
-				} else if (analyzer.isNearFigure(polygons.get(i))) {
-					figNear = polygons.get(i);
 				}
 			}
 			
