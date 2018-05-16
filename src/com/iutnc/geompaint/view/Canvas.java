@@ -183,10 +183,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 						this.selectedFigure = figures[i];
 					}
 				}
-				
-				if (this.selectedFigure != null) {
+				// Where is the point ?
+				if (this.hoveredFigure != null) {
 					analyzer.setRef(lastX, lastY);
-					Point[] pts = this.selectedFigure.getGripPoints();
+					Point[] pts = this.hoveredFigure.getGripPoints();
 					movingPoint = null;
 					for (int i = 0 ; i < pts.length; i ++){
 						if (analyzer.isNearPoint(pts[i])){
