@@ -30,7 +30,7 @@ public class FigureDrawer {
 		else g.setColor(f.getColor());
 		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
 		else if (f instanceof Circle) this.drawCircle((Circle)f, g);
-		if (context.isSelected(f)){
+		if (context.isSelected(f) || context.isHovered(f)){
 			drawPoints(f.getGripPoints(), g);
 		}
 	}
