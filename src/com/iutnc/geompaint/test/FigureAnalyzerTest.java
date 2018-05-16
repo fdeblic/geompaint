@@ -22,7 +22,7 @@ public class FigureAnalyzerTest {
 	@Test
 	public void testFigureAnalyzer() {
 		FigureAnalyzer a = new FigureAnalyzer();
-		assertEquals("Default hover tolerance should be 0", 0, a.getHoverTolerence());
+		assertEquals("Default hover tolerance should be 0", 0, a.getTolerence());
 		assertEquals("Default coordinates should be (0, 0)", 0, a.getRefX());
 		assertEquals("Default coordinates should be (0, 0)", 0, a.getRefY());
 	}
@@ -33,7 +33,7 @@ public class FigureAnalyzerTest {
 	@Test
 	public void testFigureAnalyzerIntIntIntInt() {
 		FigureAnalyzer a = new FigureAnalyzer(2, 4, 3);
-		assertEquals("The hover tolerance should be 0", 3, a.getHoverTolerence());
+		assertEquals("The hover tolerance should be 0", 3, a.getTolerence());
 		assertEquals("The coordinates should be (2, 4)", 2, a.getRefX());
 		assertEquals("The coordinates should be (2, 4)", 4, a.getRefY());
 	}
@@ -57,7 +57,7 @@ public class FigureAnalyzerTest {
 	public void testSetHoverTolerence() {
 		FigureAnalyzer a = new FigureAnalyzer();
 		a.setTolerance(42);
-		assertEquals("The hover tolerance should be 42", 42, a.getHoverTolerence());
+		assertEquals("The hover tolerance should be 42", 42, a.getTolerence());
 	}
 
 	/**

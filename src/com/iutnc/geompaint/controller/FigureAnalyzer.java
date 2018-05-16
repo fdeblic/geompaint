@@ -9,9 +9,7 @@ import com.iutnc.geompaint.model.Polygon;
 
 
 /**
- * Permits to check if a coordinate is :
- * - near a Figure
- * - hover a Figure
+ * Permits to check if a coordinate is hover a Figure
  * @author François
  *
  */
@@ -33,8 +31,7 @@ public class FigureAnalyzer {
 	/**
 	 * Constructor
 	 * Default reference coordinates : position (0, 0)
-	 * Default near tolerance : 5 pixels
-	 * Default hover tolerance : 1 pixel
+	 * Default tolerance : 5 pixels
 	 */
 	public FigureAnalyzer() {
 		
@@ -103,9 +100,9 @@ public class FigureAnalyzer {
 	}
 	
 	/**
-	 * Checks if the reference coordinates are Near the Point given in parameter with the tolerance fixed before
+	 * Checks if the reference coordinates are hover the Point given in parameter with the tolerance fixed before
 	 * @param p the Point
-	 * @return true if the reference is near the Point (tolerance included), false otherwise
+	 * @return true if the reference is hover the Point (tolerance included), false otherwise
 	 */
 	public boolean isHoverPoint(Point p) {
 		return refX + tolerance >= p.x
@@ -118,7 +115,7 @@ public class FigureAnalyzer {
 	// GETTERS
 	//
 	
-	public int getHoverTolerence() {
+	public int getTolerence() {
 		return tolerance;
 	}
 	
@@ -135,9 +132,9 @@ public class FigureAnalyzer {
 	//
 	
 	/**
-	 * Checks if the reference coordinates are Near the Circle given in parameter with the tolerance fixed before
+	 * Checks if the reference coordinates are on the Circle given in parameter with the tolerance fixed before
 	 * @param c the Circle
-	 * @return true if the reference is near the Circle (tolerance included), false otherwise
+	 * @return true if the reference is on the Circle (tolerance included), false otherwise
 	 */
 	private boolean isOnCircle(Circle c, int tolerance) {
 		int x, y;
@@ -151,9 +148,9 @@ public class FigureAnalyzer {
 	}
 	
 	/**
-	 * Checks if the reference coordinates are Near the Polygon given in parameter with the tolerance fixed before
+	 * Checks if the reference coordinates are on the Polygon given in parameter with the tolerance fixed before
 	 * @param p the Polygon
-	 * @return true if the reference is near the Polygon (tolerance included), false otherwise
+	 * @return true if the reference is on the Polygon (tolerance included), false otherwise
 	 */
 	private boolean isOnPolygon(Polygon p, int tolerance) {
 		java.awt.Polygon polygon = new java.awt.Polygon();
