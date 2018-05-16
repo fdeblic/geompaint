@@ -1,6 +1,7 @@
 package com.iutnc.geompaint.view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -147,12 +148,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					this.hoveredFigure = figures[i];
 				}
 			}
+			Cursor cursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 			if (this.hoveredFigure != null) {
-				
+				Point[] pts = this.hoveredFigure.getGripPoints();
+				for (int i = 0 ; i < pts.length; i ++){
+					if (analyzer.isNearPoint(pts[i])){
+						cursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+						break;
+					}
+				}
 			}
-
+			setCursor(cursor);
 		}
-			
 		
 		frame.movePoint(movingPoint, e.getX(), e.getY());
 		repaint();
