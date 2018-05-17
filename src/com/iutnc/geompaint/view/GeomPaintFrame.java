@@ -26,6 +26,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	private GeomPaintController controller;
 	
 	public GeomPaintFrame(GeomPaintController c) {
+		super("GeomPaint");
 		controller = c;
 		JPanel global = new JPanel(new BorderLayout());
 		canvas = new Canvas(this);
@@ -102,28 +103,25 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	}
 
 	public void createCircle() {
+		canvas.cancelDrawing();
 		canvas.setSelectedFigure(new Circle());
 		canvas.setState(State.DRAWING);
 	}
 
 	public void createPolygon() {
-		canvas.setSelectedFigure(new Polygon());
-		canvas.setState(State.DRAWING);
 		menuAdd.setEnabled(false);
 		menuEdit.setEnabled(false);
+		canvas.setSelectedFigure(new Polygon());
+		canvas.setState(State.DRAWING);
 	}
 
 	public void createRectangle() {
 		canvas.setSelectedFigure(new Rectangle());
-		menuAdd.setEnabled(false);
-		menuEdit.setEnabled(false);
 		canvas.setState(State.DRAWING);
 	}
 
 	public void createTriangle() {
 		canvas.setSelectedFigure(new Triangle());
-		menuAdd.setEnabled(false);
-		menuEdit.setEnabled(false);
 		canvas.setState(State.DRAWING);
 	}
 
