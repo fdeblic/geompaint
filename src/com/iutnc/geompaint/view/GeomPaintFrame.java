@@ -22,6 +22,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	private MenuAdd menuAdd;
 	private Canvas canvas;
 	private GeomPaintController controller;
+	private GPColorChooser colorChooser;
 	
 	public GeomPaintFrame(GeomPaintController c) {
 		super("GeomPaint");
@@ -39,6 +40,8 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 		menuEdit.setEnabled(false);
 		global.add(menuEdit,BorderLayout.EAST);
 		
+		colorChooser = new GPColorChooser();
+		global.add(colorChooser, BorderLayout.SOUTH);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(800,500));
@@ -193,6 +196,10 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	 */
 	public void moveDown() {
 		controller.moveDown(canvas.getSelectedFigure());		
+	}
+	
+	public void updateMenus(Figure f) {
+		menuEdit.adaptToFigure(f);
 	}
 
 }

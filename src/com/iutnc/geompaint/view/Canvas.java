@@ -74,8 +74,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	
 	public void setSelectedFigure(Figure f) {
 		selectedFigure = f;
-		if (frame != null)
-			frame.enableEdition(f != null && f.isValid());
+		if (frame != null) frame.updateMenus(f);
 	}
 	
 	
@@ -293,6 +292,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	@Override
 	public void update(Observable o, Object arg) {
+		if (frame != null) frame.updateMenus(selectedFigure);
 		repaint();
 	}
 

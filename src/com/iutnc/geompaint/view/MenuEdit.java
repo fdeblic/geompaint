@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import com.iutnc.geompaint.model.Figure;
 
 /**
  * 
@@ -210,5 +211,14 @@ public class MenuEdit extends JPanel {
 		btnUp.setEnabled(b);
 		btnDown.setEnabled(b);
 		lblHint.setVisible(!b);
+	}
+
+	public void adaptToFigure(Figure f) {
+		if (f == null || !f.isValid()) {
+			setEnabled(false);
+		} else {
+			setEnabled(true);
+			btnFill.setText(f.isFilled() ? "Vider" : "Remplir");
+		}
 	}
 }
