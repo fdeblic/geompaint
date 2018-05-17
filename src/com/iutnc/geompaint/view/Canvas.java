@@ -163,8 +163,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				cursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			
 			
-			if (this.hoveredFigure != null) {
-				Point[] pts = this.hoveredFigure.getGripPoints();
+			if (this.selectedFigure != null) {
+				Point[] pts = this.selectedFigure.getGripPoints();
 				for (int i = 0 ; i < pts.length; i ++){
 					if (analyzer.isHoverPoint(pts[i])){
 						cursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
