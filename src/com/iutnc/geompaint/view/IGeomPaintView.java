@@ -6,19 +6,6 @@ import com.iutnc.geompaint.model.Figure;
 
 public interface IGeomPaintView {
 	/**
-	 * The figure is selected or not
-	 * @param f
-	 * @return true or false if figure is selected
-	 */
-	public boolean isSelectedFigure(Figure f);
-	
-	/**
-	 * Set the figure selected
-	 * @param f the figure to select
-	 */
-	public void setSelectedFigure(Figure f);
-	
-	/**
 	 * Enable the edition mode
 	 * @param b the edition mode is enable or not
 	 */

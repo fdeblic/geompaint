@@ -3,17 +3,10 @@ package com.iutnc.geompaint.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Point;
-
-import javax.swing.BoxLayout;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
 import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.Circle;
@@ -22,8 +15,6 @@ import com.iutnc.geompaint.model.Polygon;
 import com.iutnc.geompaint.model.Rectangle;
 import com.iutnc.geompaint.model.Triangle;
 
-import javax.swing.JLabel;
-
 public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	
 	private static final long serialVersionUID = -7316135187489253803L;
@@ -31,7 +22,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	private MenuAdd menuAdd;
 	private Canvas canvas;
 	private GeomPaintController controller;
-	private JLabel lblTitle;
 	
 	public GeomPaintFrame(GeomPaintController c) {
 		super("GeomPaint");
@@ -49,10 +39,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 		menuEdit.setEnabled(false);
 		global.add(menuEdit,BorderLayout.EAST);
 		
-		lblTitle = new JLabel("GeomPaint");
-		lblTitle.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		global.add(lblTitle, BorderLayout.NORTH);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(800,500));
@@ -60,18 +46,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 		setContentPane(global);
 		
 		pack();
-	}
-
-	@Override
-	public boolean isSelectedFigure(Figure f) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setSelectedFigure(Figure f) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -95,7 +69,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	 */
 	public void changeFigureColor() {
 		if (canvas.getSelectedFigure() == null) return;
-		Color newColor = JColorChooser.showDialog(null, "Couleur du fond", canvas.getSelectedFigure().getColor());
+		Color newColor = JColorChooser.showDialog(null, "Couleur du fond", canvas.getSelectedFigure().getBorderColor());
 		controller.changeFigureColor(canvas.getSelectedFigure(), newColor);
 	}
 
@@ -135,7 +109,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	 * Create a circle
 	 */
 	public void createCircle() {
-		canvas.cancelDrawing();
 		canvas.setSelectedFigure(new Circle());
 		canvas.setState(State.DRAWING);
 	}
@@ -144,8 +117,6 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	 * Create a polygon
 	 */
 	public void createPolygon() {
-		menuAdd.setEnabled(false);
-		menuEdit.setEnabled(false);
 		canvas.setSelectedFigure(new Polygon());
 		canvas.setState(State.DRAWING);
 	}
