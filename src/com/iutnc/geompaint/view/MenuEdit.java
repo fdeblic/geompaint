@@ -6,7 +6,13 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +38,10 @@ public class MenuEdit extends JPanel {
 	private GeomPaintFrame frame;
 	private JButton btnUp;
 	private JButton btnDown;
+	private BufferedImage fillIcon;
+	private BufferedImage colorIcon;
+	private BufferedImage copyIcon;
+	private BufferedImage deleteIcon;
 	
 	/**
 	 * Menu Edit constructor 
@@ -39,8 +49,17 @@ public class MenuEdit extends JPanel {
 	 */
 	public MenuEdit(GeomPaintFrame view) {
 		frame = view;
+		try {
+			BufferedImage icons = ImageIO.read(new File("./img/icons.png"));
+			fillIcon = icons.getSubimage(64, 0, 64, 64);
+			colorIcon = icons.getSubimage(64, 64, 64, 64);
+			copyIcon = icons.getSubimage(64, 128, 64, 64);
+			deleteIcon = icons.getSubimage(64, 192, 64, 64);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 95, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -53,7 +72,7 @@ public class MenuEdit extends JPanel {
 		gbc_label.gridy = 0;
 		add(label, gbc_label);
 		
-		btnFill = new JButton("Remplir");
+		btnFill = new JButton("Remplir", new ImageIcon(fillIcon));
 		btnFill.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnFill.addActionListener(new ActionListener() {
 			@Override
@@ -68,7 +87,7 @@ public class MenuEdit extends JPanel {
 		gbc_btnFill.gridy = 2;
 		add(btnFill, gbc_btnFill);
 		
-		btnColor = new JButton("Couleur");
+		btnColor = new JButton("Couleur", new ImageIcon(colorIcon));
 		btnColor.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnColor.addActionListener(new ActionListener() {
 			
@@ -85,7 +104,7 @@ public class MenuEdit extends JPanel {
 		gbc_btnColor.gridy = 3;
 		add(btnColor, gbc_btnColor);
 		
-		btnClone = new JButton("Dupliquer");
+		btnClone = new JButton("Dupliquer", new ImageIcon(copyIcon));
 		btnClone.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnClone.addActionListener(new ActionListener() {
 			
@@ -102,7 +121,7 @@ public class MenuEdit extends JPanel {
 		gbc_btnClone.gridy = 4;
 		add(btnClone, gbc_btnClone);
 		
-		btnDelete = new JButton("Supprimer");
+		btnDelete = new JButton("Supprimer", new ImageIcon(deleteIcon));
 		btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDelete.addActionListener(new ActionListener() {
 			
@@ -163,5 +182,7 @@ public class MenuEdit extends JPanel {
 		btnDelete.setEnabled(b);
 		btnColor.setEnabled(b);
 		btnFill.setEnabled(b);
+		btnUp.setEnabled(b);
+		btnDown.setEnabled(b);
 	}
 }

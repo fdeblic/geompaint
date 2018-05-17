@@ -1,5 +1,8 @@
 package com.iutnc.geompaint.view;
 
+import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import java.awt.Cursor;
@@ -14,6 +17,9 @@ import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 
@@ -35,14 +41,30 @@ public class MenuAdd extends JPanel {
 	private JButton btnRectangle;
 	private JButton btnTriangle;
 	private GeomPaintFrame frame;
+	private BufferedImage circleIcon;
+	private BufferedImage rectangleIcon;
+	private BufferedImage polygonIcon;
+	private BufferedImage triangleIcon;
 	
 	/**
 	 * Menu Add constructor
+	 * @throws IOException 
 	 */
 	public MenuAdd(GeomPaintFrame view) {
 		frame = view;
+		try {
+			BufferedImage icons = ImageIO.read(new File("./img/icons.png"));
+			circleIcon = icons.getSubimage(0, 0, 64, 64);
+			rectangleIcon = icons.getSubimage(0, 64, 64, 64);
+			polygonIcon = icons.getSubimage(0, 128, 64, 64);
+			triangleIcon = icons.getSubimage(0, 192, 64, 64);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 97, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -55,7 +77,7 @@ public class MenuAdd extends JPanel {
 		gbc_label.gridy = 0;
 		add(label, gbc_label);
 		
-		btnCircle = new JButton("Cercle");
+		btnCircle = new JButton("Cercle", new ImageIcon(circleIcon));
 		btnCircle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnCircle.addActionListener(new ActionListener() {
 			
@@ -71,7 +93,7 @@ public class MenuAdd extends JPanel {
 		gbc_btnCercle.gridy = 2;
 		add(btnCircle, gbc_btnCercle);
 		
-		btnPolygon = new JButton("Polygone");
+		btnPolygon = new JButton("Polygone", new ImageIcon(polygonIcon));
 		btnPolygon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnPolygon.addActionListener(new ActionListener() {
 			
@@ -87,7 +109,7 @@ public class MenuAdd extends JPanel {
 		gbc_btnPolygone.gridy = 3;
 		add(btnPolygon, gbc_btnPolygone);
 		
-		btnRectangle = new JButton("Rectangle");
+		btnRectangle = new JButton("Rectangle", new ImageIcon(rectangleIcon));
 		btnRectangle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnRectangle.addActionListener(new ActionListener() {
 			
@@ -103,7 +125,7 @@ public class MenuAdd extends JPanel {
 		gbc_btnRectangle.gridy = 4;
 		add(btnRectangle, gbc_btnRectangle);
 		
-		btnTriangle = new JButton("Triangle");
+		btnTriangle = new JButton("Triangle", new ImageIcon(triangleIcon));
 		btnTriangle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnTriangle.addActionListener(new ActionListener() {
 			
