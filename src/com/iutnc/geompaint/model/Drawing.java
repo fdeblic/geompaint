@@ -36,6 +36,8 @@ public class Drawing extends Observable {
 	public void moveUp(Figure f) {
 		try {
 			Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)+1);
+			setChanged();
+			notifyObservers();
 		} catch (Exception e) {
 		}
 	}
@@ -43,6 +45,8 @@ public class Drawing extends Observable {
 	public void moveDown(Figure f) {
 		try {
 			Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)-1);
+			setChanged();
+			notifyObservers();
 		} catch (Exception e) {
 		}
 	}
