@@ -2,20 +2,13 @@ package com.iutnc.geompaint.view;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-
 import javax.swing.JLabel;
-
 import java.awt.GridBagConstraints;
-
 import javax.swing.JButton;
-
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,8 +54,6 @@ public class MenuAdd extends JPanel {
 			polygonIcon = icons.getSubimage(0, 128, 64, 64);
 			triangleIcon = icons.getSubimage(0, 192, 64, 64);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(frame, "Impossible de charger l'image img/icons.png", "Icones manquantes", JOptionPane.ERROR_MESSAGE);
-			System.exit(-1);
 		}
 
 

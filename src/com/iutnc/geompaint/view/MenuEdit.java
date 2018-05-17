@@ -11,14 +11,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  * 
@@ -64,8 +61,6 @@ public class MenuEdit extends JPanel {
 			upIcon = icons.getSubimage(128, 0, 64, 64);
 			downIcon = icons.getSubimage(128, 64, 64, 64);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(frame, "Impossible de charger l'image img/icons.png", "Icones manquantes", JOptionPane.ERROR_MESSAGE);
-			System.exit(-1);
 		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{95, 0};
@@ -193,9 +188,9 @@ public class MenuEdit extends JPanel {
 		gbc_btnDown.gridy = 6;
 		add(btnDown, gbc_btnDown);
 		
-		lblHint = new JLabel("<html><body style='text-align:center'>Ajoutez / s\u00E9lectionnez<br>une figure...");
+		lblHint = new JLabel("S\u00E9lectionnez une figure...");
 		lblHint.setFont(new Font("Calibri", Font.BOLD, 12));
-		lblHint.setForeground(Color.DARK_GRAY);
+		lblHint.setForeground(Color.GRAY);
 		GridBagConstraints gbc_lblHint = new GridBagConstraints();
 		gbc_lblHint.gridx = 0;
 		gbc_lblHint.gridy = 7;
