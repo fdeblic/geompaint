@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -92,6 +91,7 @@ public class MenuEdit extends JPanel {
 				frame.fillFigure();
 			}
 		});
+		btnFill.setFocusable(false);
 		GridBagConstraints gbc_btnFill = new GridBagConstraints();
 		gbc_btnFill.fill = GridBagConstraints.BOTH;
 		gbc_btnFill.insets = new Insets(0, 0, 5, 0);
@@ -110,6 +110,7 @@ public class MenuEdit extends JPanel {
 				
 			}
 		});
+		btnColor.setFocusable(false);
 		GridBagConstraints gbc_btnColor = new GridBagConstraints();
 		gbc_btnColor.fill = GridBagConstraints.BOTH;
 		gbc_btnColor.insets = new Insets(0, 0, 5, 0);
@@ -128,6 +129,7 @@ public class MenuEdit extends JPanel {
 				
 			}
 		});
+		btnClone.setFocusable(false);
 		GridBagConstraints gbc_btnClone = new GridBagConstraints();
 		gbc_btnClone.fill = GridBagConstraints.BOTH;
 		gbc_btnClone.insets = new Insets(0, 0, 5, 0);
@@ -164,6 +166,7 @@ public class MenuEdit extends JPanel {
 				
 			}
 		});
+		btnUp.setFocusable(false);
 		GridBagConstraints gbc_btnUp = new GridBagConstraints();
 		gbc_btnUp.fill = GridBagConstraints.BOTH;
 		gbc_btnUp.insets = new Insets(0, 0, 5, 0);
@@ -182,6 +185,7 @@ public class MenuEdit extends JPanel {
 				
 			}
 		});
+		btnDown.setFocusable(false);
 		GridBagConstraints gbc_btnDown = new GridBagConstraints();
 		gbc_btnDown.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDown.fill = GridBagConstraints.BOTH;

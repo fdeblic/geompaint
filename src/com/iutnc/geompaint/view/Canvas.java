@@ -336,11 +336,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			case KeyEvent.VK_CONTROL:
 				frame.cloneFigure();
 				break;
-			case KeyEvent.VK_PAGE_UP:
-				
+			case KeyEvent.VK_UP:
+				frame.moveUp();
 				break;
-			case KeyEvent.VK_PAGE_DOWN:
-				
+			case KeyEvent.VK_DOWN:
+				frame.moveDown();
 				break;
 		}
 	}

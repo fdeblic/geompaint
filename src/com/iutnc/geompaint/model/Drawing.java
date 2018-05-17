@@ -1,6 +1,7 @@
 package com.iutnc.geompaint.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 
 public class Drawing extends Observable {
@@ -33,17 +34,13 @@ public class Drawing extends Observable {
 	}
 	
 	public void moveUp(Figure f) {
-		
+		Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)+1);
 	}
 	
 	public void moveDown(Figure f) {
-		
+		Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)-1);
 	}
-	
-	public void exchange(Figure f1, Figure f2) {
 		
-	}
-	
 	public int getPos(Figure f) {
 		return figures.indexOf(f);
 		
