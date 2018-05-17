@@ -153,7 +153,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					this.hoveredFigure = figures[i];
 				}
 			}
-			Cursor cursor = getCursor();// Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+
+			Cursor cursor = getCursor();
 			
 			// Cursor
 			if (hoveredFigure != null)
@@ -162,8 +163,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				cursor = new Cursor(Cursor.DEFAULT_CURSOR);
 			
 			
-			if (this.selectedFigure != null) {
-				Point[] pts = this.selectedFigure.getGripPoints();
+			if (this.hoveredFigure != null) {
+				Point[] pts = this.hoveredFigure.getGripPoints();
 				for (int i = 0 ; i < pts.length; i ++){
 					if (analyzer.isHoverPoint(pts[i])){
 						cursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
@@ -176,7 +177,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			if (getCursor().getType() != cursor.getType())
 				setCursor(cursor);
 		}
-		
 		frame.movePoint(movingPoint, e.getX(), e.getY());
 		repaint();
 	}
