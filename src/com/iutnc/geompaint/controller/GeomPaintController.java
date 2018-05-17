@@ -87,6 +87,16 @@ public class GeomPaintController {
 		}
 	}
 	
+	
+	public void moveUp(Figure f) {
+		if (f != null) drawing.moveUp(f);
+	}
+	
+	public void moveDown(Figure f) {
+		if (f != null) drawing.moveDown(f);
+		
+	}
+	
 	// GETTERS
 	
 	public Figure[] getFigures() {
