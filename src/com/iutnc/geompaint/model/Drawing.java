@@ -34,11 +34,17 @@ public class Drawing extends Observable {
 	}
 	
 	public void moveUp(Figure f) {
-		Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)+1);
+		try {
+			Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)+1);
+		} catch (Exception e) {
+		}
 	}
 	
 	public void moveDown(Figure f) {
-		Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)-1);
+		try {
+			Collections.swap(figures, figures.indexOf(f), figures.indexOf(f)-1);
+		} catch (Exception e) {
+		}
 	}
 		
 	public int getPos(Figure f) {
