@@ -30,6 +30,8 @@ public class MenuEdit extends JPanel {
 	private JButton btnClone;
 	private JButton btnDelete;
 	private GeomPaintFrame frame;
+	private JButton btnUp;
+	private JButton btnDown;
 	
 	/**
 	 * Menu Edit constructor 
@@ -39,9 +41,9 @@ public class MenuEdit extends JPanel {
 		frame = view;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel label = new JLabel("- Editer -");
@@ -116,6 +118,40 @@ public class MenuEdit extends JPanel {
 		gbc_btnDelete.gridx = 1;
 		gbc_btnDelete.gridy = 5;
 		add(btnDelete, gbc_btnDelete);
+		
+		btnUp = new JButton("Monter");
+		btnUp.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnUp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.moveUp();
+				
+			}
+		});
+		GridBagConstraints gbc_btnUp = new GridBagConstraints();
+		gbc_btnUp.fill = GridBagConstraints.BOTH;
+		gbc_btnUp.insets = new Insets(0, 0, 5, 5);
+		gbc_btnUp.gridx = 1;
+		gbc_btnUp.gridy = 7;
+		add(btnUp, gbc_btnUp);
+		
+		btnDown = new JButton("Descendre");
+		btnDown.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnDown.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.moveDown();
+				
+			}
+		});
+		GridBagConstraints gbc_btnDown = new GridBagConstraints();
+		gbc_btnDown.fill = GridBagConstraints.BOTH;
+		gbc_btnDown.insets = new Insets(0, 0, 0, 5);
+		gbc_btnDown.gridx = 1;
+		gbc_btnDown.gridy = 8;
+		add(btnDown, gbc_btnDown);
 	}
 	
 	/**
