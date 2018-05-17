@@ -75,7 +75,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	}
 	
 	public void setSelectedFigure(Figure f) {
-		this.selectedFigure = f;
+		selectedFigure = f;
+		if (frame != null)
+			frame.enableEdition(f != null && f.isValid());
 	}
 	
 	
@@ -112,6 +114,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		drawer.drawFigure(getSelectedFigure(), g);
 		
 		if (state == State.DRAWING && !hintMessage.equals("")) {
+			setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 			g.setFont(new Font("verdana", Font.BOLD, 18));
 			FontMetrics metrics = g.getFontMetrics(g.getFont());
 		    int x = 0 + (getWidth() - metrics.stringWidth(hintMessage)) / 2;
@@ -163,7 +166,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				Point[] pts = this.selectedFigure.getGripPoints();
 				for (int i = 0 ; i < pts.length; i ++){
 					if (analyzer.isHoverPoint(pts[i])){
-						cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+						cursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
 						break;
 					}
 				}
@@ -210,11 +213,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				}
 				
 				if (movingPoint == null) {
-					selectedFigure = null;
+					setSelectedFigure(null);
 					analyzer.setRef(e.getX(), e.getY());
 					for (int i = 0; i < figures.length; i++) {
 						if (analyzer.isHoverFigure(figures[i])) {
-							this.selectedFigure = figures[i];
+							setSelectedFigure(figures[i]);
 						}
 					}
 				}
@@ -256,17 +259,18 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		if (selectedFigure.isValid()) {
 			movingPoint = null;
 			frame.saveFigure(this.selectedFigure);
+			frame.enableEdition(true);
 		} else {
 			movingPoint = null;
-			selectedFigure = null;
+			setSelectedFigure(null);
 			setState(State.NORMAL);
 			repaint();
 		}
 	}
 	
-	private void cancelDrawing() {
+	public void cancelDrawing() {
 		movingPoint = null;
-		selectedFigure = null;
+		setSelectedFigure(null);
 		setState(State.NORMAL);
 		repaint();
 	}
@@ -281,13 +285,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		switch (state) {
 			case DRAWING:
 				frame.enableAdding(false);
-				frame.enableEdition(false);
 				setHintMessage("Cliquez pour ajouter des points");
 				repaint();
 				break;
 			default:
 				frame.enableAdding(true);
-				frame.enableEdition(true);
 				break;
 		}
 	}
