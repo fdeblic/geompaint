@@ -1,12 +1,8 @@
 package com.iutnc.geompaint.view;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Stroke;
-
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
 import com.iutnc.geompaint.model.Polygon;
@@ -32,21 +28,14 @@ public class FigureDrawer {
 		boolean hovered = context.isHovered(f);
 		
 		// Color of the figure
-		g.setColor(f.getColor());
+		g.setColor(f.getBorderColor());
 
-		// Style for the lines
-		Graphics2D g2d = (Graphics2D) g;
-		Stroke oldStroke = g2d.getStroke();
-		if (selected) g2d.setStroke(new BasicStroke(2, BasicStroke.JOIN_ROUND, BasicStroke.CAP_ROUND, 10f, new float[]{4f}, 0f));
-		
 		// Draws the figure
 		if (f instanceof Polygon) {
 			this.drawPolygon((Polygon)f,g);
 		} else if (f instanceof Circle) {
 			this.drawCircle((Circle)f, g);
 		}
-		
-		g2d.setStroke(oldStroke);
 		
 		// If hovered, draws a border
 		if (!selected && hovered) {
@@ -59,10 +48,6 @@ public class FigureDrawer {
 				this.drawCircle((Circle)f, g);
 			}
 			f.setFilled(filled);
-		}
-		
-		if (selected){
-			drawPoints(f.getGripPoints(), g);
 		}
 	}
 	
@@ -79,12 +64,16 @@ public class FigureDrawer {
 			pointX[i] = points[i].x;
 			pointY[i] = points[i].y;
 		}
+
 		if (p.isFilled()){
+			g.setColor(p.getFillColor());
 			g.fillPolygon(pointX, pointY, points.length);
 		}
-		else{
+		g.setColor(p.getBorderColor());
+		if (points.length > 2)
 			g.drawPolygon(pointX, pointY, points.length);
-		}
+		else
+			g.drawPolyline(pointX, pointY, points.length);
 	}
 	
 	/**
@@ -96,10 +85,12 @@ public class FigureDrawer {
 		if (c == null || !c.isValid()) return;
 		Point centre = c.getCentre();
 		int radius = c.getRadius();
-		if (c.isFilled())
+		if (c.isFilled()) {
+			g.setColor(c.getFillColor());
 			g.fillOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
-		else
-			g.drawOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
+		}
+		g.setColor(c.getBorderColor());
+		g.drawOval(centre.x-radius, centre.y-radius, radius*2, radius*2);
 	}
 	
 	/**
@@ -107,7 +98,7 @@ public class FigureDrawer {
 	 * @param pts
 	 * @param g
 	 */
-	private void drawPoints(Point[] pts, Graphics g){
+	public void drawPoints(Point[] pts, Graphics g){
 		for (int i = 0; i < pts.length; i++){
 			drawPoint(pts[i], g);
 		}

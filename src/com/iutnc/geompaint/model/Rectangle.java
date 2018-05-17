@@ -20,7 +20,7 @@ public class Rectangle extends Polygon{
 		Rectangle rbis = new Rectangle();
 		rbis.gripPoints = getCopieGripPoints();
 		rbis.filled = this.filled;
-		rbis.color = this.getColor();
+		rbis.colorBorder = this.getBorderColor();
 		return rbis;
 	}
 
@@ -46,6 +46,11 @@ public class Rectangle extends Polygon{
 		pts[2] = pt2;
 		pts[3] = new Point(pt1.x, pt2.y);
 		return pts;
+	}
+	
+	@Override
+	public String getFigureName() {
+		return "Rectangle";
 	}
 
 }

@@ -41,7 +41,7 @@ public class GeomPaintController {
 	
 	public void changeFigureColor(Figure f, Color newColor) {
 		if (f != null)
-			f.setColor(newColor);
+			f.setBorderColor(newColor);
 	}
 	
 	public Figure cloneFigure(Figure f) {

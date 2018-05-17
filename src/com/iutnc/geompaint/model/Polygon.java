@@ -20,7 +20,7 @@ public class Polygon extends Figure{
 		Polygon pbis = new Polygon();
 		pbis.gripPoints = getCopieGripPoints();
 		pbis.filled = this.filled;
-		pbis.color = this.getColor();
+		pbis.colorBorder = this.getBorderColor();
 		pbis.maxGripPoints = this.maxGripPoints;
 		return pbis;
 	}
@@ -47,4 +47,9 @@ public class Polygon extends Figure{
 		return this.gripPoints.size()>1;		
 	}
 
+	
+	@Override
+	public String getFigureName() {
+		return "Polygone";
+	}
 }

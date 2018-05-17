@@ -16,10 +16,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
 import com.iutnc.geompaint.controller.FigureAnalyzer;
 import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.*;
@@ -108,16 +106,27 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		/*
 		 * Draw every figures in the array
 		 */
-		for (int i = 0; i < figures.length; i++)
-			if (!isSelected(figures[i]))
-				drawer.drawFigure(figures[i], g);
-		drawer.drawFigure(getSelectedFigure(), g);
+		boolean selectedFigureDrawn = false;
+		for (int i = 0; i < figures.length; i++) {
+			drawer.drawFigure(figures[i], g);
+			if (isSelected(figures[i]))
+				selectedFigureDrawn = true;
+		}
+		
+		if (getSelectedFigure() != null && !selectedFigureDrawn)
+			drawer.drawFigure(getSelectedFigure(), g);
+		
+		if (selectedFigure != null && state != State.DRAWING){
+			drawer.drawPoints(selectedFigure.getGripPoints(), g);
+		}
 		
 		if (state == State.DRAWING && !hintMessage.equals("")) {
 			setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 			g.setFont(new Font("verdana", Font.BOLD, 18));
 			FontMetrics metrics = g.getFontMetrics(g.getFont());
 		    int x = 0 + (getWidth() - metrics.stringWidth(hintMessage)) / 2;
+			g.setColor(Color.WHITE);
+			g.drawString(hintMessage, x+1, getHeight()-49);
 			g.setColor(Color.LIGHT_GRAY);
 			g.drawString(hintMessage, x, getHeight()-50);
 		}
@@ -243,7 +252,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				movingPoint = null;
 			}
 		} else if (SwingUtilities.isRightMouseButton(e)) {
-			saveFigure();
+			if (selectedFigure != null) {
+				selectedFigure.removeGripPoint(movingPoint);
+				saveFigure();
+			}
 		}
 		repaint();
 	}
@@ -253,13 +265,16 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			return;
 		
 		// If the figure is a polygon, we remove the moving point of it
-		if(selectedFigure.getClass().equals(Polygon.class))
-			selectedFigure.removeGripPoint(movingPoint);
+		/*if(selectedFigure.getClass().equals(Polygon.class))
+			selectedFigure.removeGripPoint(movingPoint);*/
 		
 		if (selectedFigure.isValid()) {
 			movingPoint = null;
 			frame.saveFigure(this.selectedFigure);
 			frame.enableEdition(true);
+			//setSelectedFigure(selectedFigure.getCopie().clear());
+			//setState(State.DRAWING);
+			repaint();
 		} else {
 			movingPoint = null;
 			setSelectedFigure(null);
@@ -272,6 +287,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		movingPoint = null;
 		setSelectedFigure(null);
 		setState(State.NORMAL);
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		repaint();
 	}
 
@@ -282,15 +298,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	public void setState(State state) {
 		this.state = state;
-		switch (state) {
-			case DRAWING:
-				frame.enableAdding(false);
+		if (state == State.DRAWING) {
+			if (selectedFigure != null && !selectedFigure.getFigureName().equals(""))
+				setHintMessage("Cliquez pour ajouter un " + selectedFigure.getFigureName());
+			else
 				setHintMessage("Cliquez pour ajouter des points");
-				repaint();
-				break;
-			default:
-				frame.enableAdding(true);
-				break;
+			repaint();
 		}
 	}
 	
@@ -333,15 +346,20 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			case KeyEvent.VK_F:
 				frame.fillFigure();
 				break;
-			case KeyEvent.VK_CONTROL:
-				frame.cloneFigure();
+			case KeyEvent.VK_V:
+				if (e.isControlDown())
+					frame.cloneFigure();
 				break;
-			case KeyEvent.VK_UP:
+			case KeyEvent.VK_PAGE_UP:
 				frame.moveUp();
 				break;
-			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_PAGE_DOWN:
 				frame.moveDown();
 				break;
 		}
+	}
+
+	public State getState() {
+		return state;
 	}
 }

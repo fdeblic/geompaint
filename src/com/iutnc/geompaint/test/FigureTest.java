@@ -27,7 +27,7 @@ class FigureTest extends Figure {
 		Figure f = new FigureTest();
 		
 		assertEquals(0,f.getGripPoints().length,"The figure should not have any grip points.");
-		assertEquals(Color.black, f.getColor(), "The color should be black.");
+		assertEquals(Color.black, f.getBorderColor(), "The color should be black.");
 		assertEquals(false, f.isFilled(), " The figure should not be filled.");
 		
 	}
@@ -137,6 +137,12 @@ class FigureTest extends Figure {
 	public boolean isValid() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public String getFigureName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

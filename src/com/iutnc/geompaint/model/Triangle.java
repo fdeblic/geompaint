@@ -17,7 +17,7 @@ public class Triangle extends Polygon {
 		Triangle tbis = new Triangle();
 		tbis.gripPoints = getCopieGripPoints();
 		tbis.filled = this.filled;
-		tbis.color = this.getColor();
+		tbis.colorBorder = this.getBorderColor();
 		return tbis;
 		
 	}
@@ -30,5 +30,10 @@ public class Triangle extends Polygon {
 	public boolean isValid() {
 		return gripPoints.size() >= 2;
 		
+	}
+	
+	@Override
+	public String getFigureName() {
+		return "Triangle";
 	}
 }

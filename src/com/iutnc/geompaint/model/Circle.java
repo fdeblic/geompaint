@@ -55,7 +55,7 @@ public class Circle extends Figure{
 		Circle cbis = new Circle();
 		cbis.gripPoints = getCopieGripPoints();
 		cbis.filled = this.filled;
-		cbis.color = this.getColor();
+		cbis.colorBorder = this.getBorderColor();
 		cbis.radius = this.radius;
 		return cbis;
 	}
@@ -68,6 +68,11 @@ public class Circle extends Figure{
 	@Override
 	public boolean isValid() {
 		return this.isFull();
+	}
+	
+	@Override
+	public String getFigureName() {
+		return "Cercle";
 	}
 
 }

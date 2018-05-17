@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 /**
 *
@@ -17,9 +18,11 @@ public abstract class Figure extends Observable {
 
     protected ArrayList<Point> gripPoints ;
     protected boolean filled;
-    protected Color color;
+    protected Color colorBorder;
+    protected Color colorFill;
     protected int maxGripPoints;
     protected final int INFINITE = 0;
+    private static Random random = new Random();
 
     //CONSTRUCTOR
     
@@ -33,7 +36,10 @@ public abstract class Figure extends Observable {
     	
     	this.gripPoints = new ArrayList<>();
     	this.filled = false;
-    	this.color = Color.black;
+    	float r = random.nextFloat(), g = random.nextFloat(), b = random.nextFloat();
+    	
+    	this.colorBorder = new Color(r, g, b);
+    	this.colorFill = Color.LIGHT_GRAY;
     	this.maxGripPoints = INFINITE;
     	
     	
@@ -122,12 +128,21 @@ public abstract class Figure extends Observable {
     }
 
     /**
-     * Set or change the color of a figure
+     * Sets the color of the figure's borders
      * @param c the chosen color
      */
-    public void setColor(Color c) {
-    	
-    	this.color=c;
+    public void setBorderColor(Color c) {
+    	this.colorBorder = c;
+    	setChanged();
+    	notifyObservers();
+    }
+
+    /**
+     * Sets the filling color of the figure
+     * @param c the chosen color
+     */
+    public void setFillColor(Color c) {
+    	this.colorFill = c;
     	setChanged();
     	notifyObservers();
     }
@@ -151,12 +166,21 @@ public abstract class Figure extends Observable {
     }
     
     /**
-     * Return the color of the figure
+     * Return the color of the border's figure
      * @return color
      */
-    public Color getColor() {
-    	return this.color ;
+    public Color getBorderColor() {
+    	return this.colorBorder;
     }
+    
+    /**
+     * Return the fill color of the figure
+     * @return color
+     */
+    public Color getFillColor() {
+    	return this.colorFill;
+    }
+    
     
     protected ArrayList<Point> getCopieGripPoints(){
 		ArrayList<Point> res = new ArrayList<Point>();
@@ -168,5 +192,16 @@ public abstract class Figure extends Observable {
     	}
     	return res;
     }
-    
+
+
+	public Figure clear() {
+		gripPoints.clear();
+		return this;
+	}
+
+	/**
+	 * Returns the figure name ("Circle", "Rectangle", ...)
+	 * @return the Figure's name
+	 */
+	public abstract String getFigureName();
 }
