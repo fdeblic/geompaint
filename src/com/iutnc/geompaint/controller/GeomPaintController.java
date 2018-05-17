@@ -2,10 +2,8 @@ package com.iutnc.geompaint.controller;
 
 import java.awt.Color;
 import java.awt.Point;
-
 import com.iutnc.geompaint.model.Drawing;
 import com.iutnc.geompaint.model.Figure;
-import com.iutnc.geompaint.view.GeomPaintFrame;
 import com.iutnc.geompaint.view.IGeomPaintView;
 
 /**
