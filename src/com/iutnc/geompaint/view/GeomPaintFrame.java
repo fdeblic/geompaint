@@ -3,11 +3,16 @@ package com.iutnc.geompaint.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Point;
 
+import javax.swing.BoxLayout;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.controller.State;
@@ -17,6 +22,8 @@ import com.iutnc.geompaint.model.Polygon;
 import com.iutnc.geompaint.model.Rectangle;
 import com.iutnc.geompaint.model.Triangle;
 
+import javax.swing.JLabel;
+
 public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	
 	private static final long serialVersionUID = -7316135187489253803L;
@@ -24,24 +31,34 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	private MenuAdd menuAdd;
 	private Canvas canvas;
 	private GeomPaintController controller;
+	private JLabel lblTitle;
 	
 	public GeomPaintFrame(GeomPaintController c) {
 		super("GeomPaint");
 		controller = c;
-		JPanel global = new JPanel(new BorderLayout());
-		canvas = new Canvas(this);
-		menuAdd = new MenuAdd(this);
-		menuEdit = new MenuEdit(this);
 		
-		JPanel menus = new JPanel(new BorderLayout());
-		menus.add(menuAdd,BorderLayout.NORTH);
-		menus.add(menuEdit,BorderLayout.CENTER);
+		JPanel global = new JPanel(new BorderLayout());
+
+		canvas = new Canvas(this);
 		global.add(canvas,BorderLayout.CENTER);
-		global.add(menus,BorderLayout.WEST);
+
+		menuAdd = new MenuAdd(this);
+		global.add(menuAdd,BorderLayout.WEST);
+		
+		menuEdit = new MenuEdit(this);
+		menuEdit.setEnabled(false);
+		global.add(menuEdit,BorderLayout.EAST);
+		
+		lblTitle = new JLabel("GeomPaint");
+		lblTitle.setFont(new Font("Calibri", Font.BOLD, 18));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		global.add(lblTitle, BorderLayout.NORTH);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(500,500));
+		setPreferredSize(new Dimension(800,500));
+		setMinimumSize(new Dimension(400,400));
 		setContentPane(global);
+		
 		pack();
 	}
 

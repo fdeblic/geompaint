@@ -3,9 +3,12 @@ package com.iutnc.geompaint.view;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -58,26 +61,29 @@ public class MenuAdd extends JPanel {
 			rectangleIcon = icons.getSubimage(0, 64, 64, 64);
 			polygonIcon = icons.getSubimage(0, 128, 64, 64);
 			triangleIcon = icons.getSubimage(0, 192, 64, 64);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(frame, "Impossible de charger l'image img/icons.png", "Icones manquantes", JOptionPane.ERROR_MESSAGE);
+			System.exit(-1);
 		}
 
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 97, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{97, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel label = new JLabel("- Ajout -");
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 1;
-		gbc_label.gridy = 0;
-		add(label, gbc_label);
+		JLabel lblAjout = new JLabel("- Ajout -");
+		lblAjout.setFont(new Font("Calibri", Font.BOLD, 20));
+		GridBagConstraints gbc_lblAjout = new GridBagConstraints();
+		gbc_lblAjout.insets = new Insets(5, 0, 5, 0);
+		gbc_lblAjout.gridx = 0;
+		gbc_lblAjout.gridy = 0;
+		add(lblAjout, gbc_lblAjout);
 		
-		btnCircle = new JButton("Cercle", new ImageIcon(circleIcon));
+		btnCircle = new GPButton("Cercle");
+		if (circleIcon != null) btnCircle.setIcon(new ImageIcon(circleIcon));
 		btnCircle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnCircle.addActionListener(new ActionListener() {
 			
@@ -88,12 +94,13 @@ public class MenuAdd extends JPanel {
 		});
 		GridBagConstraints gbc_btnCercle = new GridBagConstraints();
 		gbc_btnCercle.fill = GridBagConstraints.BOTH;
-		gbc_btnCercle.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCercle.gridx = 1;
-		gbc_btnCercle.gridy = 2;
+		gbc_btnCercle.insets = new Insets(0, 0, 5, 0);
+		gbc_btnCercle.gridx = 0;
+		gbc_btnCercle.gridy = 1;
 		add(btnCircle, gbc_btnCercle);
 		
-		btnPolygon = new JButton("Polygone", new ImageIcon(polygonIcon));
+		btnPolygon = new GPButton("Polygone");
+		if (polygonIcon != null) btnPolygon.setIcon(new ImageIcon(polygonIcon));
 		btnPolygon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnPolygon.addActionListener(new ActionListener() {
 			
@@ -104,12 +111,13 @@ public class MenuAdd extends JPanel {
 		});
 		GridBagConstraints gbc_btnPolygone = new GridBagConstraints();
 		gbc_btnPolygone.fill = GridBagConstraints.BOTH;
-		gbc_btnPolygone.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPolygone.gridx = 1;
-		gbc_btnPolygone.gridy = 3;
+		gbc_btnPolygone.insets = new Insets(0, 0, 5, 0);
+		gbc_btnPolygone.gridx = 0;
+		gbc_btnPolygone.gridy = 2;
 		add(btnPolygon, gbc_btnPolygone);
 		
-		btnRectangle = new JButton("Rectangle", new ImageIcon(rectangleIcon));
+		btnRectangle = new GPButton("Rectangle");
+		if (rectangleIcon != null) btnRectangle.setIcon(new ImageIcon(rectangleIcon));
 		btnRectangle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnRectangle.addActionListener(new ActionListener() {
 			
@@ -120,15 +128,15 @@ public class MenuAdd extends JPanel {
 		});
 		GridBagConstraints gbc_btnRectangle = new GridBagConstraints();
 		gbc_btnRectangle.fill = GridBagConstraints.BOTH;
-		gbc_btnRectangle.insets = new Insets(0, 0, 5, 5);
-		gbc_btnRectangle.gridx = 1;
-		gbc_btnRectangle.gridy = 4;
+		gbc_btnRectangle.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRectangle.gridx = 0;
+		gbc_btnRectangle.gridy = 3;
 		add(btnRectangle, gbc_btnRectangle);
 		
-		btnTriangle = new JButton("Triangle", new ImageIcon(triangleIcon));
+		btnTriangle = new GPButton("Triangle");
+		if (triangleIcon != null) btnTriangle.setIcon(new ImageIcon(triangleIcon));
 		btnTriangle.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnTriangle.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.createTriangle();				
@@ -136,9 +144,8 @@ public class MenuAdd extends JPanel {
 		});
 		GridBagConstraints gbc_btnTriangle = new GridBagConstraints();
 		gbc_btnTriangle.fill = GridBagConstraints.BOTH;
-		gbc_btnTriangle.insets = new Insets(0, 0, 5, 5);
-		gbc_btnTriangle.gridx = 1;
-		gbc_btnTriangle.gridy = 5;
+		gbc_btnTriangle.gridx = 0;
+		gbc_btnTriangle.gridy = 4;
 		add(btnTriangle, gbc_btnTriangle);
 	}
 	

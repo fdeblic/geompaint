@@ -1,6 +1,8 @@
 package com.iutnc.geompaint.view;
 
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,7 +17,9 @@ import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * 
@@ -40,8 +44,11 @@ public class MenuEdit extends JPanel {
 	private JButton btnDown;
 	private BufferedImage fillIcon;
 	private BufferedImage colorIcon;
-	private BufferedImage copyIcon;
+	private BufferedImage cloneIcon;
 	private BufferedImage deleteIcon;
+	private BufferedImage upIcon;
+	private BufferedImage downIcon;
+	private JLabel lblHint;
 	
 	/**
 	 * Menu Edit constructor 
@@ -53,26 +60,31 @@ public class MenuEdit extends JPanel {
 			BufferedImage icons = ImageIO.read(new File("./img/icons.png"));
 			fillIcon = icons.getSubimage(64, 0, 64, 64);
 			colorIcon = icons.getSubimage(64, 64, 64, 64);
-			copyIcon = icons.getSubimage(64, 128, 64, 64);
+			cloneIcon = icons.getSubimage(64, 128, 64, 64);
 			deleteIcon = icons.getSubimage(64, 192, 64, 64);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			upIcon = icons.getSubimage(128, 0, 64, 64);
+			downIcon = icons.getSubimage(128, 64, 64, 64);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(frame, "Impossible de charger l'image img/icons.png", "Icones manquantes", JOptionPane.ERROR_MESSAGE);
+			System.exit(-1);
 		}
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 95, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{95, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel label = new JLabel("- Editer -");
+		JLabel label = new JLabel("- Edition -");
+		label.setFont(new Font("Calibri", Font.BOLD, 20));
 		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 1;
+		gbc_label.insets = new Insets(5, 0, 5, 0);
+		gbc_label.gridx = 0;
 		gbc_label.gridy = 0;
 		add(label, gbc_label);
 		
-		btnFill = new JButton("Remplir", new ImageIcon(fillIcon));
+		btnFill = new GPButton("Remplir");
+		if (fillIcon != null) btnFill.setIcon(new ImageIcon(fillIcon));
 		btnFill.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnFill.addActionListener(new ActionListener() {
 			@Override
@@ -82,12 +94,13 @@ public class MenuEdit extends JPanel {
 		});
 		GridBagConstraints gbc_btnFill = new GridBagConstraints();
 		gbc_btnFill.fill = GridBagConstraints.BOTH;
-		gbc_btnFill.insets = new Insets(0, 0, 5, 5);
-		gbc_btnFill.gridx = 1;
-		gbc_btnFill.gridy = 2;
+		gbc_btnFill.insets = new Insets(0, 0, 5, 0);
+		gbc_btnFill.gridx = 0;
+		gbc_btnFill.gridy = 1;
 		add(btnFill, gbc_btnFill);
 		
-		btnColor = new JButton("Couleur", new ImageIcon(colorIcon));
+		btnColor = new GPButton("Couleur");
+		if (colorIcon != null) btnColor.setIcon(new ImageIcon(colorIcon));
 		btnColor.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnColor.addActionListener(new ActionListener() {
 			
@@ -99,12 +112,13 @@ public class MenuEdit extends JPanel {
 		});
 		GridBagConstraints gbc_btnColor = new GridBagConstraints();
 		gbc_btnColor.fill = GridBagConstraints.BOTH;
-		gbc_btnColor.insets = new Insets(0, 0, 5, 5);
-		gbc_btnColor.gridx = 1;
-		gbc_btnColor.gridy = 3;
+		gbc_btnColor.insets = new Insets(0, 0, 5, 0);
+		gbc_btnColor.gridx = 0;
+		gbc_btnColor.gridy = 2;
 		add(btnColor, gbc_btnColor);
 		
-		btnClone = new JButton("Dupliquer", new ImageIcon(copyIcon));
+		btnClone = new GPButton("Dupliquer");
+		if (cloneIcon != null) btnClone.setIcon(new ImageIcon(cloneIcon));
 		btnClone.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnClone.addActionListener(new ActionListener() {
 			
@@ -116,12 +130,13 @@ public class MenuEdit extends JPanel {
 		});
 		GridBagConstraints gbc_btnClone = new GridBagConstraints();
 		gbc_btnClone.fill = GridBagConstraints.BOTH;
-		gbc_btnClone.insets = new Insets(0, 0, 5, 5);
-		gbc_btnClone.gridx = 1;
-		gbc_btnClone.gridy = 4;
+		gbc_btnClone.insets = new Insets(0, 0, 5, 0);
+		gbc_btnClone.gridx = 0;
+		gbc_btnClone.gridy = 3;
 		add(btnClone, gbc_btnClone);
 		
-		btnDelete = new JButton("Supprimer", new ImageIcon(deleteIcon));
+		btnDelete = new GPButton("Supprimer");
+		if (deleteIcon != null) btnDelete.setIcon(new ImageIcon(deleteIcon));
 		btnDelete.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDelete.addActionListener(new ActionListener() {
 			
@@ -133,12 +148,13 @@ public class MenuEdit extends JPanel {
 		});
 		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
 		gbc_btnDelete.fill = GridBagConstraints.BOTH;
-		gbc_btnDelete.insets = new Insets(0, 0, 5, 5);
-		gbc_btnDelete.gridx = 1;
-		gbc_btnDelete.gridy = 5;
+		gbc_btnDelete.insets = new Insets(0, 0, 5, 0);
+		gbc_btnDelete.gridx = 0;
+		gbc_btnDelete.gridy = 4;
 		add(btnDelete, gbc_btnDelete);
 		
-		btnUp = new JButton("Monter");
+		btnUp = new GPButton("Monter");
+		if (upIcon != null) btnUp.setIcon(new ImageIcon(upIcon));
 		btnUp.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnUp.addActionListener(new ActionListener() {
 			
@@ -150,12 +166,13 @@ public class MenuEdit extends JPanel {
 		});
 		GridBagConstraints gbc_btnUp = new GridBagConstraints();
 		gbc_btnUp.fill = GridBagConstraints.BOTH;
-		gbc_btnUp.insets = new Insets(0, 0, 5, 5);
-		gbc_btnUp.gridx = 1;
-		gbc_btnUp.gridy = 7;
+		gbc_btnUp.insets = new Insets(0, 0, 5, 0);
+		gbc_btnUp.gridx = 0;
+		gbc_btnUp.gridy = 5;
 		add(btnUp, gbc_btnUp);
 		
-		btnDown = new JButton("Descendre");
+		btnDown = new GPButton("Descendre");
+		if (downIcon != null) btnDown.setIcon(new ImageIcon(downIcon));
 		btnDown.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnDown.addActionListener(new ActionListener() {
 			
@@ -166,11 +183,20 @@ public class MenuEdit extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_btnDown = new GridBagConstraints();
+		gbc_btnDown.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDown.fill = GridBagConstraints.BOTH;
-		gbc_btnDown.insets = new Insets(0, 0, 0, 5);
-		gbc_btnDown.gridx = 1;
-		gbc_btnDown.gridy = 8;
+		gbc_btnDown.gridx = 0;
+		gbc_btnDown.gridy = 6;
 		add(btnDown, gbc_btnDown);
+		
+		lblHint = new JLabel("<html><body style='text-align:center'>Ajoutez / s\u00E9lectionnez<br>une figure...");
+		lblHint.setFont(new Font("Calibri", Font.BOLD, 12));
+		lblHint.setForeground(Color.DARK_GRAY);
+		GridBagConstraints gbc_lblHint = new GridBagConstraints();
+		gbc_lblHint.gridx = 0;
+		gbc_lblHint.gridy = 7;
+		gbc_lblHint.insets = new Insets(10, 0, 0, 0);
+		add(lblHint, gbc_lblHint);
 	}
 	
 	/**
@@ -184,5 +210,6 @@ public class MenuEdit extends JPanel {
 		btnFill.setEnabled(b);
 		btnUp.setEnabled(b);
 		btnDown.setEnabled(b);
+		lblHint.setVisible(!b);
 	}
 }
