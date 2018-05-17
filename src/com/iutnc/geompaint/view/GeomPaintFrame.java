@@ -144,7 +144,7 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 		controller.moveFigure(f, x, y);
 	}
 	
-	public Canvas getCanvas() {
+	public Canvas getObserver() {
 		return canvas;
 	}
 

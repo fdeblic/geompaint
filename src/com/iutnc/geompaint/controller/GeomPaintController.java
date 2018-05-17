@@ -32,7 +32,7 @@ public class GeomPaintController {
 	public void addFigure(Figure f) {
 		if (f.isValid()) {
 			drawing.addFigure(f);
-			f.addObserver(view.getCanvas());
+			f.addObserver(view.getObserver());
 		}
 	}
 	
@@ -95,8 +95,8 @@ public class GeomPaintController {
 		return drawing.getFigures().toArray(new Figure[drawing.getFigures().size()]);
 	}
 
-	public void setView(GeomPaintFrame view) {
+	public void setView(IGeomPaintView view) {
 		this.view = view;
-		drawing.addObserver(view.getCanvas());
+		drawing.addObserver(view.getObserver());
 	}
 }
