@@ -25,12 +25,19 @@ public class FigureDrawer {
 	 */
 	public void drawFigure(Figure f, Graphics g) {
 		if (f == null) return;
-		if (context.isHovered(f)) 
+		
+		if (context.isHovered(f)) {
 			g.setColor(Color.GREEN);
-		else g.setColor(f.getColor());
-		if (f instanceof Polygon ) this.drawPolygon((Polygon)f,g);
-		else if (f instanceof Circle) this.drawCircle((Circle)f, g);
-		if (context.isSelected(f)){
+		} else {
+			g.setColor(f.getColor());
+		}
+		if (f instanceof Polygon) {
+			this.drawPolygon((Polygon)f,g);
+		} else if (f instanceof Circle) {
+			this.drawCircle((Circle)f, g);
+		}
+		
+		if (context.isSelected(f) || context.isHovered(f)){
 			drawPoints(f.getGripPoints(), g);
 		}
 	}
@@ -87,7 +94,7 @@ public class FigureDrawer {
 	 * @param p the point to draw
 	 */
 	private void drawPoint(Point p, Graphics g) {
-		int r = 2; // pixels
+		int r = 4; // pixels
 		g.setColor(Color.white);
 		g.fillRect(p.x-r, p.y-r, 2*r, 2*r);
 		g.setColor(Color.black);

@@ -28,7 +28,7 @@ public class Triangle extends Polygon {
 	}
 	
 	public boolean isValid() {
-		return this.isFull();
+		return gripPoints.size() >= 2;
 		
 	}
 }

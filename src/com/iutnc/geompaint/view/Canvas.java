@@ -1,6 +1,8 @@
 package com.iutnc.geompaint.view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -96,6 +98,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		Graphics2D g2d = (Graphics2D) g;
 		
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setStroke(new BasicStroke(2, BasicStroke.JOIN_ROUND, BasicStroke.CAP_ROUND, 0f));
 		
 		Figure[] figures = frame.getFigures();
 		if (figures == null)
@@ -143,11 +146,29 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			hoveredFigure = null;
 			analyzer.setRef(e.getX(), e.getY());
 			for (int i = 0; i < figures.length; i++) {
-				if (analyzer.isNearFigure(figures[i])) {
+				if (analyzer.isHoverFigure(figures[i])) {
 					this.hoveredFigure = figures[i];
 				}
 			}
+<<<<<<< HEAD
+=======
+			Cursor cursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+			if (this.hoveredFigure != null) {
+				Point[] pts = this.hoveredFigure.getGripPoints();
+				for (int i = 0 ; i < pts.length; i ++){
+					if (analyzer.isHoverPoint(pts[i])){
+						cursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+						break;
+					}
+				}
+			}
+			setCursor(cursor);
+>>>>>>> branch 'master' of git@bitbucket.org:Elwey/java-ihm-project.git
 		}
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of git@bitbucket.org:Elwey/java-ihm-project.git
 		frame.movePoint(movingPoint, e.getX(), e.getY());
 		repaint();
 	}
@@ -184,13 +205,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 						this.selectedFigure = figures[i];
 					}
 				}
-				
-				if (this.selectedFigure != null) {
+				// Where is the point ?
+				if (this.hoveredFigure != null) {
 					analyzer.setRef(lastX, lastY);
-					Point[] pts = this.selectedFigure.getGripPoints();
+					Point[] pts = this.hoveredFigure.getGripPoints();
 					movingPoint = null;
 					for (int i = 0 ; i < pts.length; i ++){
-						if (analyzer.isNearPoint(pts[i])){
+						if (analyzer.isHoverPoint(pts[i])){
 							movingPoint = pts[i];
 						}					
 					}
