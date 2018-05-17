@@ -147,19 +147,20 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					this.hoveredFigure = figures[i];
 				}
 			}
-			if (this.hoveredFigure != null) {
-				
-			}
-
 		}
-			
-		
 		frame.movePoint(movingPoint, e.getX(), e.getY());
 		repaint();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if (SwingUtilities.isRightMouseButton(e)) {
+			lastX = e.getX();
+			lastY = e.getY();
+			if (this.state == State.NORMAL){
+				
+			}
+		}
 	}
 
 	@Override
