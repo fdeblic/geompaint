@@ -73,12 +73,14 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	}
 
 	public void changeFigureColor() {
-		Color newColor = JColorChooser.showDialog(null, "couleur du fond", canvas.getSelectedFigure().getColor());
+		if (canvas.getSelectedFigure() == null) return;
+		Color newColor = JColorChooser.showDialog(null, "Couleur du fond", canvas.getSelectedFigure().getColor());
 		controller.changeFigureColor(canvas.getSelectedFigure(), newColor);
-		
 	}
 
 	public void fillFigure() {
+		if (canvas.getSelectedFigure() == null) return;
+		
 		if (canvas.getSelectedFigure().isFilled()){
 			controller.fillFigure(canvas.getSelectedFigure(), false);
 		}
