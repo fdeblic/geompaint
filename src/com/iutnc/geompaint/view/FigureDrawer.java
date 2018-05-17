@@ -1,8 +1,11 @@
 package com.iutnc.geompaint.view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Stroke;
 
 import com.iutnc.geompaint.model.Circle;
 import com.iutnc.geompaint.model.Figure;
@@ -25,19 +28,40 @@ public class FigureDrawer {
 	 */
 	public void drawFigure(Figure f, Graphics g) {
 		if (f == null) return;
+		boolean selected = context.isSelected(f);
+		boolean hovered = context.isHovered(f);
 		
-		if (context.isHovered(f)) {
-			g.setColor(Color.GREEN);
-		} else {
-			g.setColor(f.getColor());
-		}
+		// Color of the figure
+		g.setColor(f.getColor());
+
+		// Style for the lines
+		Graphics2D g2d = (Graphics2D) g;
+		Stroke oldStroke = g2d.getStroke();
+		if (selected) g2d.setStroke(new BasicStroke(2, BasicStroke.JOIN_ROUND, BasicStroke.CAP_ROUND, 10f, new float[]{4f}, 0f));
+		
+		// Draws the figure
 		if (f instanceof Polygon) {
 			this.drawPolygon((Polygon)f,g);
 		} else if (f instanceof Circle) {
 			this.drawCircle((Circle)f, g);
 		}
 		
-		if (context.isSelected(f) || context.isHovered(f)){
+		g2d.setStroke(oldStroke);
+		
+		// If hovered, draws a border
+		if (!selected && hovered) {
+			g.setColor(Color.GREEN);
+			boolean filled = f.isFilled();
+			f.setFilled(false);
+			if (f instanceof Polygon) {
+				this.drawPolygon((Polygon)f,g);
+			} else if (f instanceof Circle) {
+				this.drawCircle((Circle)f, g);
+			}
+			f.setFilled(filled);
+		}
+		
+		if (selected){
 			drawPoints(f.getGripPoints(), g);
 		}
 	}
