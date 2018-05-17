@@ -150,17 +150,28 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 					this.hoveredFigure = figures[i];
 				}
 			}
-			Cursor cursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-			if (this.hoveredFigure != null) {
-				Point[] pts = this.hoveredFigure.getGripPoints();
+			Cursor cursor = getCursor();// Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+			
+			// Cursor
+			if (hoveredFigure != null)
+				cursor = new Cursor(Cursor.MOVE_CURSOR);
+			else
+				cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+			
+			
+			if (this.selectedFigure != null) {
+				Point[] pts = this.selectedFigure.getGripPoints();
 				for (int i = 0 ; i < pts.length; i ++){
 					if (analyzer.isHoverPoint(pts[i])){
-						cursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+						cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
 						break;
 					}
 				}
 			}
-			setCursor(cursor);
+
+			// Updates the cursor if changed
+			if (getCursor().getType() != cursor.getType())
+				setCursor(cursor);
 		}
 		
 		frame.movePoint(movingPoint, e.getX(), e.getY());
@@ -185,22 +196,26 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			
 			if (this.state == State.NORMAL){
 				Figure[] figures = frame.getFigures();
-				selectedFigure = null;
-				analyzer.setRef(e.getX(), e.getY());
-				for (int i = 0; i < figures.length; i++) {
-					if (analyzer.isHoverFigure(figures[i])) {
-						this.selectedFigure = figures[i];
-					}
-				}
+				
 				// Where is the point ?
-				if (this.hoveredFigure != null) {
+				if (this.selectedFigure != null) {
 					analyzer.setRef(lastX, lastY);
-					Point[] pts = this.hoveredFigure.getGripPoints();
+					Point[] pts = this.selectedFigure.getGripPoints();
 					movingPoint = null;
 					for (int i = 0 ; i < pts.length; i ++){
 						if (analyzer.isHoverPoint(pts[i])){
 							movingPoint = pts[i];
 						}					
+					}
+				}
+				
+				if (movingPoint == null) {
+					selectedFigure = null;
+					analyzer.setRef(e.getX(), e.getY());
+					for (int i = 0; i < figures.length; i++) {
+						if (analyzer.isHoverFigure(figures[i])) {
+							this.selectedFigure = figures[i];
+						}
 					}
 				}
 			}
