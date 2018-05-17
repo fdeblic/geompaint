@@ -1,7 +1,6 @@
 package com.iutnc.geompaint.view;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
