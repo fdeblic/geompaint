@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,8 +41,6 @@ public class GPButton extends JButton implements MouseListener {
 		setFocusable(false);
 		setFont(new Font("Calibri", Font.BOLD, 16));
 		setHorizontalAlignment(SwingConstants.LEFT);
-		//setBorderPainted(false);
-		//setContentAreaFilled(false);
 	}
 	
 	@Override
@@ -62,17 +56,14 @@ public class GPButton extends JButton implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
