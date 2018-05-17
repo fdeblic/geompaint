@@ -315,6 +315,24 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 			case KeyEvent.VK_ENTER:
 				saveFigure();
 				break;
+			case KeyEvent.VK_DELETE:
+				frame.deleteFigure();
+				break;
+			case KeyEvent.VK_T:
+				frame.createTriangle();
+				break;
+			case KeyEvent.VK_P:
+				frame.createPolygon();
+				break;
+			case KeyEvent.VK_C:
+				frame.createCircle();
+				break;
+			case KeyEvent.VK_R:
+				frame.createRectangle();
+				break;
+			case KeyEvent.VK_F:
+				frame.fillFigure();
+				break;
 		}
 	}
 }
