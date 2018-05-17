@@ -86,6 +86,7 @@ public class MenuAdd extends JPanel {
 				frame.createCircle();				
 			}
 		});
+		btnCircle.setFocusable(false);
 		GridBagConstraints gbc_btnCercle = new GridBagConstraints();
 		gbc_btnCercle.fill = GridBagConstraints.BOTH;
 		gbc_btnCercle.insets = new Insets(0, 0, 5, 5);
@@ -102,6 +103,7 @@ public class MenuAdd extends JPanel {
 				frame.createPolygon();				
 			}
 		});
+		btnPolygon.setFocusable(false);
 		GridBagConstraints gbc_btnPolygone = new GridBagConstraints();
 		gbc_btnPolygone.fill = GridBagConstraints.BOTH;
 		gbc_btnPolygone.insets = new Insets(0, 0, 5, 5);
@@ -118,6 +120,7 @@ public class MenuAdd extends JPanel {
 				frame.createRectangle();				
 			}
 		});
+		btnRectangle.setFocusable(false);
 		GridBagConstraints gbc_btnRectangle = new GridBagConstraints();
 		gbc_btnRectangle.fill = GridBagConstraints.BOTH;
 		gbc_btnRectangle.insets = new Insets(0, 0, 5, 5);
@@ -134,6 +137,7 @@ public class MenuAdd extends JPanel {
 				frame.createTriangle();				
 			}
 		});
+		btnTriangle.setFocusable(false);
 		GridBagConstraints gbc_btnTriangle = new GridBagConstraints();
 		gbc_btnTriangle.fill = GridBagConstraints.BOTH;
 		gbc_btnTriangle.insets = new Insets(0, 0, 5, 5);
