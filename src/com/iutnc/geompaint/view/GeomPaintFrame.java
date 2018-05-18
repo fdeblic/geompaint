@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import com.iutnc.geompaint.controller.GeomPaintController;
 import com.iutnc.geompaint.controller.State;
 import com.iutnc.geompaint.model.Circle;
@@ -40,7 +43,8 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 		menuEdit.setEnabled(false);
 		global.add(menuEdit,BorderLayout.EAST);
 		
-		colorChooser = new GPColorChooser();
+		colorChooser = new GPColorChooser(this);
+		colorChooser.setAutoscrolls(true);
 		global.add(colorChooser, BorderLayout.SOUTH);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -200,6 +204,16 @@ public class GeomPaintFrame extends JFrame implements IGeomPaintView {
 	
 	public void updateMenus(Figure f) {
 		menuEdit.adaptToFigure(f);
+	}
+
+	public void setBorderColor(Color color) {
+		if (canvas != null && canvas.getSelectedFigure() != null)
+			canvas.getSelectedFigure().setBorderColor(color);
+	}
+
+	public void setFillColor(Color color) {
+		if (canvas != null && canvas.getSelectedFigure() != null)
+			canvas.getSelectedFigure().setFillColor(color);
 	}
 
 }

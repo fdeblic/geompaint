@@ -36,9 +36,9 @@ public abstract class Figure extends Observable {
     	
     	this.gripPoints = new ArrayList<>();
     	this.filled = false;
-    	float r = random.nextFloat(), g = random.nextFloat(), b = random.nextFloat();
+    	float hue = random.nextFloat();
     	
-    	this.colorBorder = new Color(r, g, b);
+    	this.colorBorder = Color.getHSBColor(hue, 0.8f, 0.8f);
     	this.colorFill = Color.LIGHT_GRAY;
     	this.maxGripPoints = INFINITE;
     	
@@ -143,6 +143,7 @@ public abstract class Figure extends Observable {
      */
     public void setFillColor(Color c) {
     	this.colorFill = c;
+    	this.filled = true;
     	setChanged();
     	notifyObservers();
     }
