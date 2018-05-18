@@ -14,7 +14,7 @@ Des raccourcis claviers ont été ajoutés pour rendre le logiciel plus intuitif
  * Page Up pour monter la figure,
  * Page Down pour descendre la figure,
  * Entrée pour valider une figure,
- * Echap pour arrêter le dessin d'une figure,
+ * Echap pour arrêter le dessin d'une figure
  
  Une barre de couleur est disponible pour choisir aisément la couleur de la figure et son contour.
  Le clic droit de la souris permet de remplir la figure, le clic du milieu permet de colorier le contour. 
