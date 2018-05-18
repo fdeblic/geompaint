@@ -329,7 +329,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 				saveFigure();
 				break;
 			case KeyEvent.VK_DELETE:
-				if (e.isShiftDown())
 					frame.deleteFigure();
 				break;
 			case KeyEvent.VK_T:
