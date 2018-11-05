@@ -11,7 +11,7 @@ Il permet également de les copier, les modifier, les supprimer, les colorier et
 Egalement, le déplacement vers l'avant et vers l'arrière de la fenêtre est possible afin de pouvoir déplacer les figures librement.
 Des raccourcis claviers ont été ajoutés pour rendre le logiciel plus intuitif et plus ergonomique :
 
-## Utilisation
+## Utilisation
 
 Une barre de couleur est disponible pour choisir aisément la couleur de la figure et son contour.
 Le clic droit de la souris permet de remplir la figure, le clic du milieu permet de colorier le contour. 
@@ -32,7 +32,7 @@ Seule la barre de couleurs en bas le permet.
 * Entrée pour valider une figure,
 * Echap pour annuler la création d'une figure
  
-# Auteurs
+## Auteurs
 
 * Élise Moreau
 * Loic Spacher
