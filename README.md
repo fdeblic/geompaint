@@ -1,6 +1,6 @@
-# Projet scolaire - GeomPaint
+# GeomPaint
 
-Logiciel de dessin vectoriel
+Projet scolaire - Logiciel de dessin vectoriel
 
 ![Screenshot](screenshot.png)
 
