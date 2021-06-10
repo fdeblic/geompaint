@@ -22,7 +22,8 @@ public class Principale {
 		
 		if (!new File("img/icons.png").exists())
 			JOptionPane.showMessageDialog(fenetre, "Impossible de trouver l'image img/icons.png", "Icônes manquantes", JOptionPane.WARNING_MESSAGE);
-
+		
+		// Ouvre la fenêtre
 		try {
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("img/font/calibrib.ttf")));
